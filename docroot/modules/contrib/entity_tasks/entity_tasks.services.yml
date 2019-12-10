@@ -1,0 +1,4 @@
+services:
+  entity_tasks.toolbar:
+    class: Drupal\entity_tasks\Service\ToolbarService
+    arguments: ['@plugin.manager.menu.local_task', '@current_route_match', '@config.factory', '@router.admin_context', '@current_user', '@string_translation']

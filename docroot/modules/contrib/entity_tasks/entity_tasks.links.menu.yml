@@ -1,0 +1,5 @@
+entity_tasks.config:
+  title: Entity Tasks Configuration
+  description: 'Entity Tasks Configuration'
+  route_name: entity_tasks.config
+  parent: system.admin_config_ui

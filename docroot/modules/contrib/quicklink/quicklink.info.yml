@@ -1,0 +1,12 @@
+name: 'Quicklink'
+type: module
+description: 'Installs Quicklink JS library to prefetch linked pages.'
+# core: 8.x
+package: 'Performance and Scalability'
+configure: quicklink.settings
+
+# Information added by Drupal.org packaging script on 2019-05-11
+version: '8.x-1.2'
+core: '8.x'
+project: 'quicklink'
+datestamp: 1557583685

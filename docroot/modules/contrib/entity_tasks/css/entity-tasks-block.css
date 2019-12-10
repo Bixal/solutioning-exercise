@@ -1,0 +1,82 @@
+body {
+  -ms-overflow-style: scrollbar; }
+
+.entity-tasks {
+  position: fixed;
+  z-index: 700;
+  right: 0;
+  top: 20%;
+  opacity: 0;
+  transition: opacity .3s; }
+  .entity-tasks ul {
+    border: none;
+    padding: 0;
+    margin: 0;
+    white-space: normal; }
+    .entity-tasks ul li {
+      display: block;
+      margin: 0;
+      padding: 0; }
+      .entity-tasks ul li:before, .entity-tasks ul li:after {
+        content: " ";
+        display: table; }
+      .entity-tasks ul li:after {
+        clear: both; }
+      .entity-tasks ul li:first-child a {
+        border-top-left-radius: 5px; }
+      .entity-tasks ul li:last-child a {
+        border-bottom-left-radius: 5px; }
+      .entity-tasks ul li a {
+        display: flex;
+        float: right;
+        margin: 0;
+        padding: 5px;
+        border-right: none;
+        background: #0f0f0f; }
+        .entity-tasks ul li a .entity-tasks-svg {
+          fill: #bebebe;
+          float: left;
+          height: 30px;
+          display: flex;
+          align-items: center;
+          padding: 0 6px;
+          margin: 2px auto; }
+          .entity-tasks ul li a .entity-tasks-svg > svg {
+            width: 20px; }
+            .entity-tasks ul li a .entity-tasks-svg > svg .color {
+              fill: #bebebe; }
+        .entity-tasks ul li a p {
+          float: left;
+          display: none;
+          padding-left: 5px;
+          padding-right: 15px;
+          margin: 0;
+          font-family: Helvetica, Arial, sans-serif;
+          font-size: 15px;
+          color: #fff; }
+        .entity-tasks ul li a:hover p {
+          display: flex;
+          align-items: center;
+          color: #fff; }
+        .entity-tasks ul li a:hover .entity-tasks-svg {
+          fill: #fff; }
+          .entity-tasks ul li a:hover .entity-tasks-svg > svg .color {
+            fill: #fff; }
+  .entity-tasks--left {
+    right: auto;
+    left: 0; }
+    .entity-tasks--left ul li:first-child a {
+      border-top-left-radius: 0;
+      border-top-right-radius: 5px; }
+    .entity-tasks--left ul li:last-child a {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 5px; }
+    .entity-tasks--left ul li a {
+      float: left;
+      border-left: none; }
+      .entity-tasks--left ul li a p {
+        float: right;
+        padding-left: 15px;
+        padding-right: 5px; }
+
+/*# sourceMappingURL=entity-tasks-block.css.map */

@@ -1,0 +1,28 @@
+.toolbar .toolbar-bar .entity-tasks-toolbar-dropdown {
+  position: relative;
+  float: right; }
+  @media (max-width: 263px) {
+    .toolbar .toolbar-bar .entity-tasks-toolbar-dropdown {
+      float: none; } }
+  .toolbar .toolbar-bar .entity-tasks-toolbar-dropdown .toolbar-icon-entity-tasks-tasks::before {
+    background-image: url("../images/gear.svg");
+    padding: 2px 8px 0 4px; }
+  .toolbar .toolbar-bar .entity-tasks-toolbar-dropdown:hover .toolbar-tray {
+    display: block !important; }
+  .toolbar .toolbar-bar .entity-tasks-toolbar-dropdown:hover .toolbar-icon-entity-tasks-tasks::before {
+    background-image: url("../images/gear-white.svg"); }
+  .toolbar .toolbar-bar .entity-tasks-toolbar-dropdown > .toolbar-tray {
+    left: auto;
+    position: absolute; }
+    .toolbar .toolbar-bar .entity-tasks-toolbar-dropdown > .toolbar-tray .toolbar-lining {
+      padding: 0; }
+      .toolbar .toolbar-bar .entity-tasks-toolbar-dropdown > .toolbar-tray .toolbar-lining .entity-tasks-dropdown {
+        margin: 0;
+        padding: 0;
+        text-align: center; }
+        .toolbar .toolbar-bar .entity-tasks-toolbar-dropdown > .toolbar-tray .toolbar-lining .entity-tasks-dropdown li {
+          float: none; }
+    .toolbar .toolbar-bar .entity-tasks-toolbar-dropdown > .toolbar-tray .toolbar-toggle-orientation {
+      display: none !important; }
+
+/*# sourceMappingURL=entity-tasks-dropdown.css.map */

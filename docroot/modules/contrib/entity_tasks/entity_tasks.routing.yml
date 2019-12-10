@@ -1,0 +1,7 @@
+entity_tasks.config:
+  path: '/admin/config/entity-tasks'
+  defaults:
+    _form: '\Drupal\entity_tasks\Form\EntityTasksConfigForm'
+    _title: 'Entity Tasks Configuration'
+  requirements:
+    _permission: 'administer entity tasks configuration'

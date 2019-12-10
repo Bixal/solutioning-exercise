@@ -1,0 +1,17 @@
+name: cms-solution
+recipe: drupal8
+config:
+  php: '7.3'
+  webroot: docroot
+  xdebug: true
+  database: mariadb
+services:
+  solr-service:
+    type: solr
+    config:
+      dir: docroot/modules/contrib/search_api_solr/solr-conf-templates/7.x
+  mailhog-service:
+    type: mailhog
+    portforward: true
+env_file:
+  - .env

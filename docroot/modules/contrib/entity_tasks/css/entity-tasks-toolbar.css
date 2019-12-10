@@ -1,0 +1,25 @@
+.toolbar .toolbar-bar .entity-tasks-toolbar-tab {
+  float: right; }
+  @media (max-width: 263px) {
+    .toolbar .toolbar-bar .entity-tasks-toolbar-tab {
+      float: none; } }
+  .toolbar .toolbar-bar .entity-tasks-toolbar-tab .toolbar-icon-entity-tasks-tasks.is-active::before {
+    background-image: url("../images/gear-white.svg"); }
+  .toolbar .toolbar-bar .entity-tasks-toolbar-tab .toolbar-icon-entity-tasks-tasks::before {
+    background-image: url("../images/gear.svg"); }
+  .toolbar .toolbar-bar .entity-tasks-toolbar-tab .toolbar-icon-entity-tasks-entity--node--edit-form::before, .toolbar .toolbar-bar .entity-tasks-toolbar-tab .toolbar-icon-entity-tasks-entity--user--edit-form::before {
+    background-image: url("../images/edit.svg"); }
+  .toolbar .toolbar-bar .entity-tasks-toolbar-tab .toolbar-icon-entity-tasks-entity--node--canonical::before, .toolbar .toolbar-bar .entity-tasks-toolbar-tab .toolbar-icon-entity-tasks-entity--user--canonical::before {
+    background-image: url("../images/view.svg"); }
+  .toolbar .toolbar-bar .entity-tasks-toolbar-tab .toolbar-icon-entity-tasks-entity--node--delete-form::before {
+    background-image: url("../images/delete.svg"); }
+  .toolbar .toolbar-bar .entity-tasks-toolbar-tab .toolbar-icon-entity-tasks-entity--node--version-history::before {
+    background-image: url("../images/revisions.svg"); }
+  .toolbar .toolbar-bar .entity-tasks-toolbar-tab .toolbar-icon-entity-tasks-entity--node--content-translation-overview::before, .toolbar .toolbar-bar .entity-tasks-toolbar-tab .toolbar-icon-entity-tasks-entity--user--content-translation-overview::before {
+    background-image: url("../images/translate.svg"); }
+  .toolbar .toolbar-bar .entity-tasks-toolbar-tab .toolbar-icon-entity-tasks-contact::before {
+    background-image: url("../images/contact.svg"); }
+  .toolbar .toolbar-bar .entity-tasks-toolbar-tab .toolbar-icon-entity-tasks-shortcut--set-switch::before {
+    background-image: url("../images/star.svg"); }
+
+/*# sourceMappingURL=entity-tasks-toolbar.css.map */

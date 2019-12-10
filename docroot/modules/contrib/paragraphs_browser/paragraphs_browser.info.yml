@@ -1,0 +1,13 @@
+name: Paragraphs Browser
+type: module
+description: Provides browser for adding additional paragraphs.
+# core: 8.x
+package: Paragraphs
+dependencies:
+  - paragraphs:paragraphs
+
+# Information added by Drupal.org packaging script on 2019-05-24
+version: '8.x-1.0-beta1'
+core: '8.x'
+project: 'paragraphs_browser'
+datestamp: 1558728788

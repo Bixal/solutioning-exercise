@@ -1,0 +1,5 @@
+administer entity tasks configuration:
+ 'Administer the entity tasks view mode'
+
+access entity tasks:
+  'Use entity tasks'

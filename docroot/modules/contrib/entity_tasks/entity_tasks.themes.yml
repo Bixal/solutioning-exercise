@@ -1,0 +1,10 @@
+entity_tasks_block:
+  template: 'entity-tasks-block'
+  variables:
+    content: NULL
+    left: FALSE
+
+entity_tasks_dropdown:
+  template: 'entity-tasks-dropdown'
+  variables:
+    links: NULL

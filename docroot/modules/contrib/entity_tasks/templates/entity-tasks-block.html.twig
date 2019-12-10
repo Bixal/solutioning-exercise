@@ -1,0 +1,7 @@
+{% if content %}
+  <nav class="entity-tasks{% if left == true %} entity-tasks--left{% endif %}" role="navigation" aria-label="{{ 'Tabs'|t }}">
+    <ul>
+      {{ content }}
+    </ul>
+  </nav>
+{% endif %}

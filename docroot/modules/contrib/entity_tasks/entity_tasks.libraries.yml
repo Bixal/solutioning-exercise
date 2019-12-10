@@ -1,0 +1,20 @@
+block:
+  css:
+    theme:
+      css/entity-tasks-block.css: {}
+  js:
+    js/entity-tasks.tabs-block.js: {}
+  dependencies:
+    - core/drupalSettings
+
+toolbar:
+  css:
+    theme:
+      css/entity-tasks-toolbar.css: {}
+
+dropdown:
+  css:
+    theme:
+      css/entity-tasks-dropdown.css: {}
+  js:
+    js/entity-tasks.dropdown.js: {}

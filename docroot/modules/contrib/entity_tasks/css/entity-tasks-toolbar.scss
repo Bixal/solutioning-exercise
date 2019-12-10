@@ -1,0 +1,71 @@
+$color-white: #fff;
+$color-black: #0f0f0f;
+$color-grey: #bebebe;
+
+.toolbar {
+  .toolbar-bar {
+    .entity-tasks-toolbar-tab {
+      float: right;
+
+      @media (max-width: 263px ) {
+        float: none;
+      }
+
+      .toolbar-icon-entity-tasks {
+        &-tasks {
+          &.is-active {
+            &::before {
+              background-image: url('../images/gear-white.svg');
+            }
+          }
+
+          &::before {
+            background-image: url('../images/gear.svg');
+          }
+        }
+
+        &-entity--node--edit-form, &-entity--user--edit-form {
+          &::before {
+            background-image: url('../images/edit.svg');
+          }
+        }
+
+        &-entity--node--canonical, &-entity--user--canonical {
+          &::before {
+            background-image: url('../images/view.svg');
+          }
+        }
+
+        &-entity--node--delete-form {
+          &::before {
+            background-image: url('../images/delete.svg');
+          }
+        }
+
+        &-entity--node--version-history {
+          &::before {
+            background-image: url('../images/revisions.svg');
+          }
+        }
+
+        &-entity--node--content-translation-overview, &-entity--user--content-translation-overview {
+          &::before {
+            background-image: url('../images/translate.svg');
+          }
+        }
+
+        &-contact {
+          &::before {
+            background-image: url('../images/contact.svg');
+          }
+        }
+
+        &-shortcut--set-switch {
+          &::before {
+            background-image: url('../images/star.svg');
+          }
+        }
+      }
+    }
+  }
+}

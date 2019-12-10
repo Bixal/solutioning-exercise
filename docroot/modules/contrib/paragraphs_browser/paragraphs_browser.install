@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * Migrate old descriptions.
+ */
+function paragraphs_browser_update_8001() {
+  $entityTypeManager = \Drupal::entityTypeManager();
+  $paragraphsTypeStorage = $entityTypeManager->getStorage('paragraphs_type');
+
+  $paragraphsType = $paragraphsTypeStorage->loadMultiple();
+
+  foreach ($paragraphsType as $paragraphType) {
+
+    $paragraphsBrowserSettings = $paragraphType->getThirdPartySettings('paragraphs_browser');
+
+    if (!$paragraphType->getDescription() && isset($paragraphsBrowserSettings['description'])) {
+      $paragraphType->set('description', $paragraphsBrowserSettings['description']);
+      $paragraphType->save();
+    }
+
+  }
+}

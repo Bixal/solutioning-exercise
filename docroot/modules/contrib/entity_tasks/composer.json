@@ -1,0 +1,14 @@
+{
+  "name": "drupal/entity_tasks",
+  "type": "drupal-module",
+  "description": "Allows a quick access to the modifications on the site.",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "minimum-stability": "dev",
+  "homepage": "",
+  "support": {
+    "issues": "",
+    "source": ""
+  },
+  "require": { }
+}

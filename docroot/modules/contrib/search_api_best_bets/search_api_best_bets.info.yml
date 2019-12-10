@@ -1,0 +1,13 @@
+name: Search API Best Bets
+type: module
+description: Let editors define best bets / promoted search results per entity in Drupal.
+# core: 8.x
+package: Search
+dependencies:
+  - field
+  - search_api
+# Information added by Drupal.org packaging script on 2017-06-16
+version: '8.x-1.1'
+core: '8.x'
+project: 'search_api_best_bets'
+datestamp: 1497612849

@@ -1,0 +1,54 @@
+$padding: 2px 8px 0 4px;
+
+.toolbar {
+  .toolbar-bar {
+    .entity-tasks-toolbar-dropdown {
+      position: relative;
+      float: right;
+
+      @media (max-width: 263px ) {
+        float: none;
+      }
+
+      .toolbar-icon-entity-tasks-tasks {
+        &::before {
+          background-image: url('../images/gear.svg');
+          padding: $padding;
+        }
+      }
+
+      &:hover {
+        .toolbar-tray {
+          display: block !important;
+        }
+        .toolbar-icon-entity-tasks-tasks {
+          &::before {
+            background-image: url('../images/gear-white.svg');
+          }
+        }
+      }
+
+      > .toolbar-tray {
+        left: auto;
+        position: absolute;
+
+        .toolbar-lining {
+          padding: 0;
+
+          .entity-tasks-dropdown {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            li {
+              float: none;
+            }
+          }
+        }
+
+        .toolbar-toggle-orientation {
+          display: none !important;
+        }
+      }
+    }
+  }
+}

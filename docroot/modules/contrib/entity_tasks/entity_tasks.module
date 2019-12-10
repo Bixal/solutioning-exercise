@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Autoload includes folder.
+ */
+
+$moduleName = basename(dirname(__FILE__));
+$pathsToInclude = glob(drupal_get_path('module', $moduleName) . '/hooks/*');
+
+if ($pathsToInclude) {
+  foreach ($pathsToInclude as $path) {
+    $pathInfo = pathinfo($path);
+    $directory = str_replace(drupal_get_path('module', $moduleName), '', $pathInfo['dirname']);
+    if (isset($pathInfo['extension'])) {
+      module_load_include($pathInfo['extension'], $moduleName, $directory . '/' . $pathInfo['filename']);
+    }
+  }
+}
