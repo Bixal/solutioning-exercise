@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "936000a11b642828dc046c742a4b041e",
+    "content-hash": "9f751c0118e3714a65f56a4e50a380c8",
     "packages": [
         {
             "name": "ajgl/breakpoint-twig-extension",
@@ -1277,62 +1277,6 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/backup_migrate",
                 "issues": "https://www.drupal.org/project/issues/backup_migrate"
-            }
-        },
-        {
-            "name": "drupal/bg_img_field",
-            "version": "1.4.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/bg_img_field.git",
-                "reference": "8.x-1.4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/bg_img_field-8.x-1.4.zip",
-                "reference": "8.x-1.4",
-                "shasum": "2f57e35a9b4e5d45bc1184c257400affaccefcce"
-            },
-            "require": {
-                "drupal/core": "*",
-                "drupal/token": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.4",
-                    "datestamp": "1552911064",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "TheLostCookie",
-                    "homepage": "https://www.drupal.org/user/3454003"
-                },
-                {
-                    "name": "aisforaaron",
-                    "homepage": "https://www.drupal.org/user/116113"
-                },
-                {
-                    "name": "cchoe1",
-                    "homepage": "https://www.drupal.org/user/3562129"
-                }
-            ],
-            "description": "Allows you to add responsive background images based on selctors.",
-            "homepage": "https://www.drupal.org/project/bg_img_field",
-            "support": {
-                "source": "https://git.drupalcode.org/project/bg_img_field"
             }
         },
         {
