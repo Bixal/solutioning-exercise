@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * Settings for bixal/drupal-project
+ */
+try {
+  $db_driver = getenv('DB_DRIVER');
+  $databases['default']['default'] = array (
+    'database' => getenv('DB_NAME'),
+    'username' => getenv('DB_USER'),
+    'password' => getenv('DB_PASSWORD'),
+    'prefix' => '',
+    'host' => getenv('DB_HOST'),
+    'port' => '3306',
+    'driver' => $db_driver,
+  );
+  $settings['trusted_host_patterns'] = [getenv('PROJECT_BASE_URL')];
+  $settings['hash_salt'] = getenv('HASH_SALT');
+} catch(Exception $e) {
+  echo $e->getMessage();
+}

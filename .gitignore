@@ -2,4 +2,10 @@
 docroot/files
 docroot/sites/*/files
 docroot/sites/*/private
+.env
+# Ignore sensitive information
+/docroot/sites/*/settings.local.php
 
+# Databases
+*.sql
+*.sql.gz
