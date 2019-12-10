@@ -1,0 +1,15 @@
+uuid: b5f37b65-d4dc-4d9b-b108-4c54b6b5b394
+name: 'CMS Solution'
+mail: example-cmsapplication@example.com
+slogan: ''
+page:
+  403: ''
+  404: ''
+  front: /node
+admin_compact_mode: false
+weight_select_max: 100
+langcode: en
+default_langcode: en
+_core:
+  default_config_hash: yTxtFqBHnEWxQswuWvkjE8mKw2t8oKuCL1q8KnfHuGE
+mail_notification: ''
