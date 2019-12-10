@@ -1,0 +1,9 @@
+{% if not content |render|striptags|trim  == "" %}
+  <div {{ attributes.addClass("ds-c-alert") }} role="alert">
+    <div class="ds-c-alert__body">
+      <p class="ds-c-alert__text">
+        {{ content }}
+      </p>
+    </div>
+  </div>
+{% endif %}

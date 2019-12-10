@@ -2,4 +2,10 @@
 docroot/files
 docroot/sites/*/files
 docroot/sites/*/private
+/node_modules
+node_modules/.cache
+node_modules
 
+/docroot/sites/*/settings.local.php
+.DS_Store
+.cache-loader

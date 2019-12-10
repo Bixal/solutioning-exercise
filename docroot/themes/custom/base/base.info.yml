@@ -1,0 +1,17 @@
+name: Base
+type: theme
+base theme: stable
+description: 'A responsive theme based on the CMS design system.'
+version: VERSION
+core: 8.x
+libraries:
+  - base/global-styling
+regions:
+  header: Header
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+  help: "Help"
+  sidebar_first: 'Sidebar first'
+  content: Content
+  sidebar_second: 'Sidebar second'
+  footer: 'Footer'
