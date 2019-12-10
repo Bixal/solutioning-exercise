@@ -785,4 +785,5 @@ $settings['entity_update_backup'] = TRUE;
 // (Drupal 5 or 6) or $databases (Drupal 7 or 8) as described in comments above.
 if (file_exists('/var/www/site-php')) {
   require('/var/www/site-php/cmssolution/cmssolution-settings.inc');
+  header('Strict-Transport-Security: max-age=31536000; includeSubDomains');
 }
