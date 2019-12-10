@@ -14,7 +14,11 @@
     "prefer-stable": true,
     "config": {
         "preferred-install": "dist",
-        "autoloader-suffix": "Drupal8"
+        "autoloader-suffix": "Drupal8",
+        "platform": {
+            "php": "7.3",
+            "ext-gd": "1"
+        }
     },
     "extra": {
         "_readme": [

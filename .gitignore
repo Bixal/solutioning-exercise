@@ -9,3 +9,12 @@ node_modules
 /docroot/sites/*/settings.local.php
 .DS_Store
 .cache-loader
+
+.env
+# Ignore sensitive information
+/docroot/sites/*/settings.local.php
+
+# Databases
+*.sql
+*.sql.gz
+
