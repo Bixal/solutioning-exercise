@@ -57,6 +57,10 @@ AddEncoding gzip svgz
   </FilesMatch>
 </IfModule>
 
+<IfModule mode_headers.c>
+  Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains;"
+</IfModule>
+
 # Set a fallback resource if mod_rewrite is not enabled. This allows Drupal to
 # work without clean URLs. This requires Apache version >= 2.2.16. If Drupal is
 # not accessed by the top level URL (i.e.: http://example.com/drupal/ instead of
