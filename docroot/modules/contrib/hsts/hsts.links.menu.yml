@@ -1,0 +1,5 @@
+hsts.settings:
+  title: 'HSTS settings'
+  parent: system.admin_config_system
+  description: 'Configure HTTP Strict Transport Security (HSTS) settings.'
+  route_name: hsts.settings

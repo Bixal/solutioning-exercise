@@ -1,0 +1,3 @@
+administer hsts:
+  title: 'Administer Strict Transport Security settings'
+  description: 'Allow a user to enable/disable the HSTS header as well as the header values.'

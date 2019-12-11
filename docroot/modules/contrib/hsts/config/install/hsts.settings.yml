@@ -1,0 +1,3 @@
+max_age: 500
+enabled: FALSE
+subdomains: FALSE

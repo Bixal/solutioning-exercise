@@ -1,0 +1,11 @@
+name: HSTS
+description: Enable HTTP Strict Transport Security (HSTS) on your site.
+# core: 8.x
+configure: hsts.settings
+type: module
+
+# Information added by Drupal.org packaging script on 2017-04-27
+version: '8.x-1.0'
+core: '8.x'
+project: 'hsts'
+datestamp: 1493310545

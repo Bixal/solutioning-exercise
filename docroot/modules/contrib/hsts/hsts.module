@@ -1,0 +1,9 @@
+<?php
+
+/**
+ * @file
+ * Main module file for the HSTS (HTTP Strict Transport Security) module.
+ *
+ * This modules allows you to add the HSTS header tags to trigger
+ * Strict Transport Security on compatible clients
+ */
