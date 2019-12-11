@@ -13,6 +13,7 @@ services:
       MYSQL_PASSWORD: $DB_PASSWORD
     volumes:
       - ./mariadb-init:/docker-entrypoint-initdb.d # Place init .sql file(s) here.
+      
   php:
     image: wodby/drupal-php:$PHP_TAG
     container_name: "${PROJECT_NAME}_php"
@@ -28,6 +29,7 @@ services:
       DB_DRIVER: $DB_DRIVER
       PHP_FPM_USER: wodby
       PHP_FPM_GROUP: wodby
+      SOLR_BACKEND: $SOLR_BACKEND
       COLUMNS: 80 # Set 80 columns for docker exec -it.
 ## Read instructions at https://wodby.com/docs/stacks/php/local/#xdebug
 #      PHP_XDEBUG: 1
@@ -73,11 +75,13 @@ services:
       - 'traefik.frontend.rule=Host:mailhog.${PROJECT_BASE_URL}'
 
   solr:
-    image: wodby/solr:$SOLR_TAG
+    image: solr:$SOLR_TAG
     container_name: "${PROJECT_NAME}_solr"
-    environment:
-      SOLR_DEFAULT_CONFIG_SET: $SOLR_CONFIG_SET
-      SOLR_HEAP: 1024m
+    volumes:
+      - ./solr:/var/solr
+    command:
+      - solr-precreate
+      - solr
     labels:
       - 'traefik.backend=solr'
       - 'traefik.port=8983'
