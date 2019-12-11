@@ -56,6 +56,8 @@ module:
   redirect_after_login: 0
   responsive_image: 0
   search: 0
+  search_api: 0
+  search_api_best_bets: 0
   serialization: 0
   system: 0
   taxonomy: 0
