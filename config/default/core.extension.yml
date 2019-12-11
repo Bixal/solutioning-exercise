@@ -58,6 +58,7 @@ module:
   search: 0
   search_api: 0
   search_api_best_bets: 0
+  search_api_solr: 0
   serialization: 0
   system: 0
   taxonomy: 0
