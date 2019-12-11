@@ -1,0 +1,6 @@
+services:
+  hsts.subscriber:
+    class: Drupal\hsts\HstsSubscriber
+    tags:
+      - { name: event_subscriber }
+    arguments: ['@config.factory']

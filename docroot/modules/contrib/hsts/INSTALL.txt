@@ -1,0 +1,5 @@
+Extract the module in your modules directory
+
+Go to *Extend* and enable the HSTS module.
+
+To enable the header, to go admin/config/system/hsts
