@@ -13,6 +13,7 @@ services:
       MYSQL_PASSWORD: $DB_PASSWORD
     volumes:
       - ./mariadb-init:/docker-entrypoint-initdb.d # Place init .sql file(s) here.
+      
   php:
     image: wodby/drupal-php:$PHP_TAG
     container_name: "${PROJECT_NAME}_php"
@@ -28,6 +29,7 @@ services:
       DB_DRIVER: $DB_DRIVER
       PHP_FPM_USER: wodby
       PHP_FPM_GROUP: wodby
+      SOLR_BACKEND: $SOLR_BACKEND
       COLUMNS: 80 # Set 80 columns for docker exec -it.
 ## Read instructions at https://wodby.com/docs/stacks/php/local/#xdebug
 #      PHP_XDEBUG: 1
@@ -60,23 +62,30 @@ services:
     volumes:
       - ./:/var/www/html
     labels:
-      - "traefik.http.routers.${PROJECT_NAME}_apache.rule=Host(`${PROJECT_BASE_URL}`)"
+      - 'traefik.backend=apache'
+      - 'traefik.port=80'
+      - 'traefik.frontend.rule=Host:${PROJECT_BASE_URL}'
 
   mailhog:
     image: mailhog/mailhog
     container_name: "${PROJECT_NAME}_mailhog"
     labels:
-      - "traefik.http.services.${PROJECT_NAME}_mailhog.loadbalancer.server.port=8025"
-      - "traefik.http.routers.${PROJECT_NAME}_mailhog.rule=Host(`mailhog.${PROJECT_BASE_URL}`)"
+      - 'traefik.backend=mailhog'
+      - 'traefik.port=8025'
+      - 'traefik.frontend.rule=Host:mailhog.${PROJECT_BASE_URL}'
 
   solr:
-    image: wodby/solr:$SOLR_TAG
+    image: solr:$SOLR_TAG
     container_name: "${PROJECT_NAME}_solr"
-    environment:
-      SOLR_DEFAULT_CONFIG_SET: $SOLR_CONFIG_SET
-      SOLR_HEAP: 1024m
+    volumes:
+      - ./solr:/var/solr
+    command:
+      - solr-precreate
+      - solr
     labels:
-      - "traefik.http.routers.${PROJECT_NAME}_solr.rule=Host(`solr.${PROJECT_BASE_URL}`)"
+      - 'traefik.backend=solr'
+      - 'traefik.port=8983'
+      - 'traefik.frontend.rule=Host:solr.${PROJECT_BASE_URL}'
 
 #  varnish:
 #    image: wodby/varnish:$VARNISH_TAG
@@ -135,17 +144,19 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     labels:
-      - "traefik.http.routers.${PROJECT_NAME}_portainer.rule=Host(`portainer.${PROJECT_BASE_URL}`)"
+      - 'traefik.backend=portainer'
+      - 'traefik.port=9000'
+      - 'traefik.frontend.rule=Host:portainer.${PROJECT_BASE_URL}'
 
   traefik:
-    image: traefik:v2.0
+    image: traefik:v1.7.16-alpine
     container_name: "${PROJECT_NAME}_traefik"
-    command: --api.insecure=true --providers.docker
+    command: -c /dev/null --web --docker --logLevel=INFO --defaultEntryPoints='https' --entryPoints="Name:https Address::443 TLS:/certs/insecure-cert.crt,/certs/insecure-key.key" --entryPoints="Name:http Address::80 Redirect.EntryPoint:https"
     ports:
-      - '8000:80'
-#      - '8080:8080' # Dashboard
+      - '8000:443'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./certs/:/certs/
 
 #volumes:
 ## For Xdebug profiler

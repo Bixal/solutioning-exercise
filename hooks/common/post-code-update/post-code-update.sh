@@ -26,7 +26,7 @@ drush @$site.$target_env entup --yes
 echo "$site.$target_env: The $source_branch database entities were succesfully updated on $target_env."
 
 echo "$site.$target_env: The $source_branch configuration will now be updated on $target_env."
-drush @$site.$target_env cim --yes
+drush @$site.$target_env cim vcs --yes
 echo "$site.$target_env: The $source_branch configurations were succesfully updated on $target_env."
 
 echo "$site.$target_env: The $source_branch branch has been updated on $target_env. Clearing the cache."

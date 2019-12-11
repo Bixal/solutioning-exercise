@@ -31,7 +31,8 @@
         "drupal/redirect": "^1.4",
         "drupal/redirect_after_login": "^2.5",
         "drupal/twig_field_value": "^1.2",
-        "drupal/value": "^1.1"
+        "drupal/value": "^1.1",
+        "drupal/hsts": "^1.0"
     },
     "replace": {
         "drupal/core": "^8.7"

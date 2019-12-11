@@ -765,6 +765,47 @@ $settings['entity_update_batch_size'] = 50;
  */
 $settings['entity_update_backup'] = TRUE;
 
+// For Drupal 8 using Search API Solr and Acquia Search
+
+if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
+  if ($_ENV['AH_SITE_ENVIRONMENT'] == 'prod') {
+     $config['acquia_search.settings']['connection_override'] = [
+       'scheme' => 'https',
+       'port' => 443,
+       'host' => '[colony].acquia-search.com',
+       'index_id' => '[core_ID]',
+       'derived_key' => '[derived key]',
+     ];
+  }
+  elseif ($_ENV['AH_SITE_ENVIRONMENT'] == 'test') {
+    $config['acquia_search.settings']['connection_override'] = [
+      'scheme' => 'https',
+      'port' => 443,
+      'host' => '[colony].acquia-search.com',
+      'index_id' => '[core_ID]',
+      'derived_key' => '[derived key]',
+    ];
+  }
+  elseif ($_ENV['AH_SITE_ENVIRONMENT'] == 'dev') {
+    $config['acquia_search.settings']['connection_override'] = [
+      'scheme' => 'https',
+      'port' => 443,
+      'host' => '[colony].acquia-search.com',
+      'index_id' => '[core_ID]',
+      'derived_key' => '[derived key]',
+    ];
+  }
+} else {
+  // Local or other non-acquia-hosted Drupal environment
+  $config['acquia_search.settings']['connection_override'] = [
+    'scheme' => 'https',
+    'port' => 443,
+    'host' => getenv('SOLR_BACKEND'),
+    'index_id' => getenv('CORE_ID'),
+    'derived_key' => getenv('CORE_KEY'),
+  ];
+}
+
 /**
  * Load local development override configuration, if available.
  *
