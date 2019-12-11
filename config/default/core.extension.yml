@@ -10,12 +10,8 @@ module:
   block_content: 0
   breakpoint: 0
   ckeditor: 0
-  color: 0
-  comment: 0
   components: 0
   config: 0
-  contact: 0
-  contextual: 0
   crop: 0
   ctools: 0
   ctools_entity_mask: 0
@@ -52,9 +48,7 @@ module:
   options: 0
   page_cache: 0
   paragraphs_browser: 0
-  paragraphs_library: 0
   path: 0
-  quickedit: 0
   quicklink: 0
   rdf: 0
   recreate_block_content: 0
@@ -65,13 +59,11 @@ module:
   search_api: 0
   search_api_best_bets: 0
   serialization: 0
-  shortcut: 0
   system: 0
   taxonomy: 0
   text: 0
   token: 0
   toolbar: 0
-  tour: 0
   twig_field_value: 0
   twig_tweak: 0
   update: 0
