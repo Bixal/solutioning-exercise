@@ -16,6 +16,8 @@ jobs:
         run: cp docroot/sites/default/settings.local.php.example docroot/sites/default/settings.local.php
       - name: Build the application stack
         run: docker-compose up -d
+      - name: Wait for database
+      - run: sleep 20s
       - name: Install drupal and configuration
         run: make installdrupal
       - name: Test
