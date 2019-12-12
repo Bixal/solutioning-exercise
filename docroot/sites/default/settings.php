@@ -772,38 +772,21 @@ if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
      $config['acquia_search.settings']['connection_override'] = [
        'scheme' => 'https',
        'port' => 443,
-       'host' => '[colony].acquia-search.com',
-       'index_id' => '[core_ID]',
-       'derived_key' => '[derived key]',
+       'host' => 'useast1-c26.acquia-search.com',
+       'index_id' => 'AIXZ-192767',
+       'derived_key' => 'bf047a930d086952e3684bc933635452a658f17d',
      ];
   }
-  elseif ($_ENV['AH_SITE_ENVIRONMENT'] == 'test') {
+  else {
+    // Local or other non-acquia-hosted Drupal environment
     $config['acquia_search.settings']['connection_override'] = [
       'scheme' => 'https',
       'port' => 443,
-      'host' => '[colony].acquia-search.com',
-      'index_id' => '[core_ID]',
-      'derived_key' => '[derived key]',
+      'host' => getenv('SOLR_BACKEND'),
+      'index_id' => getenv('CORE_ID'),
+      'derived_key' => getenv('CORE_KEY'),
     ];
   }
-  elseif ($_ENV['AH_SITE_ENVIRONMENT'] == 'dev') {
-    $config['acquia_search.settings']['connection_override'] = [
-      'scheme' => 'https',
-      'port' => 443,
-      'host' => '[colony].acquia-search.com',
-      'index_id' => '[core_ID]',
-      'derived_key' => '[derived key]',
-    ];
-  }
-} else {
-  // Local or other non-acquia-hosted Drupal environment
-  $config['acquia_search.settings']['connection_override'] = [
-    'scheme' => 'https',
-    'port' => 443,
-    'host' => getenv('SOLR_BACKEND'),
-    'index_id' => getenv('CORE_ID'),
-    'derived_key' => getenv('CORE_KEY'),
-  ];
 }
 
 /**
