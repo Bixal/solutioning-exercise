@@ -12,6 +12,8 @@ jobs:
       - uses: actions/checkout@v1
       - name: Copy environment example.
         run: cp .env.example .env
+      - name: Copy environment connection details.
+        run: cp docroot/sites/default/settings.local.php.example docroot/sites/default/settings.local.php
       - name: Build the application stack
         run: docker-compose up -d
       - name: Install drupal and configuration
