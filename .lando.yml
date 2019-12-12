@@ -13,5 +13,9 @@ services:
   mailhog-service:
     type: mailhog
     portforward: true
+  phpadmin-service:
+    type: phpmyadmin
+    hosts:
+      - database
 env_file:
   - .env

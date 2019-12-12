@@ -1,0 +1,5 @@
+link_analysis.node.references:
+  route_name: link_analysis.node.references
+  base_route: entity.node.canonical
+  title: 'References'
+  weight: 40

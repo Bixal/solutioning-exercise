@@ -1,0 +1,4 @@
+services:
+  link_analysis.store:
+    class: Drupal\link_analysis\LinkAnalysisStoreService
+    arguments: ['@database', '@entity_type.manager', '@renderer']
