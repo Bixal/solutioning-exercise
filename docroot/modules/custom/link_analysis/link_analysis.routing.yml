@@ -1,0 +1,18 @@
+link_analysis.link_analysis_settings_form:
+  path: '/admin/config/content/link-analysis'
+  defaults:
+    _form: '\Drupal\link_analysis\Form\LinkAnalysisSettingsForm'
+    _title: 'LinkAnalysisSettingsForm'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE
+link_analysis.node.references:
+  path: '/node/{node}/references'
+  defaults:
+    _title: 'References'
+    _controller: '\Drupal\link_analysis\Controller\LinkAnalysisTaskController::build'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _node_operation_route: TRUE

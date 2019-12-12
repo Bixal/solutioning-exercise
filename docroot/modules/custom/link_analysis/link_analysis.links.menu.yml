@@ -1,0 +1,6 @@
+link_analysis.link_analysis_settings_form:
+  title: 'Link analysis settings'
+  route_name: link_analysis.link_analysis_settings_form
+  description: 'A description for the menu entry'
+  parent: system.admin_config_content
+  weight: 99

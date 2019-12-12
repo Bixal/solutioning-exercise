@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * Implements hook_entity_update().
+ *
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ */
+function link_analysis_entity_update(Drupal\Core\Entity\EntityInterface $entity) {
+  if ($entity->getEntityTypeId() === "node") {
+    Drupal::service('link_analysis.store')->process($entity);
+  }
+}
+
+/**
+ * Implements hook_entity_insert().
+ *
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ */
+function link_analysis_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
+  if ($entity->getEntityTypeId() === "node") {
+    Drupal::service('link_analysis.store')->process($entity);
+  }
+}

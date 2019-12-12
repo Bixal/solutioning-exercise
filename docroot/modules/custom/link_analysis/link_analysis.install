@@ -1,0 +1,39 @@
+<?php
+
+use Drupal\Core\Database\Database;
+
+/**
+ * Create a database table to store node ids and the nodes reference them id.
+ */
+function link_analysis_schema() {
+  $schema["link_analysis"] = [
+    'description' => 'Store node id and the referenced nodes from links.',
+    'fields' => [
+      'target_id' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => "Entity Id",
+      ],
+      'referenced_ids' => [
+        'type' => 'blob',
+        'size' => 'big',
+        'description' => 'stores the relationship entries',
+      ],
+    ],
+    'primary key' => ['target_id'],
+    'unique keys' => [
+      'target_id' => ['target_id'],
+    ],
+  ];
+  return $schema;
+}
+
+/**
+ * remove the table on uninstall
+ */
+function link_analysis_uninstall() {
+  Database::getConnection()
+    ->schema()
+    ->dropTable('link_analysis');
+}
