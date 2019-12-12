@@ -16,7 +16,11 @@ phpcs:
 phpcbf:
 	@echo "Beautifying custom code"
 	docker-compose run --rm php docroot/vendor/bin/phpcbf --standard=docroot/vendor/drupal/coder/coder_sniffer/Drupal docroot/modules/custom --ignore=*.min.js --ignore=*.min.css
-
+codeck:
+	@echo "Running code standards, beautifying, and running ally checks"
+	make ally
+	make phpcbf
+	make phpcs
 reset:
 	@echo "Dropping all tables. Drupal might not be installed, ignore errors."
 	-${DC_DRUPAL} database:drop -y
