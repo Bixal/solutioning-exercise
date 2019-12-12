@@ -2,6 +2,7 @@
 
 namespace Drupal\link_analysis\Form;
 
+use Drupal;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -54,7 +55,7 @@ class LinkAnalysisSettingsForm extends ConfigFormBase {
       '#value' => $this->t('Run Sync'),
       '#description' => $this->t('This will run the link analysis sync'),
       '#weight' => '0',
-      '#submit' => ["::triggerSync"]
+      '#submit' => ["::triggerSync"],
     ];
 
     // Get the Link Analysis settings
@@ -86,21 +87,24 @@ class LinkAnalysisSettingsForm extends ConfigFormBase {
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    */
   public function triggerSync(array $form, FormStateInterface $form_state) {
-    \Drupal::database()->truncate('link_analysis')->execute();
-    $nodes = \Drupal::entityQuery('node')->execute();
+    Drupal::database()->truncate('link_analysis')->execute();
+    $nodes = Drupal::entityQuery('node')->execute();
 
     $operations = [];
     foreach ($nodes as $node) {
-      $operations[] = ["\Drupal\link_analysis\Form\LinkAnalysisSettingsForm::batch", [$node]];
+      $operations[] = [
+        "\Drupal\link_analysis\Form\LinkAnalysisSettingsForm::batch",
+        [$node],
+      ];
     }
 
-    $batch = array(
+    $batch = [
       'title' => t('Processing link analysis'),
       'init_message' => t('Process is starting.'),
       'progress_message' => t('Processed @current out of @total. Estimated time: @estimate.'),
       'error_message' => t('The process has encountered an error.'),
-      'operations' => $operations
-    );
+      'operations' => $operations,
+    ];
 
     batch_set($batch);
   }
@@ -115,8 +119,8 @@ class LinkAnalysisSettingsForm extends ConfigFormBase {
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   public static function batch($id, $context) {
-    $linkAnalysisStore = \Drupal::service('link_analysis.store');
-    $entity = \Drupal::entityTypeManager()
+    $linkAnalysisStore = Drupal::service('link_analysis.store');
+    $entity = Drupal::entityTypeManager()
       ->getStorage('node')
       ->load($id);
 

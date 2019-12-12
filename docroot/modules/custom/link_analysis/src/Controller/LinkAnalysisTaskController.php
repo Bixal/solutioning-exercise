@@ -2,6 +2,7 @@
 
 namespace Drupal\link_analysis\Controller;
 
+use Drupal;
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
@@ -27,11 +28,12 @@ class LinkAnalysisTaskController extends ControllerBase implements ContainerInje
    */
   private $linkAnalysisStore;
 
-  public function __construct(RendererInterface $renderer,  EntityTypeManagerInterface $entityTypeManager) {
+  public function __construct(RendererInterface $renderer, EntityTypeManagerInterface $entityTypeManager) {
     $this->renderer = $renderer;
     $this->entityTypeManager = $entityTypeManager;
-    $this->linkAnalysisStore = \Drupal::service('link_analysis.store');
+    $this->linkAnalysisStore = Drupal::service('link_analysis.store');
   }
+
   /**
    * {@inheritdoc}
    */
@@ -73,16 +75,20 @@ class LinkAnalysisTaskController extends ControllerBase implements ContainerInje
          */
         $nodes = $this->entityTypeManager
           ->getStorage('node')
-          ->loadMultiple(is_array($ids)?$ids:[$ids]);
+          ->loadMultiple(is_array($ids) ? $ids : [$ids]);
         // Loop through all the nodes building a link to the page and a row
         foreach ($nodes as $node) {
           $linkMarkup = [
-            'data' => new FormattableMarkup('<a target="_blank" class="button button--primary" href=":link">@name</a>', [':link' =>
-              $node->toUrl()->toString(), '@name' => "View"])];
+            'data' => new FormattableMarkup('<a target="_blank" class="button button--primary" href=":link">@name</a>', [
+              ':link' =>
+                $node->toUrl()->toString(),
+              '@name' => "View",
+            ]),
+          ];
           $rows[] = [
             'title' => $node->label(),
-            'status' => $node->isPublished()?"Published":"Not Published",
-            'link' => $linkMarkup
+            'status' => $node->isPublished() ? "Published" : "Not Published",
+            'link' => $linkMarkup,
           ];
         }
       }
@@ -95,10 +101,11 @@ class LinkAnalysisTaskController extends ControllerBase implements ContainerInje
       '#rows' => $rows,
       '#empty' => "No references currently exists for this page.",
       '#weight' => '1',
-      '#attributes' =>[
-        'id' => "replace-table"
-      ]
+      '#attributes' => [
+        'id' => "replace-table",
+      ],
     ];
     return $build;
   }
+
 }

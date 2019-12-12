@@ -18,12 +18,12 @@ function link_analysis_schema() {
       'referenced_ids' => [
         'type' => 'blob',
         'size' => 'big',
-        'description' => 'stores the relationship entries'
+        'description' => 'stores the relationship entries',
       ],
     ],
     'primary key' => ['target_id'],
     'unique keys' => [
-      'target_id' => ['target_id']
+      'target_id' => ['target_id'],
     ],
   ];
   return $schema;
