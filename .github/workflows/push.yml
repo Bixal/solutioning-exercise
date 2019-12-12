@@ -14,8 +14,6 @@ jobs:
         run: cp .env.example .env
       - name: Copy environment connection details.
         run: cp docroot/sites/default/settings.local.php.example docroot/sites/default/settings.local.php
-      - name: Make Files directory.
-        run: mkdir docroot/sites/default/files
       - name: Build the application stack
         run: docker-compose up -d
       - name: Wait for database
