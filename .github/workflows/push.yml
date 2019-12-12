@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Copy environment example.
-      - run: cp .env.example .env
+        run: cp .env.example .env
       - name: Build the application stack
         run: docker-compose up -d
       - name: Test
