@@ -6,6 +6,10 @@ down:
 	docker-compose down
 stop:
 	docker-compose stop
+installdrupal:
+	docker-compose run --rm php docroot/vendor/bin/drupal --root=/var/www/html/docroot site:install standard --yes --force --no-interaction
+	docker-compose run --rm php docroot/vendor/bin/drupal --root=/var/www/html/docroot config:import --yes --no-interaction
+	docker-compose run --rm php docroot/vendor/bin/drupal --root=/var/www/html/docroot module:uninstall shortcut --yes --force --no-interaction
 ally:
 	@echo "Running Ally checks on the local network"
 	docker run --rm --network="solutioning-exercise_default" frvge/pa11y http://apache/
@@ -21,9 +25,5 @@ codeck:
 	make ally
 	make phpcbf
 	make phpcs
-reset:
-	@echo "Dropping all tables. Drupal might not be installed, ignore errors."
-	-${DC_DRUPAL} database:drop -y
-	@echo "Stopping Docker so composer packages can be removed without sharing"
-	make stop
-	@echo "Removing all composer packages"
+uli:
+	docker-compose run --rm php docroot/vendor/bin/drupal --uri=https://$(PROJECT_BASE_URL):8000 --root=/var/www/html/docroot user:login:url 1
