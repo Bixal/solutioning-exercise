@@ -18,6 +18,7 @@ class LinkAnalysisSettingsForm extends ConfigFormBase {
    */
   protected $themeManager;
 
+
   /**
    * {@inheritdoc}
    */
@@ -47,6 +48,15 @@ class LinkAnalysisSettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
+    // Submit element that triggers a batch process for link analysis sync.
+    $form['run_sync'] = [
+      '#type' => 'submit',
+      '#value' => $this->t('Run Sync'),
+      '#description' => $this->t('This will run the link analysis sync'),
+      '#weight' => '0',
+      '#submit' => ["::triggerSync"]
+    ];
+
     // Get the Link Analysis settings
     $config = $this->config('link_analysis.settings')
       ->get('link_analysis');
@@ -60,11 +70,57 @@ class LinkAnalysisSettingsForm extends ConfigFormBase {
     $form['regions_to_be_parsed'] = [
       '#type' => 'checkboxes',
       '#title' => $this->t('Regions to be parsed'),
-      '#description' => $this->t('When a region is checked it will be used to find links that are internal to the site.'),
+      '#description' => $this->t('When a region is checked it will be
+      used to find links that are internal to the site.'),
       '#options' => $options,
       '#value' => $config['regions_to_be_parsed'],
     ];
     return parent::buildForm($form, $form_state);
+  }
+
+  /**
+   * When triggered it will create a batch operation and pass all
+   * nodes to a processor.
+   *
+   * @param array $form
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   */
+  public function triggerSync(array $form, FormStateInterface $form_state) {
+    \Drupal::database()->truncate('link_analysis')->execute();
+    $nodes = \Drupal::entityQuery('node')->execute();
+
+    $operations = [];
+    foreach ($nodes as $node) {
+      $operations[] = ["\Drupal\link_analysis\Form\LinkAnalysisSettingsForm::batch", [$node]];
+    }
+
+    $batch = array(
+      'title' => t('Processing link analysis'),
+      'init_message' => t('Process is starting.'),
+      'progress_message' => t('Processed @current out of @total. Estimated time: @estimate.'),
+      'error_message' => t('The process has encountered an error.'),
+      'operations' => $operations
+    );
+
+    batch_set($batch);
+  }
+
+  /**
+   * Process node looking for link references.
+   *
+   * @param $id
+   * @param $context
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   */
+  public static function batch($id, $context) {
+    $linkAnalysisStore = \Drupal::service('link_analysis.store');
+    $entity = \Drupal::entityTypeManager()
+      ->getStorage('node')
+      ->load($id);
+
+    $linkAnalysisStore->process($entity);
   }
 
   /**

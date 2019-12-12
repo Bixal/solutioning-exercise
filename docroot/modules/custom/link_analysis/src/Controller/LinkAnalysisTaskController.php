@@ -42,8 +42,19 @@ class LinkAnalysisTaskController extends ControllerBase implements ContainerInje
     );
   }
 
+  /**
+   * This is used to build a render array for table that will be used on the
+   * Reference tab on the node screens.
+   *
+   * @param \Drupal\node\NodeInterface $node
+   *
+   * @return array
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   * @throws \Drupal\Core\Entity\EntityMalformedException
+   */
   public function build(NodeInterface $node) {
-
+    // Table header used in render array
     $header = [
       'title' => $this->t("Title"),
       'status' => $this->t("Status"),
@@ -51,12 +62,19 @@ class LinkAnalysisTaskController extends ControllerBase implements ContainerInje
     ];
 
     $rows = [];
+    // Get entry by using node ID
     if ($entry = $this->linkAnalysisStore->getEntry($node->id())) {
+      // Decode the json to array
       $ids = json_decode($entry[0]['referenced_ids'], TRUE);
       if (!empty($ids)) {
+        /**
+         * Here we validate if it is an array then use IDS as they are if not we
+         * force an array
+         */
         $nodes = $this->entityTypeManager
           ->getStorage('node')
           ->loadMultiple(is_array($ids)?$ids:[$ids]);
+        // Loop through all the nodes building a link to the page and a row
         foreach ($nodes as $node) {
           $linkMarkup = [
             'data' => new FormattableMarkup('<a target="_blank" class="button button--primary" href=":link">@name</a>', [':link' =>
@@ -69,7 +87,7 @@ class LinkAnalysisTaskController extends ControllerBase implements ContainerInje
         }
       }
     }
-
+    // Render array for table that pulls in the header and row.
     $build['table'] = [
       '#type' => 'table',
       '#title' => $this->t('Reference List'),

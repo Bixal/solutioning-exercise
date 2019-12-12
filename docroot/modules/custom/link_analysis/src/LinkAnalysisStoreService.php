@@ -53,6 +53,9 @@ class LinkAnalysisStoreService {
   }
 
   /**
+   * Process method pulls in the selected regions and entity, get the
+   * render output per region then parse HTML looking for any internal links.
+   *
    * @param \Drupal\Core\Entity\EntityInterface $entity
    */
   public function process($entity) {
@@ -102,6 +105,9 @@ class LinkAnalysisStoreService {
   }
 
   /**
+   * Uses the entity to get the render array for a region that has been set in
+   * the setting config.
+   *
    * @param \Drupal\Core\Entity\EntityInterface $entity
    * @param string $region
    *
@@ -122,6 +128,9 @@ class LinkAnalysisStoreService {
   }
 
   /**
+   * Will handle if the entry needs to be added as a new entry or update an
+   * existing entry
+   *
    * @param int $entity_id
    * @param array $id
    */
@@ -137,6 +146,12 @@ class LinkAnalysisStoreService {
     }
   }
 
+  /**
+   * Database method to get entry by target_id
+   * @param $target_id
+   *
+   * @return bool
+   */
   public function getEntry($target_id) {
     try {
       $query = $this->database->select('link_analysis', 'la')
@@ -157,6 +172,11 @@ class LinkAnalysisStoreService {
     return FALSE;
   }
 
+  /**
+   * Database method to up date an entry and convert $ids array in to a JSON string.
+   * @param $target_id
+   * @param $ids
+   */
   private function updateEntry($target_id, $ids) {
     try {
       $this->database->update('link_analysis')
@@ -171,6 +191,11 @@ class LinkAnalysisStoreService {
     }
   }
 
+  /**
+   * Database method that inserts new entries.,
+   * @param $target_id
+   * @param $ids
+   */
   private function insertEntry($target_id, $ids) {
     try {
       $this->database->insert('link_analysis')
