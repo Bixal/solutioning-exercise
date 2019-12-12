@@ -77,21 +77,7 @@ class LinkAnalysisStoreService {
     foreach ($regions as $region) {
       $html .= $this->renderRegion($entity, $region);
     }
-    // Create a Dom and load HTML
-    $dom = new DOMDocument();
-    // Use this to hide HTML 5 errors
-    libxml_use_internal_errors(TRUE);
-    // Load Initial HTML
-    $dom->loadHTML("<html><body>$html</body></html>");
-    // Load the Dom parser
-    $finder = new DOMXPath($dom);
-    // Remove local actions
-    foreach ($finder->query("//*[@class='block-local-tasks-block']") as $localTask) {
-      $localTask->parentNode->removeChild($localTask);
-    }
-    // GET all anchor tags
-    $dom->loadHTML($finder->document->saveHTML());
-    $anchors = $dom->getElementsByTagName('a');
+    $anchors = $this->getAnchorsFromHTML($html);
     // Loop through all anchor tags and if they are not same page add them to
     // the appropriate node
     foreach ($anchors as $a) {
@@ -105,8 +91,31 @@ class LinkAnalysisStoreService {
         }
       }
     }
+  }
 
-
+  /**
+   * Process the HTML and return only the link objects
+   * @param string $html
+   *
+   * @return \DOMNodeList
+   */
+  public function getAnchorsFromHTML($html) {
+    // Create a Dom and load HTML
+    $dom = new DOMDocument();
+    // Use this to hide HTML 5 errors
+    libxml_use_internal_errors(TRUE);
+    // Load Initial HTML
+    $dom->loadHTML("<html><body>$html</body></html>");
+    // Load the Dom parser
+    $finder = new DOMXPath($dom);
+    // Remove local actions
+    foreach ($finder->query("//*[@class='block-local-tasks-block']") as $localTask) {
+      $localTask->parentNode->removeChild($localTask);
+    }
+    // Reset the HTML
+    $dom->loadHTML($finder->document->saveHTML());
+    // return the DomNodeList contains all anchor tags
+    return $dom->getElementsByTagName('a');
   }
 
   /**
