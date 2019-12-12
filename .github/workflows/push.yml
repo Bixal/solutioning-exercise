@@ -17,7 +17,7 @@ jobs:
       - name: Build the application stack
         run: docker-compose up -d
       - name: Wait for database
-      - run: sleep 20s
+      - run: sleep 50s
       - name: Install drupal and configuration
         run: make installdrupal
       - name: Test
