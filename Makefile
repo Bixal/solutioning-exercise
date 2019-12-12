@@ -7,7 +7,7 @@ down:
 stop:
 	docker-compose stop
 installdrupal:
-	docker-compose run --rm php docroot/vendor/bin/drupal --root=/var/www/html/docroot site:install standard --yes --force --no-interaction
+	docker-compose run --rm php docroot/vendor/bin/drupal --root=/var/www/html/docroot site:install standard --yes --force --no-interaction -vvv
 	docker-compose run --rm php docroot/vendor/bin/drupal --root=/var/www/html/docroot config:import --yes --no-interaction
 	docker-compose run --rm php docroot/vendor/bin/drupal --root=/var/www/html/docroot module:uninstall shortcut --yes --force --no-interaction
 ally:
