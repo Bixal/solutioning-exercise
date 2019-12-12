@@ -1,0 +1,12 @@
+
+name: solutioning-example-automated-testing
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Build the stack
+        run: docker-compose up -d
+      - name: Test
+        run: make codeck
