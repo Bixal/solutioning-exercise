@@ -16,10 +16,8 @@ jobs:
         run: cp .env.example .env
       - name: Copy environment connection details.
         run: cp docroot/sites/default/settings.local.php.example docroot/sites/default/settings.local.php
-      - name: Change ownership.
-        run: chown -R runner:1000 ./
       - name: debug file ownership.
-        run: ls -la
+        run: ls -la docroot/sites/default/
       - name: Build the application stack
         run: docker-compose up -d
       - name: Wait for database
