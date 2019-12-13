@@ -10,12 +10,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Change file ownership.
+      - name: debug file ownership.
         run: ls -la
       - name: Copy environment example.
         run: cp .env.example .env
       - name: Copy environment connection details.
         run: cp docroot/sites/default/settings.local.php.example docroot/sites/default/settings.local.php
+      - name: Change ownership.
+        run: chown -R runner:docker ./
       - name: Build the application stack
         run: docker-compose up -d
       - name: Wait for database
