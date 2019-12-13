@@ -1,0 +1,15 @@
+uuid: a568e787-7d4f-4be9-b333-5d6145d36381
+langcode: en
+status: true
+dependencies: {  }
+id: group_reviewer
+label: 'Group Reviewer'
+weight: 5
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access group overview'
+  - 'access toolbar'
+  - 'use editorial transition review_final_approval_to_draft'
+  - 'use editorial transition review_to_final_approval'
+  - 'view the administration theme'

@@ -1,0 +1,14 @@
+uuid: 96cd4a93-ef94-4c0f-87a9-7008dfbd9da6
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.group_manager
+  module:
+    - user
+id: user_remove_role_action.group_manager
+label: 'Remove the Group Manager role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: group_manager
