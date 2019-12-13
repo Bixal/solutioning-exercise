@@ -1,0 +1,14 @@
+uuid: 3567dc3e-277f-44e0-9830-6b79c9510fab
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.group_reviewer
+  module:
+    - user
+id: user_remove_role_action.group_reviewer
+label: 'Remove the Group Reviewer role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: group_reviewer
