@@ -27,3 +27,9 @@ codeck:
 	make phpcs
 uli:
 	docker-compose run --rm php docroot/vendor/bin/drupal --uri=https://$(PROJECT_BASE_URL):8000 --root=/var/www/html/docroot user:login:url 1
+cr:
+	docker-compose run --rm php docroot/vendor/bin/drupal cr --root=/var/www/html/docroot
+cex:
+	docker-compose run --rm php docroot/vendor/bin/drupal config:export --root=/var/www/html/docroot
+cim:
+	docker-compose run --rm php docroot/vendor/bin/drupal config:import --root=/var/www/html/docroot
