@@ -10,6 +10,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+      - name: Change file ownership.
+        run: chown -R 1000:1000 ./
       - name: Copy environment example.
         run: cp .env.example .env
       - name: Copy environment connection details.
