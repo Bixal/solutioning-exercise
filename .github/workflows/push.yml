@@ -9,9 +9,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: Change file ownership.
-        run: chown -R 1000:1000 ./
+        run: ls -la
       - name: Copy environment example.
         run: cp .env.example .env
       - name: Copy environment connection details.
