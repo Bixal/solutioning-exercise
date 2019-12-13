@@ -17,15 +17,15 @@ jobs:
       - name: Copy environment connection details.
         run: cp docroot/sites/default/settings.local.php.example docroot/sites/default/settings.local.php
       - name: Create files directory.
-        run: mkdir docroot/sites/default/files && chmod 775 docroot/sites/default/files
+        run: mkdir docroot/sites/default/files && chmod 777 docroot/sites/default/files
       - name: File permissions change.
-        run: chmod 775 docroot/sites/default/settings.php
+        run: chmod 777 docroot/sites/default/settings.php
       - name: debug file ownership.
         run: ls -la docroot/sites/default/
       - name: Build the application stack
         run: docker-compose up -d
       - name: Wait for database
-        run: sleep 50s
+        run: sleep 20s
       - name: Install drupal and configuration
         run: make installdrupal
       - name: Test
