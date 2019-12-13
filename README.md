@@ -30,17 +30,15 @@ When installing the given `composer.json` some tasks are taken care of:
 - Modules (packages of type `drupal-module`) will be placed in `docroot/modules/contrib/`
 - Theme (packages of type `drupal-theme`) will be placed in `docroot/themes/contrib/`
 - Profiles (packages of type `drupal-profile`) will be placed in `docroot/profiles/contrib/`
-- Creates default writable versions of `settings.php` and `services.yml`.
-- Creates `web/sites/default/files`-directory.
-- Latest version of drush is installed locally for use at `vendor/bin/drush`.
-- Latest version of DrupalConsole is installed locally for use at `vendor/bin/drupal`.
-- Creates environment variables based on your .env file. See [.env.docker.example](.env.docker.example).
+- Latest version of drush is installed locally for use at `docroot/vendor/bin/drush`.
+- Latest version of DrupalConsole is installed locally for use at `docroot/vendor/bin/drupal`.
+- Creates environment variables based on your .env file. See [.env.example](.env.example).
 
 ### Usage
 
 First you need to [install docker](https://docs.docker.com/docker-for-mac/install/).
 
-Clone this repo in your desired directory (move.mil by default):
+Clone this repo in your desired directory:
 
 ```sh
 git clone git@github.com:Bixal/solutioning-exercise.git
@@ -78,7 +76,7 @@ make stop
 
 If you want to know more available commands, please review the following document [Makefile][makefile]
 
-Redirect move.mil.localhost to your localhost:
+Redirect cmssolution.docker.localhost to your localhost:
 
 ```sh
 sudo sh -c "echo '127.0.0.1 cmssolution.docker.localhost' >> /etc/hosts"
