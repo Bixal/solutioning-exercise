@@ -16,6 +16,8 @@ jobs:
         run: cp .env.example .env
       - name: Copy environment connection details.
         run: cp docroot/sites/default/settings.local.php.example docroot/sites/default/settings.local.php
+      - name: File permissions change.
+        run: chomod 777 docroot/sites/default/settings.php
       - name: debug file ownership.
         run: ls -la docroot/sites/default/
       - name: Build the application stack
