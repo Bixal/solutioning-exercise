@@ -38,55 +38,19 @@
   */
 #}
 
-{% set has_sidebar_first = page.sidebar_first|render|striptags|trim is not empty %}
-{% set has_sidebar_second = page.sidebar_second|render|striptags|trim is not empty %}
 <div class="layout-container">
-
-  <header role="banner" aria-label="Header">
-    {{ page.header }}
-  </header>
-
-  {# Check to see if page.help render array is not empty #}
+  {{ page.header }}
+  {{ page.navigation }}
+  {{ page.breadcrumb }}
+  {{ page.highlighted }}
   {{ page.help }}
 
-
-  <main role="main" class="ds-l-row">
-    <a id="main-content" tabindex="-1"></a>
-    {% if has_sidebar_first and has_sidebar_second %}
-      <aside class="sidebar-first ds-l-md-col--3" role="complementary">
-        {{ page.sidebar_first }}
-      </aside>
-      <div class="content ds-l-md-col ds-u-padding--0 ds-u-padding-bottom--4">
-      {{ page.content }}
-      </div>
-      <aside class="sidebar-second ds-l-md-col--3" role="complementary">
-        {{ page.sidebar_second }}
-      </aside>
-    {% elseif  has_sidebar_first %}
-      <aside class="sidebar-first ds-l-md-col--3" role="complementary">
-        {{ page.sidebar_first }}
-      </aside>
-      <div class="content ds-l-md-col ds-u-padding--0 ds-u-padding-bottom--4">
-      {{ page.content }}
-      </div>
-      {% elseif has_sidebare_second %}
-        <div class="content ds-l-md-col ds-u-padding--0 ds-u-padding-bottom--4">
-        {{ page.content }}
-        </div>
-        <aside class="sidebar-second ds-l-md-col--3" role="complementary">
-          {{ page.sidebar_second }}
-        </aside>
-      {% else %}
-        <div class="layout-content ds-l-md-col ds-u-padding--0 ds-u-padding-bottom--4">
-        {{ page.content }}
-        </div>
-    {% endif %}
+  <main id="main" class="main" role="main" tabindex="-1">
+    {{ page.preface }}
+    {{ page.content }}
+    {{ page.postscript }}
   </main>
 
-  {% if page.footer %}
-    <footer role="contentinfo">
-      {{ page.footer }}
-    </footer>
-  {% endif %}
+  {{ page.footer }}
 
 </div>

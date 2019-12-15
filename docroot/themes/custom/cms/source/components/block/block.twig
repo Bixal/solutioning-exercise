@@ -1,0 +1,33 @@
+{% if not hide_wrapper %}
+  <div{{ attributes.addClass(classes) }}>
+{% endif %}
+
+  {% if constrain %}
+    <div class="{{ constrain }}">
+  {% endif %}
+
+  {% if label %}
+    {{ title_prefix }}
+    <{{ heading ?: 'h2' }}{{ title_attributes.addClass(title_classes) }}>{{ label }}</{{ heading ?: 'h2' }}>
+    {{ title_suffix }}
+  {% endif %}
+
+  {% if not hide_content_wrapper %}
+    <div{{ content_attributes.addClass(content_classes) }}>
+  {% endif %}
+
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+
+  {% if not hide_content_wrapper %}
+    </div>
+  {% endif %}
+
+  {% if constrain %}
+    </div>
+  {% endif %}
+
+{% if not hide_wrapper %}
+  </div>
+{% endif %}

@@ -1,5 +1,8 @@
-@import '_overrides.scss';
+@import 'overrides.scss';
 @import '../node_modules/@cmsgov/design-system-core/src/index.scss';
 @import '../node_modules/@cmsgov/design-system-layout/src/index.scss';
-@import '_variables.scss';
+
+@import 'variables.scss';
+@import 'base/**/*.scss';
+@import 'layouts/**/*.scss';
 @import 'components/**/*.scss';
