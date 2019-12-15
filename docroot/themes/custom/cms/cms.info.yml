@@ -1,0 +1,39 @@
+name: CMS
+type: theme
+description: 'A responsive theme based on the CMS design system.'
+package: Core
+core: 8.x
+base theme: stable
+
+libraries:
+  - cms/global
+
+libraries-override:
+  core/modernizr:
+    js:
+      assets/vendor/modernizr/modernizr.min.js: js/libraries/modernizr.min.js
+
+ckeditor_stylesheets:
+  - css/styles.css
+
+regions:
+  page_top: 'Page top'
+  header: Header
+  navigation: Navigation
+  breadcrumb: Breadcrumb
+  help: Help
+  highlighted: Highlighted
+  preface: Preface
+  content: Content
+  postscript: Postscript
+  footer: Footer
+  hidden: Hidden
+  page_bottom: 'Page bottom'
+
+component-libraries:
+  layouts:
+    paths:
+      - source/layouts
+  components:
+    paths:
+      - source/components

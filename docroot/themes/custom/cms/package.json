@@ -1,0 +1,36 @@
+{
+  "name": "cms",
+  "description": "A responsive theme based on the CMS design system.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Bixal/solutioning-exercise.git"
+  },
+  "license": "GPL-2.0+",
+  "themePath": ".",
+  "main": "gulpfile.js",
+  "browserslist": [
+    "explorer >= 11",
+    "last 3 versions",
+    ">2% and not dead"
+  ],
+  "dependencies": {
+    "@cmsgov/design-system-core": "^3.4.2",
+    "@cmsgov/design-system-layout": "^3.4.2"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.5.4",
+    "gulp": "^3.9.1",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-postcss": "^6.2.0",
+    "gulp-sass": "^3.0.0",
+    "gulp-sass-glob": "^1.0.8",
+    "gulp-scss-lint": "^0.4.0",
+    "gulp-scss-lint-stylish": "^1.0.1"
+  },
+  "sass": {
+    "includePaths": [
+      "./node_modules"
+    ]
+  }
+}
