@@ -1,0 +1,7 @@
+{% include '@components/page-title/page-title.twig' with {
+  'page_title': label|field_value
+} %}
+
+{{ content.field_landing_content|field_value }}
+{{ drupal_entity('block', 'statecontact') }}
+{{ drupal_entity('block', 'coverage') }}
