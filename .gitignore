@@ -17,3 +17,6 @@ node_modules
 *.sql
 *.sql.gz
 
+/docroot/modules/contrib/*/.git
+vendor/**/**/.git
+

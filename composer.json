@@ -29,6 +29,7 @@
         "drupal/allowed_formats": "^1.2.0",
         "drupal/backup_migrate": "^4.0.0",
         "drupal/components": "^1.1.0",
+        "drupal/console": "^1.9",
         "drupal/core": "8.8.0",
         "drupal/crop": "^1.5.0",
         "drupal/ctools": "^3.2.0",
@@ -59,11 +60,16 @@
         "drupal/twig_tweak": "^2.4.0",
         "drupal/twig_xdebug": "^1.1.0",
         "drupal/value": "^1.1.0",
+        "drush/drush": "^10.1",
         "grasmash/drupal-security-warning": "^1.0.0",
         "oomphinc/composer-installers-extender": "^1.1",
+        "phpseclib/phpseclib": "^2.0",
+        "phpspec/prophecy": "^1.9",
         "wikimedia/composer-merge-plugin": "^1.4.1"
     },
-    "require-dev": {},
+    "require-dev": {
+        "webflo/drupal-core-require-dev": "^8.8"
+    },
     "config": {
         "sort-packages": true,
         "discard-changes": true,

@@ -11,14 +11,10 @@
 
 namespace Symfony\Component\Debug;
 
-@trigger_error(sprintf('The "%s" class is deprecated since Symfony 4.4, use "%s" instead.', Debug::class, \Symfony\Component\ErrorHandler\Debug::class), E_USER_DEPRECATED);
-
 /**
  * Registers all the debug tools.
  *
  * @author Fabien Potencier <fabien@symfony.com>
- *
- * @deprecated since Symfony 4.4, use Symfony\Component\ErrorHandler\Debug instead.
  */
 class Debug
 {
@@ -27,7 +23,7 @@ class Debug
     /**
      * Enables the debug tools.
      *
-     * This method registers an error handler and an exception handler.
+     * This method registers an error handler, an exception handler and a special class loader.
      *
      * @param int  $errorReportingLevel The level of error reporting you want
      * @param bool $displayErrors       Whether to display errors (for development) or just log them (for production)
