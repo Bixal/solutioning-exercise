@@ -1,0 +1,9 @@
+uuid: 1c466f49-2906-4e49-904c-1747ba758ccd
+langcode: en
+status: true
+dependencies: {  }
+id: note
+label: Note
+icon_uuid: null
+description: 'The note component is used to add content to a basic page that displays as a formatted note.'
+behavior_plugins: {  }

@@ -1,0 +1,28 @@
+uuid: 77f7534e-ee2a-4c59-ba69-af0141586621
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_teaser
+    - paragraphs.paragraphs_type.media_callout
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    basic_html: basic_html
+    restricted_html: '0'
+    full_html: '0'
+    plain_text: '0'
+id: paragraph.media_callout.field_teaser
+field_name: field_teaser
+entity_type: paragraph
+bundle: media_callout
+label: Teaser
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

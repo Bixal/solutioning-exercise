@@ -1,0 +1,21 @@
+uuid: 102caabe-6560-4ccd-bde8-980617921db0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.note.field_text
+    - paragraphs.paragraphs_type.note
+id: paragraph.note.default
+targetEntityType: paragraph
+bundle: note
+mode: default
+content:
+  field_text:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+hidden:
+  search_api_excerpt: true

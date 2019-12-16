@@ -1,0 +1,9 @@
+uuid: ffaef2b7-2335-483d-bb92-f2b2a8815eeb
+langcode: en
+status: true
+dependencies: {  }
+id: media_callout
+label: 'Media Callout'
+icon_uuid: null
+description: 'The media callout is used to add a large image or video, heading, summary, and link to callout content.'
+behavior_plugins: {  }

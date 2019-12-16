@@ -1,0 +1,9 @@
+uuid: e33ef44b-1bec-47d0-ac67-f1539607fa1b
+langcode: en
+status: true
+dependencies: {  }
+id: text
+label: Text
+icon_uuid: null
+description: 'The text component is used to add WYSIWYG content to a page.'
+behavior_plugins: {  }

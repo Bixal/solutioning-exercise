@@ -1,0 +1,23 @@
+uuid: a10351e0-5224-4b78-a959-c3ed938c6d7e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_link
+    - paragraphs.paragraphs_type.media_callout
+  module:
+    - link
+id: paragraph.media_callout.field_link
+field_name: field_link
+entity_type: paragraph
+bundle: media_callout
+label: Link
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link
