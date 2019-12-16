@@ -1,0 +1,25 @@
+uuid: b30dbdd3-44b4-4a2f-8d62-cc508a116d62
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.featured_blocks.field_cards
+    - paragraphs.paragraphs_type.featured_blocks
+  module:
+    - entity_reference_revisions
+id: paragraph.featured_blocks.default
+targetEntityType: paragraph
+bundle: featured_blocks
+mode: default
+content:
+  field_cards:
+    type: entity_reference_revisions_entity_view
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  search_api_excerpt: true

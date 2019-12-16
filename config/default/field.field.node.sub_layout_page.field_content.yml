@@ -1,0 +1,50 @@
+uuid: f0863742-f036-42a8-b5c6-a76df075019f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_content
+    - node.type.sub_layout_page
+    - paragraphs.paragraphs_type.call_out_media
+    - paragraphs.paragraphs_type.media
+    - paragraphs.paragraphs_type.text
+  module:
+    - entity_reference_revisions
+id: node.sub_layout_page.field_content
+field_name: field_content
+entity_type: node
+bundle: sub_layout_page
+label: Content
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      call_out_media: call_out_media
+      media: media
+      text: text
+    target_bundles_drag_drop:
+      call_out_media:
+        enabled: true
+        weight: 7
+      card:
+        weight: 8
+        enabled: false
+      featured_blocks:
+        weight: 9
+        enabled: false
+      media:
+        enabled: true
+        weight: 10
+      note:
+        weight: 11
+        enabled: false
+      text:
+        enabled: true
+        weight: 12
+field_type: entity_reference_revisions

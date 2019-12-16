@@ -1,0 +1,9 @@
+uuid: 9cc20a47-e606-4c09-ae97-85c502e80c05
+langcode: en
+status: true
+dependencies: {  }
+id: call_out_media
+label: 'Call-out media'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }
