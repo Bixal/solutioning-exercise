@@ -1,0 +1,18 @@
+uuid: c1060d49-bbd0-4d74-b041-1fd04b4ecd85
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.state_contact
+id: block_content.state_contact.info
+field_name: info
+entity_type: block_content
+bundle: state_contact
+label: 'Block description'
+description: 'A brief description of your block.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

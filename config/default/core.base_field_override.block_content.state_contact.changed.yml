@@ -1,0 +1,18 @@
+uuid: 7229d7b6-e3b0-4ff4-bfc1-bd9659f2da2e
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.state_contact
+id: block_content.state_contact.changed
+field_name: changed
+entity_type: block_content
+bundle: state_contact
+label: Changed
+description: 'The time that the custom block was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed
