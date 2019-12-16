@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Render\RenderContext;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\group\Entity\GroupContentType;
 use Drupal\group\Entity\GroupRoleInterface;
@@ -225,7 +226,9 @@ function gnode_node_grants(AccountInterface $account, $op) {
     if (!empty($member_gids)) {
       $query->condition('id', $member_gids, 'NOT IN');
     }
-    $gids = $query->execute();
+    $gids = \Drupal::service('renderer')->executeInRenderContext(new RenderContext(), function () use ($query) {
+      return $query->execute();
+    });
 
     // If we could not retrieve any group IDs, skip to the next group type.
     if (empty($gids)) {

@@ -40,76 +40,76 @@ class SpiChangeForm extends ConfigFormBase {
       return $form;
     }
     elseif ($blocked) {
-      $form['env_change_action'] = array(
+      $form['env_change_action'] = [
         '#type' => 'checkboxes',
         '#title' => $this->t('The Acquia Connector is disabled and is not sending site profile data to Acquia Cloud for evaluation.'),
-        '#options' => array(
+        '#options' => [
           'unblock' => $this->t('Enable this site and send data to Acquia Cloud.'),
-        ),
+        ],
         '#required' => TRUE,
-      );
+      ];
     }
     else {
       $env_changes = $config->get('spi.environment_changes');
       $off_acquia_hosting = array_key_exists('acquia_hosted', $env_changes) && !$acquia_hosted;
 
-      $form['env'] = array(
+      $form['env'] = [
         '#type' => 'fieldset',
         '#title' => $this->t('<strong>The following changes have been detected in your site environment:</strong>'),
-        '#description' => array(
+        '#description' => [
           '#theme' => 'item_list',
           '#items' => $env_changes,
-        ),
-      );
+        ],
+      ];
 
-      $form['env_change_action'] = array(
+      $form['env_change_action'] = [
         '#type' => 'radios',
         '#title' => $this->t('How would you like to proceed?'),
-        '#options' => array(
+        '#options' => [
           'block' => $this->t('Disable this site from sending profile data to Acquia Cloud.'),
           'update' => $this->t('Update existing site with these changes.'),
           'create' => $this->t('Track this as a new site on Acquia Cloud.'),
-        ),
+        ],
         '#required' => TRUE,
         '#default_value' => $config->get('spi.environment_changed_action'),
-      );
+      ];
 
-      $form['identification'] = array(
+      $form['identification'] = [
         '#type' => 'fieldset',
         '#title' => $this->t('Site Identification'),
         '#collapsible' => FALSE,
-        '#states' => array(
-          'visible' => array(
-            ':input[name="env_change_action"]' => array('value' => 'create'),
-          ),
-        ),
-      );
+        '#states' => [
+          'visible' => [
+            ':input[name="env_change_action"]' => ['value' => 'create'],
+          ],
+        ],
+      ];
 
-      $form['identification']['site'] = array(
+      $form['identification']['site'] = [
         '#prefix' => '<div class="acquia-identification">',
         '#suffix' => '</div>',
         '#weight' => -2,
-      );
+      ];
 
-      $form['identification']['site']['name'] = array(
+      $form['identification']['site']['name'] = [
         '#type' => 'textfield',
         '#title' => $this->t('Name'),
         '#maxlength' => 255,
         '#required' => TRUE,
         '#default_value' => $config->get('spi.site_name'),
-      );
+      ];
 
-      $form['identification']['site']['machine_name'] = array(
+      $form['identification']['site']['machine_name'] = [
         '#type' => 'machine_name',
         '#title' => $this->t('Machine name'),
         '#maxlength' => 255,
         '#required' => TRUE,
-        '#machine_name' => array(
-          'exists' => array($this, 'exists'),
-          'source' => array('identification', 'site', 'name'),
-        ),
+        '#machine_name' => [
+          'exists' => [$this, 'exists'],
+          'source' => ['identification', 'site', 'name'],
+        ],
         '#default_value' => $config->get('spi.site_machine_name'),
-      );
+      ];
 
       if ($acquia_hosted) {
         $form['identification']['site']['machine_name']['#disabled'] = TRUE;

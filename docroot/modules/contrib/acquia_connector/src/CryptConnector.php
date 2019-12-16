@@ -14,16 +14,53 @@ use Drupal\Core\Password\PhpassHashedPassword;
  */
 class CryptConnector extends PhpassHashedPassword {
 
-  public $cryptPass;
+  /**
+   * The string name of a hashing algorithm usable by hash(), like 'sha256'.
+   *
+   * @var string
+   */
+  private $algo;
 
   /**
-   * Construction method.
+   * Plain-text password up to 512 bytes (128 to 512 UTF-8 characters) to hash.
+   *
+   * @var string
+   */
+  private $password;
+
+  /**
+   * An existing hash or the output of $this->generateSalt().
+   *
+   * @var string
+   */
+  private $setting;
+
+  /**
+   * If not empty password needs to be hashed with MD5 first.
+   *
+   * @var mixed
+   */
+  private $extraMd5;
+
+  /**
+   * CryptConnector constructor.
+   *
+   * @param string $algo
+   *   The string name of a hashing algorithm usable by hash(), like 'sha256'.
+   * @param string $password
+   *   Plain-text password up to 512 bytes (128 to 512 UTF-8 characters) to
+   *   hash.
+   * @param string $setting
+   *   An existing hash or the output of $this->generateSalt(). Must be at least
+   *   12 characters (the settings and salt).
+   * @param mixed $extra_md5
+   *   If not empty password needs to be hashed with MD5 first.
    */
   public function __construct($algo, $password, $setting, $extra_md5) {
     $this->algo = $algo;
     $this->password = $password;
     $this->setting = $setting;
-    $this->extra_md5 = $extra_md5;
+    $this->extraMd5 = $extra_md5;
   }
 
   /**
@@ -34,12 +71,12 @@ class CryptConnector extends PhpassHashedPassword {
    */
   public function cryptPass() {
     // Server may state that password needs to be hashed with MD5 first.
-    if ($this->extra_md5) {
+    if ($this->extraMd5) {
       $this->password = md5($this->password);
     }
     $crypt_pass = $this->crypt($this->algo, $this->password, $this->setting);
 
-    if ($this->extra_md5) {
+    if ($this->extraMd5) {
       $crypt_pass = 'U' . $crypt_pass;
     }
 
@@ -55,7 +92,7 @@ class CryptConnector extends PhpassHashedPassword {
    *   String to calculate hash.
    *
    * @return string
-   *   Sha1 sgtring.
+   *   Sha1 string.
    */
   public static function acquiaHash($key, $string) {
     return sha1((str_pad($key, 64, chr(0x00)) ^ (str_repeat(chr(0x5c), 64))) . pack("H*", sha1((str_pad($key, 64, chr(0x00)) ^ (str_repeat(chr(0x36), 64))) . $string)));

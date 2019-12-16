@@ -12,6 +12,13 @@ use Drupal\group\GroupMembershipLoaderInterface;
 class DefaultGroupPermissionCalculator extends GroupPermissionCalculatorBase {
 
   /**
+   * The member roles depend on which memberships you have, for which we do not
+   * currently have a dedicated cache context as it has a very high granularity.
+   * We therefore cache the calculated permissions per user.
+   */
+  const MEMBER_CACHE_CONTEXTS = ['user'];
+
+  /**
    * The entity type manager.
    *
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface
@@ -103,11 +110,6 @@ class DefaultGroupPermissionCalculator extends GroupPermissionCalculatorBase {
    */
   public function calculateMemberPermissions(AccountInterface $account) {
     $calculated_permissions = new RefinableCalculatedGroupPermissions();
-
-    // The member roles depend on which memberships you have, for which we do
-    // not currently have a dedicated cache context as it has a very high
-    // granularity. We therefore cache the calculated permissions per user.
-    $calculated_permissions->addCacheContexts(['user']);
 
     // @todo Use a cache tag for memberships (e.g.: when new one is added).
     // If the user gets added to or removed from a group, their account will

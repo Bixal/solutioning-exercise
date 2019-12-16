@@ -22,10 +22,10 @@ class TestStatusController extends ControllerBase {
    *   An associative array containing any tests which failed validation.
    */
   public function testStatus($log = FALSE) {
-    $custom_data = array();
+    $custom_data = [];
 
     // Iterate through modules which contain hook_acquia_spi_test().
-    foreach (\Drupal::moduleHandler()->getImplementations('acquia_connector_spi_test') as $module) {
+    foreach ($this->moduleHandler()->getImplementations('acquia_connector_spi_test') as $module) {
       $function = $module . '_acquia_connector_spi_test';
       if (function_exists($function)) {
 
@@ -35,17 +35,17 @@ class TestStatusController extends ControllerBase {
 
           foreach ($result['failure'] as $test_name => $test_failures) {
             foreach ($test_failures as $test_param => $test_value) {
-              $variables = array(
+              $variables = [
                 '@module'     => $module,
                 '@message'    => $test_value['message'],
                 '@param_name' => $test_param,
                 '@test'       => $test_name,
                 '@value'      => $test_value['value'],
-              );
+              ];
               // Only log if we're performing a full validation check.
               if ($log) {
-                drupal_set_message($this->t("Custom test validation failed for @test in @module and has been logged: @message for parameter '@param_name'; current value '@value'.", $variables), 'error');
-                \Drupal::logger('acquia spi test')->notice("<em>Custom test validation failed</em>: @message for parameter '@param_name'; current value '@value'. (<em>Test '@test_name' in module '@module_name'</em>)", $variables);
+                $this->messenger()->addError($this->t("Custom test validation failed for @test in @module and has been logged: @message for parameter '@param_name'; current value '@value'.", $variables));
+                $this->getLogger('acquia spi test')->notice("<em>Custom test validation failed</em>: @message for parameter '@param_name'; current value '@value'. (<em>Test '@test_name' in module '@module_name'</em>)", $variables);
               }
             }
           }
@@ -72,20 +72,20 @@ class TestStatusController extends ControllerBase {
    *   An associative array containing the validation result of the given tests,
    *   along with any failed parameters.
    */
-  public function testValidate($collection) {
+  public function testValidate(array $collection) {
     $result = TRUE;
-    $check_result_value = array();
+    $check_result_value = [];
 
     // Load valid categories and severities.
-    $categories = array('performance', 'security', 'best_practices');
-    $severities = array(0, 1, 2, 4, 8, 16, 32, 64, 128);
+    $categories = ['performance', 'security', 'best_practices'];
+    $severities = [0, 1, 2, 4, 8, 16, 32, 64, 128];
 
     foreach ($collection as $machine_name => $tests) {
       foreach ($tests as $check_name => $check_value) {
         $fail_value = '';
         $message    = '';
 
-        $check_name  = strtolower($check_name);
+        $check_name = strtolower($check_name);
         $check_value = (is_string($check_value)) ? strtolower($check_value) : $check_value;
 
         // Validate the data inputs for each check.
@@ -135,7 +135,10 @@ class TestStatusController extends ControllerBase {
       $result = FALSE;
     }
 
-    return array('result' => $result, 'failure' => (isset($check_result_value['failed'])) ? $check_result_value['failed'] : array());
+    return [
+      'result' => $result,
+      'failure' => (isset($check_result_value['failed'])) ? $check_result_value['failed'] : [],
+    ];
   }
 
 }

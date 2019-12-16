@@ -60,6 +60,7 @@ class ChainGroupPermissionCalculatorTest extends GroupKernelTestBase {
       'config:group.role.default-anonymous',
       'config:group.role.other-anonymous',
       'config:group_type_list',
+      'group_permissions',
     ];
     sort($cache_tags);
 
@@ -114,6 +115,7 @@ class ChainGroupPermissionCalculatorTest extends GroupKernelTestBase {
       'config:group.role.' . $group_role_id,
       'config:group.role.' . $this->roleSynchronizer->getGroupRoleId('other', 'test'),
       'config:group_type_list',
+      'group_permissions',
     ];
     sort($cache_tags);
     $cache_contexts = ['user.roles'];
@@ -172,7 +174,7 @@ class ChainGroupPermissionCalculatorTest extends GroupKernelTestBase {
     $group = $this->createGroup(['type' => 'default']);
 
     $permissions = [];
-    $cache_tags = ['user:' . $account->id()];
+    $cache_tags = ['group_permissions', 'user:' . $account->id()];
     $cache_contexts = ['user'];
 
     $calculated_permissions = $this->permissionCalculator->calculateMemberPermissions($account);

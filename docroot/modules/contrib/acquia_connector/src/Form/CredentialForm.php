@@ -2,15 +2,15 @@
 
 namespace Drupal\acquia_connector\Form;
 
-use Drupal\acquia_connector\Helper\Storage;
-use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\acquia_connector\Client;
+use Drupal\acquia_connector\ConnectorException;
+use Drupal\acquia_connector\Helper\Storage;
+use Drupal\acquia_connector\Subscription;
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\acquia_connector\Subscription;
-use Drupal\acquia_connector\ConnectorException;
 
 /**
  * Class CredentialForm.
@@ -29,7 +29,7 @@ class CredentialForm extends ConfigFormBase {
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The factory for configuration objects.
-   * @param Client $client
+   * @param \Drupal\acquia_connector\Client $client
    *   The Acquia client.
    */
   public function __construct(ConfigFactoryInterface $config_factory, Client $client) {
@@ -67,28 +67,33 @@ class CredentialForm extends ConfigFormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {
 
     $storage = new Storage();
-    $form['#prefix'] = $this->t('Enter your product keys from your <a href=":net">application overview</a> or <a href=":url">log in</a> to connect your site to Acquia Insight.', array(':net' => Url::fromUri('https://cloud.acquia.com')->getUri(), ':url' => \Drupal::url('acquia_connector.setup')));
+    $form['#prefix'] = $this->t('Enter your product keys from your <a href=":net">application overview</a> or <a href=":url">log in</a> to connect your site to Acquia Insight.', [
+      ':net' => Url::fromUri('https://cloud.acquia.com')->getUri(),
+      ':url' => Url::fromRoute('acquia_connector.setup')->toString(),
+    ]);
 
-    $form['acquia_identifier'] = array(
+    $form['acquia_identifier'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Identifier'),
       '#default_value' => $storage->getIdentifier(),
       '#required' => TRUE,
-    );
-    $form['acquia_key'] = array(
+    ];
+    $form['acquia_key'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Network key'),
       '#default_value' => $storage->getKey(),
       '#required' => TRUE,
-    );
-    $form['actions'] = array('#type' => 'actions');
-    $form['actions']['submit'] = array(
+    ];
+    $form['actions'] = ['#type' => 'actions'];
+    $form['actions']['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Connect'),
-    );
-    $form['actions']['signup'] = array(
-      '#markup' => $this->t('Need a subscription? <a href=":url">Get one</a>.', array(':url' => Url::fromUri('https://www.acquia.com/acquia-cloud-free')->getUri())),
-    );
+    ];
+    $form['actions']['signup'] = [
+      '#markup' => $this->t('Need a subscription? <a href=":url">Get one</a>.', [
+        ':url' => Url::fromUri('https://www.acquia.com/acquia-cloud-free')->getUri(),
+      ]),
+    ];
 
     return $form;
   }
@@ -100,7 +105,7 @@ class CredentialForm extends ConfigFormBase {
     try {
       $response = $this->client->nspiCall(
         '/agent-api/subscription',
-        array('identifier' => trim($form_state->getValue('acquia_identifier'))),
+        ['identifier' => trim($form_state->getValue('acquia_identifier'))],
         trim($form_state->getValue('acquia_key')));
     }
     catch (ConnectorException $e) {
@@ -115,7 +120,7 @@ class CredentialForm extends ConfigFormBase {
         $form_state->setErrorByName('');
       }
       else {
-        $form_state->setErrorByName('', t('Server error, please submit again.'));
+        $form_state->setErrorByName('', $this->t('Server error, please submit again.'));
       }
       return;
     }
@@ -123,7 +128,7 @@ class CredentialForm extends ConfigFormBase {
     $response = $response['result'];
 
     if (empty($response['body']['subscription_name'])) {
-      $form_state->setErrorByName('acquia_identifier', t('No subscriptions were found.'));
+      $form_state->setErrorByName('acquia_identifier', $this->t('No subscriptions were found.'));
     }
     else {
       $form_state->setValue('subscription', $response['body']['subscription_name']);
@@ -143,7 +148,7 @@ class CredentialForm extends ConfigFormBase {
     $storage->setKey($form_state->getValue('acquia_key'));
     $storage->setIdentifier($form_state->getValue('acquia_identifier'));
 
-    // Check subscription and send a heartbeat to Acquia Network via XML-RPC.
+    // Check subscription and send a heartbeat to Acquia via XML-RPC.
     // Our status gets updated locally via the return data.
     $subscription = new Subscription();
     $subscription_data = $subscription->update();
@@ -154,7 +159,7 @@ class CredentialForm extends ConfigFormBase {
     drupal_flush_all_caches();
 
     if ($subscription_data['active']) {
-      drupal_set_message($this->t('<h3>Connection successful!</h3>You are now connected to Acquia Cloud. Please enter a name for your site to begin sending profile data.'));
+      $this->messenger()->addStatus($this->t('<h3>Connection successful!</h3>You are now connected to Acquia Cloud. Please enter a name for your site to begin sending profile data.'));
     }
   }
 

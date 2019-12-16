@@ -2,15 +2,15 @@
 
 namespace Drupal\acquia_connector\Form;
 
-use Drupal\acquia_connector\Helper\Storage;
-use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\acquia_connector\Client;
+use Drupal\acquia_connector\ConnectorException;
+use Drupal\acquia_connector\Helper\Storage;
+use Drupal\acquia_connector\Subscription;
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\acquia_connector\Subscription;
-use Drupal\acquia_connector\ConnectorException;
 
 /**
  * Class SetupForm.
@@ -31,6 +31,8 @@ class SetupForm extends ConfigFormBase {
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The factory for configuration objects.
+   * @param \Drupal\acquia_connector\Client $client
+   *   The Acquia client.
    */
   public function __construct(ConfigFactoryInterface $config_factory, Client $client) {
     $this->configFactory = $config_factory;
@@ -84,31 +86,35 @@ class SetupForm extends ConfigFormBase {
    *   Form.
    */
   protected function buildSetupForm(FormStateInterface &$form_state) {
-    $form = array(
-      '#prefix' => $this->t('Log in or <a href=":url">configure manually</a> to connect your site to the Acquia Subscription.', array(':url' => \Drupal::url('acquia_connector.credentials'))),
-      'email' => array(
+    $form = [
+      '#prefix' => $this->t('Log in or <a href=":url">configure manually</a> to connect your site to the Acquia Subscription.', [':url' => Url::fromRoute('acquia_connector.credentials')->toString()]),
+      'email' => [
         '#type' => 'textfield',
         '#title' => $this->t('Enter the email address you use to login to the Acquia Subscription:'),
         '#required' => TRUE,
-      ),
-      'pass' => array(
+      ],
+      'pass' => [
         '#type' => 'password',
         '#title' => $this->t('Enter your Acquia Subscription password:'),
-        '#description' => $this->t('Your password will not be stored locally and will be sent securely to Acquia.com. <a href=":url" target="_blank">Forgot password?</a>', array(':url' => Url::fromUri('https://accounts.acquia.com/user/password')->getUri())),
+        '#description' => $this->t('Your password will not be stored locally and will be sent securely to Acquia.com. <a href=":url" target="_blank">Forgot password?</a>', [
+          ':url' => Url::fromUri('https://accounts.acquia.com/user/password')->getUri(),
+        ]),
         '#size' => 32,
         '#required' => TRUE,
-      ),
-      'actions' => array(
+      ],
+      'actions' => [
         '#type' => 'actions',
-        'continue' => array(
+        'continue' => [
           '#type' => 'submit',
           '#value' => $this->t('Next'),
-        ),
-        'signup' => array(
-          '#markup' => $this->t('Need a subscription? <a href=":url">Get one</a>.', array(':url' => Url::fromUri('https://www.acquia.com/acquia-cloud-free')->getUri())),
-        ),
-      ),
-    );
+        ],
+        'signup' => [
+          '#markup' => $this->t('Need a subscription? <a href=":url">Get one</a>.', [
+            ':url' => Url::fromUri('https://www.acquia.com/acquia-cloud-free')->getUri(),
+          ]),
+        ],
+      ],
+    ];
     return $form;
   }
 
@@ -122,27 +128,27 @@ class SetupForm extends ConfigFormBase {
    *   Form.
    */
   protected function buildChooseForm(FormStateInterface &$form_state) {
-    $options = array();
+    $options = [];
     $storage = $form_state->getStorage();
     foreach ($storage['response']['subscription'] as $credentials) {
       $options[] = $credentials['name'];
     }
     asort($options);
 
-    $form = array(
+    $form = [
       '#prefix' => $this->t('You have multiple subscriptions available.'),
-      'subscription' => array(
+      'subscription' => [
         '#type' => 'select',
         '#title' => $this->t('Available subscriptions'),
         '#options' => $options,
         '#description' => $this->t('Choose from your available subscriptions.'),
         '#required' => TRUE,
-      ),
-      'continue' => array(
+      ],
+      'continue' => [
         '#type' => 'submit',
         '#value' => $this->t('Submit'),
-      ),
-    );
+      ],
+    ];
 
     return $form;
   }
@@ -194,7 +200,7 @@ class SetupForm extends ConfigFormBase {
 
     // Don't set message or redirect if multistep.
     if (!$form_state->getErrors() && empty($form_data['rebuild'])) {
-      // Check subscription and send a heartbeat to Acquia Network via XML-RPC.
+      // Check subscription and send a heartbeat to Acquia via XML-RPC.
       // Our status gets updated locally via the return data.
       $subscription = new Subscription();
       $subscription_data = $subscription->update();
@@ -205,8 +211,7 @@ class SetupForm extends ConfigFormBase {
       }
 
       if ($subscription_data['active']) {
-        drupal_set_message($this->t('<h3>Connection successful!</h3>You are now connected to Acquia Cloud. Please enter a name for your site to begin sending profile data.'));
-        // @todo https://www.drupal.org/node/2560867
+        $this->messenger()->addStatus($this->t('<h3>Connection successful!</h3>You are now connected to Acquia Cloud. Please enter a name for your site to begin sending profile data.'));
         drupal_flush_all_caches();
       }
     }
@@ -222,7 +227,7 @@ class SetupForm extends ConfigFormBase {
     $config = $this->config('acquia_connector.settings');
     $storage = $form_state->getStorage();
     if (empty($storage['response']['subscription'])) {
-      drupal_set_message($this->t('No subscriptions were found for your account.'), 'error');
+      $this->messenger()->addError($this->t('No subscriptions were found for your account.'));
     }
     elseif (count($storage['response']['subscription']) > 1) {
       // Multistep form for choosing from available subscriptions.

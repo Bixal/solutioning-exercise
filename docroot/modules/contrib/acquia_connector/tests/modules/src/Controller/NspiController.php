@@ -2,12 +2,11 @@
 
 namespace Drupal\acquia_connector_test\Controller;
 
+use Drupal\acquia_connector\CryptConnector;
 use Drupal\Core\Access\AccessResultAllowed;
 use Drupal\Core\Controller\ControllerBase;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Drupal\acquia_connector\CryptConnector;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class NspiController.
@@ -16,8 +15,18 @@ use Drupal\acquia_connector\CryptConnector;
  */
 class NspiController extends ControllerBase {
 
-  protected $data = [];
+  /**
+   * Test site machine name.
+   *
+   * @var string
+   */
   protected $acqtestSiteMachineName;
+
+  /**
+   * Test site is Acquia hosted if not empty.
+   *
+   * @var mixed
+   */
   protected $acquiaHosted;
 
   const ACQTEST_SUBSCRIPTION_NOT_FOUND = 1000;
@@ -58,10 +67,10 @@ class NspiController extends ControllerBase {
   /**
    * SPI API site update.
    *
-   * @param Request $request
+   * @param \Symfony\Component\HttpFoundation\Request $request
    *   Request.
    *
-   * @return JsonResponse
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
    *   JsonResponse.
    */
   public function nspiUpdate(Request $request) {
@@ -79,7 +88,7 @@ class NspiController extends ControllerBase {
     }
     if (!empty($data['authenticator']['identifier'])) {
       if ($data['authenticator']['identifier'] != self::ACQTEST_ID && $data['authenticator']['identifier'] != self::ACQTEST_ERROR_ID) {
-        return new JsonResponse($this->errorResponse(self::ACQTEST_SUBSCRIPTION_VALIDATION_ERROR, t('Subscription not found')), self::ACQTEST_SUBSCRIPTION_SERVICE_UNAVAILABLE);
+        return new JsonResponse($this->errorResponse(self::ACQTEST_SUBSCRIPTION_VALIDATION_ERROR, $this->t('Subscription not found')), self::ACQTEST_SUBSCRIPTION_SERVICE_UNAVAILABLE);
       }
       if ($data['authenticator']['identifier'] == self::ACQTEST_ERROR_ID) {
         return new JsonResponse(FALSE);
@@ -121,10 +130,9 @@ class NspiController extends ControllerBase {
             $acquia_hosted = (int) filter_var($spi_data['acquia_hosted'], FILTER_VALIDATE_BOOLEAN);
             \Drupal::state()->set('acqtest_site_acquia_hosted', $acquia_hosted);
 
-            $result['body']['nspi_messages'][] = t('This is the first connection from this site, it may take awhile for it to appear on the Acquia Network.');
+            $result['body']['nspi_messages'][] = $this->t('This is the first connection from this site, it may take awhile for it to appear.');
             return new JsonResponse($result);
 
-          break;
           case 'update':
             $update = $this->updateNspiSite($spi_data);
             $result['body']['nspi_messages'][] = $update;
@@ -133,24 +141,22 @@ class NspiController extends ControllerBase {
           case 'unblock':
             \Drupal::state()->delete('acqtest_site_blocked');
             $result['body']['spi_error'] = '';
-            $result['body']['nspi_messages'][] = t('Your site has been enabled and is sending data to Acquia Cloud.');
+            $result['body']['nspi_messages'][] = $this->t('Your site has been enabled and is sending data to Acquia Cloud.');
             return new JsonResponse($result);
 
-          break;
           case 'block':
             \Drupal::state()->set('acqtest_site_blocked', TRUE);
             $result['body']['spi_error'] = '';
-            $result['body']['nspi_messages'][] = t('You have disabled your site from sending data to Acquia Cloud.');
+            $result['body']['nspi_messages'][] = $this->t('You have disabled your site from sending data to Acquia Cloud.');
             return new JsonResponse($result);
 
-          break;
         }
 
         // Update site name if it has changed.
         $tacqtest_site_name = \Drupal::state()->get('acqtest_site_name');
         if (isset($spi_data['name']) && $spi_data['name'] != $tacqtest_site_name) {
           if (!empty($tacqtest_site_name)) {
-            $name_update_message = t('Site name updated (from @old_name to @new_name).', [
+            $name_update_message = $this->t('Site name updated (from @old_name to @new_name).', [
               '@old_name' => $tacqtest_site_name,
               '@new_name' => $spi_data['name'],
             ]);
@@ -173,7 +179,7 @@ class NspiController extends ControllerBase {
       }
     }
     else {
-      return new JsonResponse($this->errorResponse(self::ACQTEST_SUBSCRIPTION_VALIDATION_ERROR, t('Invalid arguments')), self::ACQTEST_SUBSCRIPTION_SERVICE_UNAVAILABLE);
+      return new JsonResponse($this->errorResponse(self::ACQTEST_SUBSCRIPTION_VALIDATION_ERROR, $this->t('Invalid arguments')), self::ACQTEST_SUBSCRIPTION_SERVICE_UNAVAILABLE);
     }
   }
 
@@ -191,21 +197,21 @@ class NspiController extends ControllerBase {
     $site_blocked = \Drupal::state()->get('acqtest_site_blocked');
 
     if ($site_blocked) {
-      $changes['changes']['blocked'] = (string) t('Your site has been enabled.');
+      $changes['changes']['blocked'] = (string) $this->t('Your site has been enabled.');
     }
     else {
 
       if ($this->checkAcquiaHostedStatusChanged($spi_data) && !is_null($this->acquiaHosted)) {
         if ($spi_data['acquia_hosted']) {
-          $changes['changes']['acquia_hosted'] = (string) t('Your site is now Acquia hosted.');
+          $changes['changes']['acquia_hosted'] = (string) $this->t('Your site is now Acquia hosted.');
         }
         else {
-          $changes['changes']['acquia_hosted'] = (string) t('Your site is no longer Acquia hosted.');
+          $changes['changes']['acquia_hosted'] = (string) $this->t('Your site is no longer Acquia hosted.');
         }
       }
 
       if ($this->checkMachineNameStatusChanged($spi_data)) {
-        $changes['changes']['machine_name'] = (string) t('Your site machine name changed from @old_machine_name to @new_machine_name.', [
+        $changes['changes']['machine_name'] = (string) $this->t('Your site machine name changed from @old_machine_name to @new_machine_name.', [
           '@old_machine_name' => $this->acqtestSiteMachineName,
           '@new_machine_name' => $spi_data['machine_name'],
         ]);
@@ -217,7 +223,7 @@ class NspiController extends ControllerBase {
       return FALSE;
     }
 
-    $changes['response'] = (string) t('A change has been detected in your site environment. Please check the Acquia SPI status on your Status Report page for more information.');
+    $changes['response'] = (string) $this->t('A change has been detected in your site environment. Please check the Acquia SPI status on your Status Report page for more information.');
 
     return $changes;
   }
@@ -236,10 +242,10 @@ class NspiController extends ControllerBase {
 
     if ($this->checkMachineNameStatusChanged($spi_data)) {
       if (!empty($this->acqtestSiteMachineName)) {
-        $message = (string) t('Updated site machine name from @old_machine_name to @new_machine_name.', ['@old_machine_name' => $this->acqtestSiteMachineName, '@new_machine_name' => $spi_data['machine_name']]);
+        $message = (string) $this->t('Updated site machine name from @old_machine_name to @new_machine_name.', ['@old_machine_name' => $this->acqtestSiteMachineName, '@new_machine_name' => $spi_data['machine_name']]);
       }
       else {
-        $message  = (string) t('Site machine name set to to @new_machine_name.', ['@new_machine_name' => $spi_data['machine_name']]);
+        $message = (string) $this->t('Site machine name set to to @new_machine_name.', ['@new_machine_name' => $spi_data['machine_name']]);
       }
 
       \Drupal::state()->set('acqtest_site_machine_name', $spi_data['machine_name']);
@@ -248,8 +254,8 @@ class NspiController extends ControllerBase {
 
     if ($this->checkAcquiaHostedStatusChanged($spi_data)) {
       if (!is_null($this->acquiaHosted)) {
-        $hosted_message = $spi_data['acquia_hosted'] ? (string) t('site is now Acquia hosted') : (string) t('site is no longer Acquia hosted');
-        $message = (string) t('Updated Acquia hosted status (@hosted_message).', ['@hosted_message' => $hosted_message]);
+        $hosted_message = $spi_data['acquia_hosted'] ? (string) $this->t('site is now Acquia hosted') : (string) $this->t('site is no longer Acquia hosted');
+        $message = (string) $this->t('Updated Acquia hosted status (@hosted_message).', ['@hosted_message' => $hosted_message]);
       }
 
       $acquia_hosted = (int) filter_var($spi_data['acquia_hosted'], FILTER_VALIDATE_BOOLEAN);
@@ -269,7 +275,7 @@ class NspiController extends ControllerBase {
    * @return bool
    *   TRUE if machine name was changed.
    */
-  public function checkMachineNameStatusChanged($spi_data) {
+  public function checkMachineNameStatusChanged(array $spi_data) {
     return isset($spi_data['machine_name']) && $spi_data['machine_name'] != $this->acqtestSiteMachineName;
   }
 
@@ -282,19 +288,19 @@ class NspiController extends ControllerBase {
    * @return bool
    *   TRUE if site is Acquia Hosted.
    */
-  public function checkAcquiaHostedStatusChanged($spi_data) {
+  public function checkAcquiaHostedStatusChanged(array $spi_data) {
     return isset($spi_data['acquia_hosted']) && (bool) $spi_data['acquia_hosted'] != (bool) $this->acquiaHosted;
   }
 
   /**
    * Return spi definition.
    *
-   * @param Request $request
+   * @param \Symfony\Component\HttpFoundation\Request $request
    *   Request.
    * @param string $version
    *   Version.
    *
-   * @return JsonResponse
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
    *   JsonResponse.
    */
   public function spiDefinition(Request $request, $version) {
@@ -344,11 +350,11 @@ class NspiController extends ControllerBase {
     }
 
     if (!isset($data['body']) || !isset($data['body']['email'])) {
-      return new JsonResponse($this->errorResponse(self::ACQTEST_SUBSCRIPTION_VALIDATION_ERROR, t('Invalid arguments')), self::ACQTEST_SUBSCRIPTION_SERVICE_UNAVAILABLE);
+      return new JsonResponse($this->errorResponse(self::ACQTEST_SUBSCRIPTION_VALIDATION_ERROR, $this->t('Invalid arguments')), self::ACQTEST_SUBSCRIPTION_SERVICE_UNAVAILABLE);
     }
     $account = user_load_by_mail($data['body']['email']);
     if (empty($account) || $account->isAnonymous()) {
-      return new JsonResponse($this->errorResponse(self::ACQTEST_SUBSCRIPTION_VALIDATION_ERROR, t('Account not found')), self::ACQTEST_SUBSCRIPTION_SERVICE_UNAVAILABLE);
+      return new JsonResponse($this->errorResponse(self::ACQTEST_SUBSCRIPTION_VALIDATION_ERROR, $this->t('Account not found')), self::ACQTEST_SUBSCRIPTION_SERVICE_UNAVAILABLE);
     }
     $result = [
       'algorithm' => 'sha512',
@@ -369,20 +375,20 @@ class NspiController extends ControllerBase {
    * @return array
    *   Result array.
    */
-  protected function basicAuthenticator($fields, $data) {
+  protected function basicAuthenticator(array $fields, array $data) {
     $result = [];
     foreach ($fields as $field => $type) {
       if (empty($data['authenticator'][$field]) || !$type($data['authenticator'][$field])) {
-        return $this->errorResponse(self::ACQTEST_SUBSCRIPTION_MESSAGE_INVALID, t('Authenticator field @field is missing or invalid.', ['@field' => $field]));
+        return $this->errorResponse(self::ACQTEST_SUBSCRIPTION_MESSAGE_INVALID, $this->t('Authenticator field @field is missing or invalid.', ['@field' => $field]));
       }
     }
     $now = REQUEST_TIME;
     if ($data['authenticator']['time'] > ($now + self::ACQTEST_SUBSCRIPTION_MESSAGE_LIFETIME)) {
-      return $this->errorResponse(self::ACQTEST_SUBSCRIPTION_MESSAGE_FUTURE, t('Message time ahead of server time.'));
+      return $this->errorResponse(self::ACQTEST_SUBSCRIPTION_MESSAGE_FUTURE, $this->t('Message time ahead of server time.'));
     }
     else {
       if ($data['authenticator']['time'] < ($now - self::ACQTEST_SUBSCRIPTION_MESSAGE_LIFETIME)) {
-        return $this->errorResponse(self::ACQTEST_SUBSCRIPTION_MESSAGE_EXPIRED, t('Message is too old.'));
+        return $this->errorResponse(self::ACQTEST_SUBSCRIPTION_MESSAGE_EXPIRED, $this->t('Message is too old.'));
       }
     }
 
@@ -393,10 +399,10 @@ class NspiController extends ControllerBase {
   /**
    * Test returns subscriptions for an email.
    *
-   * @param Request $request
+   * @param \Symfony\Component\HttpFoundation\Request $request
    *   Request.
    *
-   * @return JsonResponse
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
    *   JsonResponse.
    */
   public function getCredentials(Request $request) {
@@ -414,13 +420,13 @@ class NspiController extends ControllerBase {
 
     if (!empty($data['body']['email'])) {
       $account = user_load_by_mail($data['body']['email']);
-      \Drupal::logger('getCredentials password')->debug($account->getPassword());
+      $this->getLogger('getCredentials password')->debug($account->getPassword());
       if (empty($account) || $account->isAnonymous()) {
-        return new JsonResponse($this->errorResponse(self::ACQTEST_SUBSCRIPTION_VALIDATION_ERROR, t('Account not found')), self::ACQTEST_SUBSCRIPTION_SERVICE_UNAVAILABLE);
+        return new JsonResponse($this->errorResponse(self::ACQTEST_SUBSCRIPTION_VALIDATION_ERROR, $this->t('Account not found')), self::ACQTEST_SUBSCRIPTION_SERVICE_UNAVAILABLE);
       }
     }
     else {
-      return new JsonResponse($this->errorResponse(self::ACQTEST_SUBSCRIPTION_VALIDATION_ERROR, t('Invalid arguments')), self::ACQTEST_SUBSCRIPTION_SERVICE_UNAVAILABLE);
+      return new JsonResponse($this->errorResponse(self::ACQTEST_SUBSCRIPTION_VALIDATION_ERROR, $this->t('Invalid arguments')), self::ACQTEST_SUBSCRIPTION_SERVICE_UNAVAILABLE);
     }
 
     $hash = CryptConnector::acquiaHash($account->getPassword(), $data['authenticator']['time'] . ':' . $data['authenticator']['nonce']);
@@ -435,12 +441,12 @@ class NspiController extends ControllerBase {
       return new JsonResponse($result);
     }
     else {
-      return new JsonResponse($this->errorResponse(self::ACQTEST_SUBSCRIPTION_VALIDATION_ERROR, t('Incorrect password.')), self::ACQTEST_SUBSCRIPTION_SERVICE_UNAVAILABLE);
+      return new JsonResponse($this->errorResponse(self::ACQTEST_SUBSCRIPTION_VALIDATION_ERROR, $this->t('Incorrect password.')), self::ACQTEST_SUBSCRIPTION_SERVICE_UNAVAILABLE);
     }
   }
 
   /**
-   * Test validates an Acquia Network subscription.
+   * Test validates an Acquia subscription.
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    *   Request.
@@ -461,7 +467,7 @@ class NspiController extends ControllerBase {
   }
 
   /**
-   * Test validates an Acquia Network authenticator.
+   * Test validates an Acquia authenticator.
    *
    * @param array $data
    *   Data to validate.
@@ -469,7 +475,7 @@ class NspiController extends ControllerBase {
    * @return array
    *   Result array.
    */
-  protected function validateAuthenticator($data) {
+  protected function validateAuthenticator(array $data) {
     $fields = [
       'time' => 'is_numeric',
       'identifier' => 'is_string',
@@ -483,7 +489,7 @@ class NspiController extends ControllerBase {
     }
 
     if (strpos($data['authenticator']['identifier'], 'TEST_') !== 0) {
-      return $this->errorResponse(self::ACQTEST_SUBSCRIPTION_NOT_FOUND, t('Subscription not found'));
+      return $this->errorResponse(self::ACQTEST_SUBSCRIPTION_NOT_FOUND, $this->t('Subscription not found'));
     }
 
     switch ($data['authenticator']['identifier']) {
@@ -508,18 +514,18 @@ class NspiController extends ControllerBase {
     $hash_simple = CryptConnector::acquiaHash($key, $data['authenticator']['time'] . ':' . $data['authenticator']['nonce']);
 
     if (($hash !== $data['authenticator']['hash']) && ($hash_simple != $data['authenticator']['hash'])) {
-      return $this->errorResponse(self::ACQTEST_SUBSCRIPTION_VALIDATION_ERROR, t('HMAC validation error: @expected != @actual'), [
+      return $this->errorResponse(self::ACQTEST_SUBSCRIPTION_VALIDATION_ERROR, $this->t('HMAC validation error: @expected != @actual', [
         '@expected' => $hash,
         '@actual' => $data['authenticator']['hash'],
-      ]);
+      ]));
     }
 
     if ($key === self::ACQTEST_EXPIRED_KEY) {
-      return $this->errorResponse(self::ACQTEST_SUBSCRIPTION_EXPIRED, t('Subscription expired.'));
+      return $this->errorResponse(self::ACQTEST_SUBSCRIPTION_EXPIRED, $this->t('Subscription expired.'));
     }
 
     // Record connections.
-    $connections = \Drupal::config('acquia_connector.settings')->get('test_connections' . $data['authenticator']['identifier']);
+    $connections = $this->config('acquia_connector.settings')->get('test_connections' . $data['authenticator']['identifier']);
     $connections++;
     \Drupal::configFactory()->getEditable('acquia_connector.settings')->set('test_connections' . $data['authenticator']['identifier'], $connections)->save();
     if ($connections == 3 && $data['authenticator']['identifier'] == self::ACQTEST_503_ID) {
@@ -555,8 +561,8 @@ class NspiController extends ControllerBase {
   /**
    * Access callback.
    *
-   * @return bool
-   *   TRUE if access is allowed.
+   * @return \Drupal\Core\Access\AccessResultAllowed
+   *   The access result.
    */
   public function access() {
     return AccessResultAllowed::allowed();

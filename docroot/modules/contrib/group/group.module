@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
@@ -572,4 +573,36 @@ function _group_content_enabler_manager() {
  */
 function _group_role_synchronizer() {
   return \Drupal::service('group_role.synchronizer');
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave().
+ *
+ * @todo Remove in 8.2.x if it still only fixes cache contexts by then.
+ */
+function group_view_presave(EntityInterface $view) {
+  $displays = $view->get('display');
+  $update = FALSE;
+
+  // Loop over all displays and replace the group_membership.roles.permissions
+  // cache context with its safe user.group_permissions counterpart.
+  foreach ($displays as $display_name => &$display) {
+    $cache_metadata = &$display['cache_metadata'];
+    if (isset($cache_metadata['contexts'])) {
+      // Remove the deleted cache context and add the updated metadata.
+      $key = array_search('group_membership.roles.permissions', $cache_metadata['contexts'], TRUE);
+      if ($key !== FALSE) {
+        $update = TRUE;
+        unset($cache_metadata['contexts'][$key]);
+
+        $cache_metadata['max-age'] = CacheBackendInterface::CACHE_PERMANENT;
+        $cache_metadata['contexts'][] = 'route.group';
+        $cache_metadata['contexts'][] = 'user.group_permissions';
+      }
+    }
+  }
+
+  if ($update) {
+    $view->set('display', $displays);
+  }
 }

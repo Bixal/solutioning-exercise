@@ -5,13 +5,14 @@
  * Acquia Connector module.
  */
 
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\acquia_connector\AutoConnector;
 use Drupal\acquia_connector\Helper\Storage;
 use Drupal\acquia_connector\Subscription;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Link;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Url;
-use Drupal\Core\Link;
+use Drupal\update\UpdateFetcherInterface;
 
 // Version of SPI data format.
 define('ACQUIA_SPI_DATA_VERSION', 3.1);
@@ -32,12 +33,12 @@ function acquia_connector_help($route_name, RouteMatchInterface $route_match) {
   switch ($route_name) {
     case 'help.page.acquia_connector':
       $output = '<h2>' . t('Acquia Connector') . '</h2>';
-      $output .= '<p>' . t('The Acquia Connector module allows you to connect your site to the Acquia Subscription and use its variety of services.') . '<p>';
-      $output .= '<p>' . Link::fromTextAndUrl(t('Read more about the installation and use of the Acquia Connector module on the Acquia Library'), Url::fromUri('https://docs.acquia.com/acquia-cloud/insight/install/', array()))->toString() . '</p>';
+      $output .= '<p>' . t('The Acquia Connector module allows you to connect your site to Acquia.') . '<p>';
+      $output .= '<p>' . Link::fromTextAndUrl(t('Read more about the installation and use of the Acquia Connector module on the Acquia Library'), Url::fromUri('https://docs.acquia.com/acquia-cloud/insight/install/', []))->toString() . '</p>';
 
       $output .= '<dl>';
       $output .= '<dt>' . t('Acquia SPI Custom Tests') . '</dt>';
-      $output .= '<dd>' . t('Acquia Insight supports custom tests for your site. See <strong>acquia_spi.api.php</strong> for information on the custom test hook and validate your tests for inclusion in outgoing SPI data with the Drush command, <strong>spi-test-validate</strong>.') . '</dd>';
+      $output .= '<dd>' . t('Acquia Insight supports custom tests for your site. See <strong>acquia_connector.api.php</strong> for information on the custom test hook and validate your tests for inclusion in outgoing SPI data with the Drush command, <strong>spi-test-validate</strong>.') . '</dd>';
 
       $output .= '<dt>' . t('Acquia Search') . '</dt>';
       $output .= '<dd>' . t("Provides authentication service to the Apache Solr Search Integration module to enable use of Acquia's hosted Solr search indexes.") . '</dd>';
@@ -71,7 +72,7 @@ function acquia_connector_form_system_modules_alter(&$form, FormStateInterface $
 
     if (!\Drupal::moduleHandler()->moduleExists('acquia_search') && empty($subscription['active'])) {
       $form['modules']['Acquia']['acquia_search']['enable']['#disabled'] = TRUE;
-      $message = t('<a href="@network-url">Acquia Subscription</a> (inactive)', array('@network-url' => 'http://acquia.com/products-services/acquia-search'));
+      $message = t('<a href="@network-url">Acquia Subscription</a> (inactive)', ['@network-url' => 'http://acquia.com/products-services/acquia-search']);
       $form['modules']['Acquia']['acquia_search']['#requires']['acquia_subscription'] = $message;
     }
   }
@@ -88,7 +89,7 @@ function acquia_connector_cron() {
     return;
   }
 
-  // Check subscription and send a heartbeat to Acquia Network.
+  // Check subscription and send a heartbeat to Acquia.
   $subscription = new Subscription();
   $subscription->update();
 
@@ -124,9 +125,9 @@ function acquia_connector_toolbar() {
   if ($subscription->isActive()) {
     $subscription_data = \Drupal::config('acquia_connector.settings')->get('subscription_data');
     if (is_array($subscription_data['expiration_date']) && isset($subscription_data['active']) && $subscription_data['active'] !== FALSE) {
-      $link['#title'] = t('Subscription active (expires @date)', array(
+      $link['#title'] = t('Subscription active (expires @date)', [
         '@date' => \Drupal::service('date.formatter')->format(strtotime($subscription_data['expiration_date']['value']), 'custom', 'Y/n/j'),
-      ));
+      ]);
       $link['#attributes']['class'][] = 'acquia-active-subscription';
       $link['#url'] = Url::fromUri('https://cloud.acquia.com/app/develop/applications/' . $subscription_data['uuid']);
     }
@@ -172,7 +173,7 @@ function acquia_connector_update_status_alter(&$projects) {
     if ($project == 'drupal') {
       if (isset($subscription['update'])) {
         $projects[$project]['status'] = isset($subscription['update']['status']) ? $subscription['update']['status'] : t('Unknown');
-        $projects[$project]['releases'] = isset($subscription['update']['releases']) ? $subscription['update']['releases'] : array();
+        $projects[$project]['releases'] = isset($subscription['update']['releases']) ? $subscription['update']['releases'] : [];
         $projects[$project]['recommended'] = isset($subscription['update']['recommended']) ? $subscription['update']['recommended'] : '';
         $projects[$project]['latest_version'] = isset($subscription['update']['latest_version']) ? $subscription['update']['latest_version'] : '';
         // Security updates are a separate piece of data. If we leave it, then
@@ -181,8 +182,8 @@ function acquia_connector_update_status_alter(&$projects) {
         unset($projects[$project]['security updates']);
       }
       else {
-        $projects[$project]['status'] = UPDATE_NOT_CHECKED;
-        $projects[$project]['reason'] = t('No information available from the Acquia Subscription');
+        $projects[$project]['status'] = UpdateFetcherInterface::NOT_CHECKED;
+        $projects[$project]['reason'] = t('No information available from Acquia.');
         unset($projects[$project]['releases']);
         unset($projects[$project]['recommended']);
       }
@@ -244,18 +245,18 @@ function acquia_connector_has_update_service() {
  *   The Exception message.
  */
 function acquia_connector_report_restapi_error($code, $message) {
-  drupal_set_message(t('Error: @message (@errno)', array('@message' => $message, '@errno' => $code)), 'error');
+  \Drupal::messenger()->addError(t('Error: @message (@errno)', ['@message' => $message, '@errno' => $code]));
 }
 
 /**
  * Return an error message by the error code.
  *
  * Returns an error message for the most recent (failed) attempt to connect
- * to the Acquia Network during the current page request. If there were no
- * failed attempts, returns FALSE.
+ * to the Acquia during the current page request. If there were no failed
+ * attempts, returns FALSE.
  *
- * This function assumes that the most recent error came from the
- * Acquia Network; otherwise, it will not work correctly.
+ * This function assumes that the most recent error came from the Acquia;
+ * otherwise, it will not work correctly.
  *
  * @param int $errno
  *   Error code defined by the module.
@@ -267,28 +268,22 @@ function acquia_connector_connection_error_message($errno) {
   if ($errno) {
     switch ($errno) {
       case Subscription::NOT_FOUND:
-        return t('The identifier you have provided does not exist in the Acquia Subscription or is expired. Please make sure you have used the correct value and try again.');
+        return t('The identifier you have provided does not exist at Acquia or is expired. Please make sure you have used the correct value and try again.');
 
-      break;
       case Subscription::EXPIRED:
         return t('Your Acquia Subscription subscription has expired. Please renew your subscription so that you can resume using Acquia services.');
 
-      break;
       case Subscription::MESSAGE_FUTURE:
-        return t('Your server is unable to communicate with the Acquia Subscription due to a problem with your clock settings. For security reasons, we reject messages that are more than @time ahead of the actual time recorded by our servers. Please fix the clock on your server and try again.', array('@time' => \Drupal::service('date.formatter')->formatInterval(Subscription::MESSAGE_LIFETIME)));
+        return t('Your server is unable to communicate with Acquia due to a problem with your clock settings. For security reasons, we reject messages that are more than @time ahead of the actual time recorded by our servers. Please fix the clock on your server and try again.', ['@time' => \Drupal::service('date.formatter')->formatInterval(Subscription::MESSAGE_LIFETIME)]);
 
-      break;
       case Subscription::MESSAGE_EXPIRED:
-        return t('Your server is unable to communicate with the Acquia Subscription due to a problem with your clock settings. For security reasons, we reject messages that are more than @time older than the actual time recorded by our servers. Please fix the clock on your server and try again.', array('@time' => \Drupal::service('date.formatter')->formatInterval(Subscription::MESSAGE_LIFETIME)));
+        return t('Your server is unable to communicate with Acquia due to a problem with your clock settings. For security reasons, we reject messages that are more than @time older than the actual time recorded by our servers. Please fix the clock on your server and try again.', ['@time' => \Drupal::service('date.formatter')->formatInterval(Subscription::MESSAGE_LIFETIME)]);
 
-      break;
       case Subscription::VALIDATION_ERROR:
         return t('The identifier and key you have provided for the Acquia Subscription do not match. Please make sure you have used the correct values and try again.');
 
-      break;
       default:
         return t('There is an error communicating with the Acquia Subscription at this time. Please check your identifier and key and try again.');
-      break;
     }
   }
   return FALSE;
@@ -300,8 +295,8 @@ function acquia_connector_connection_error_message($errno) {
 function acquia_connector_modules_installed($modules) {
   foreach ($modules as $module) {
     if (function_exists($module . '_acquia_connector_spi_test')) {
-      drupal_set_message(t("A new invocation of hook_acquia_connector_spi_test() has been detected in @module.", array('@module' => $module)));
-      \Drupal::logger('acquia connector spi test')->info("A new invocation of hook_acquia_connector_spi_test() has been detected in @module.", array('@module' => $module));
+      \Drupal::messenger()->addStatus(t("A new invocation of hook_acquia_connector_spi_test() has been detected in @module.", ['@module' => $module]));
+      \Drupal::logger('acquia connector spi test')->info("A new invocation of hook_acquia_connector_spi_test() has been detected in @module.", ['@module' => $module]);
     }
   }
 }
@@ -360,12 +355,12 @@ function acquia_connector_show_free_tier_promo() {
     '@settings' => Url::fromRoute('acquia_connector.setup')->toString(),
   ]);
 
-  drupal_set_message($message, 'warning', FALSE);
+  \Drupal::messenger()->addWarning($message);
 
 }
 
 /**
- * Auto-connects the site to Acquia Subscription.
+ * Auto-connects the site to Acquia.
  */
 function acquia_connector_auto_connect() {
   $subscription = new Subscription();
@@ -379,6 +374,6 @@ function acquia_connector_auto_connect() {
   if ($connected && $user->hasPermission('administer site configuration')) {
     $url = Url::fromRoute('acquia_connector.setup')->toString();
     $text = t('Your site has been automatically connected to Acquia. <a href=":url">Change subscription</a>', [':url' => $url]);
-    drupal_set_message($text, 'status', FALSE);
+    \Drupal::messenger()->addStatus($text);
   }
 }

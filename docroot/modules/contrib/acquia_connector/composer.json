@@ -1,16 +1,22 @@
 {
     "name": "drupal/acquia_connector",
-    "description": "Allows Drupal websites to connect with Acquia.",
     "type": "drupal-module",
-    "license": "GPL-2.0+",
-    "repositories": {
-    "drupal": {
-      "type": "composer",
-      "url": "https://packages.drupal.org/8"
-    }
-  },
+    "description": "Allows Drupal websites to connect with Acquia.",
+    "license": "GPL-2.0-or-later",
     "require": {
-        "drupal/search_api": "^1.8",
-        "drupal/search_api_solr": "^1.2"
+        "php": "^7.1"
+    },
+    "require-dev": {
+        "drush/drush": "~9.0"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-8.x-1.x": "1.x-dev"
+        },
+        "drush": {
+            "services": {
+                "drush.services.yml": "^9"
+            }
+        }
     }
 }
