@@ -1,0 +1,42 @@
+// @file
+// Styles for Tabs.
+
+.tabs {
+  @include clearfix;
+}
+
+.tabs__items {
+  @include list-clean;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: $width-sm) {
+    flex-direction: row;
+  }
+
+  @media print {
+    display: none;
+  }
+}
+
+.tabs__item {
+  &:first-child {
+    .tabs__link {
+      border-bottom-left-radius: 0;
+      border-left: 0;
+      border-top-left-radius: 0;
+    }
+  }
+
+  &:last-child {
+    .tabs__link {
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+    }
+  }
+}
+
+.tabs__link {
+  @include button;
+  @include button--tabs;
+}

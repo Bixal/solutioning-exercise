@@ -33,7 +33,7 @@ regions:
 component-libraries:
   layouts:
     paths:
-      - source/layouts
+      - source/03-layouts
   components:
     paths:
-      - source/components
+      - source/04-components
