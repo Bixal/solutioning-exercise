@@ -1,17 +1,17 @@
-uuid: 21503abb-bba4-43e1-86db-6668bcf79316
+uuid: a9b9ec44-d5a8-475d-8de1-7ce6bb78b3e1
 langcode: en
 status: true
 dependencies:
   module:
     - system
   theme:
-    - bartik
+    - cms
 _core:
   default_config_hash: 9EoWV2Lot6FVSr50t4hoKgiz1LIXYWNG-IIPYsWxBqo
-id: bartik_content
-theme: bartik
+id: cms_content
+theme: cms
 region: content
-weight: 0
+weight: -3
 provider: null
 plugin: system_main_block
 settings:
