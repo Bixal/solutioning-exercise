@@ -1,0 +1,16 @@
+{% set constrain_classes = [
+  'ds-l-container',
+  constrain_modifier_classes ? constrain_modifier_classes,
+]|join(' ')|trim %}
+
+<div class="l-{{ region_name ?: 'region' }}">
+  {% if has_constrain %}
+    <div class="{{ constrain_classes }}">
+  {% endif %}
+  {% block content %}
+    Region Content
+  {% endblock %}
+  {% if has_constrain %}
+    </div>
+  {% endif %}
+</div>
