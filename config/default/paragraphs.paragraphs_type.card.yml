@@ -1,9 +1,0 @@
-uuid: dad11a7e-22bc-494b-a5b3-938c8d2d4eb4
-langcode: en
-status: true
-dependencies: {  }
-id: card
-label: Card
-icon_uuid: null
-description: ''
-behavior_plugins: {  }
