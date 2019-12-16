@@ -1,0 +1,56 @@
+uuid: db6a7e49-4630-4105-acd3-1da161be0a3c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.media_callout.field_heading
+    - field.field.paragraph.media_callout.field_link
+    - field.field.paragraph.media_callout.field_media
+    - field.field.paragraph.media_callout.field_teaser
+    - paragraphs.paragraphs_type.media_callout
+  module:
+    - link
+    - text
+id: paragraph.media_callout.default
+targetEntityType: paragraph
+bundle: media_callout
+mode: default
+content:
+  field_heading:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_link:
+    weight: 3
+    label: hidden
+    settings:
+      trim_length: null
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
+    type: link_separate
+    region: content
+  field_media:
+    weight: 0
+    label: hidden
+    settings:
+      link: true
+      view_mode: default
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+  field_teaser:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+hidden:
+  search_api_excerpt: true

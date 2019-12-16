@@ -1,13 +1,13 @@
-uuid: ee045cda-a9ae-4878-8c38-8517354014d5
+uuid: 56bacca8-d62c-4e1c-a27e-8d5d7e44b511
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.note.field_text
-    - paragraphs.paragraphs_type.note
-id: paragraph.note.default
+    - field.field.paragraph.introduction.field_text
+    - paragraphs.paragraphs_type.introduction
+id: paragraph.introduction.default
 targetEntityType: paragraph
-bundle: note
+bundle: introduction
 mode: default
 content:
   field_text:

@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.text.field_body
+    - field.field.paragraph.text.field_wysiwyg
     - paragraphs.paragraphs_type.text
   module:
     - text
@@ -12,7 +12,7 @@ targetEntityType: paragraph
 bundle: text
 mode: default
 content:
-  field_body:
+  field_wysiwyg:
     weight: 0
     label: hidden
     settings: {  }

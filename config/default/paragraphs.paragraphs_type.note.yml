@@ -5,5 +5,5 @@ dependencies: {  }
 id: note
 label: Note
 icon_uuid: null
-description: ''
+description: 'The note component is used to add content to a basic page that displays as a formatted note.'
 behavior_plugins: {  }

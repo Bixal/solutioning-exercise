@@ -1,0 +1,48 @@
+uuid: e52be8c8-83d5-48d0-b39d-082d73875e6b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sub_landing_content
+    - node.type.sub_landing_page
+    - paragraphs.paragraphs_type.media_teaser
+    - paragraphs.paragraphs_type.text
+  module:
+    - entity_reference_revisions
+id: node.sub_landing_page.field_sub_landing_content
+field_name: field_sub_landing_content
+entity_type: node
+bundle: sub_landing_page
+label: 'Sub Landing content'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      media_teaser: media_teaser
+      text: text
+    target_bundles_drag_drop:
+      media_teaser:
+        enabled: true
+        weight: -13
+      text:
+        enabled: true
+        weight: -12
+      featured_media:
+        weight: -11
+        enabled: false
+      introduction:
+        weight: -10
+        enabled: false
+      media_callout:
+        weight: -9
+        enabled: false
+      note:
+        weight: -8
+        enabled: false
+field_type: entity_reference_revisions

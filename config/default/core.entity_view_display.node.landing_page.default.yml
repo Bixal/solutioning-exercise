@@ -1,0 +1,27 @@
+uuid: ea70773f-3aa3-42f7-812a-09887867b92a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.landing_page.field_landing_content
+    - node.type.landing_page
+  module:
+    - entity_reference_revisions
+    - user
+id: node.landing_page.default
+targetEntityType: node
+bundle: landing_page
+mode: default
+content:
+  field_landing_content:
+    type: entity_reference_revisions_entity_view
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  links: true
+  search_api_excerpt: true

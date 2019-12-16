@@ -1,0 +1,18 @@
+uuid: b2e52817-be7e-4bdc-995d-a7ca2f4123d7
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: Page
+type: page
+description: 'The page is used to create basic pages of content.'
+help: ''
+new_revision: false
+preview_mode: 0
+display_submitted: false

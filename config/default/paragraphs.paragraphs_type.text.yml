@@ -5,5 +5,5 @@ dependencies: {  }
 id: text
 label: Text
 icon_uuid: null
-description: ''
+description: 'The text component is used to add WYSIWYG content to a page.'
 behavior_plugins: {  }
