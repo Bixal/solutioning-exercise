@@ -11,20 +11,19 @@
  * themed in menu-local-task.html.twig.
  */
 #}
-{% if primary %}
-  <h2 class="visually-hidden">{{ 'Primary tabs'|t }}</h2>
-  <ul>{{ primary }}</ul>
-{% endif %}
-{% if secondary %}
-  <h2 class="visually-hidden">{{ 'Secondary tabs'|t }}</h2>
-  <ul>{{ secondary }}</ul>
-{% endif %}
 
-{# {% if primary %}
+{% if primary %}
   {% include '@components/tabs/tabs.twig' with {
     'modifier': 'tabs--primary',
     'heading': 'Primary tabs'|t,
     'tabs': primary
   } only %}
-{% endif %} #}
+{% endif %}
 
+{% if secondary %}
+  {% include '@components/tabs/tabs.twig' with {
+    'modifier': 'tabs--secondary',
+    'heading': 'Secondary tabs'|t,
+    'tabs': secondary
+  } only %}
+{% endif %}
