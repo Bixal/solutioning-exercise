@@ -1,0 +1,8 @@
+uuid: 66b73675-a10a-41d5-9eb7-5ac1bd450e4e
+langcode: en
+status: true
+dependencies: {  }
+id: state_contact
+label: 'State Contact'
+revision: 0
+description: 'State Contact custom block allows for choosing a specific state that returns contact information.'

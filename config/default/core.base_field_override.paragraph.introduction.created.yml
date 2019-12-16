@@ -1,19 +1,18 @@
-uuid: 1a935746-163c-471f-b54f-7dd38a911775
+uuid: 18d46a0f-30da-415f-8b8a-20fa056c1b15
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_text
     - paragraphs.paragraphs_type.introduction
-id: paragraph.introduction.field_text
-field_name: field_text
+id: paragraph.introduction.created
+field_name: created
 entity_type: paragraph
 bundle: introduction
-label: Text
-description: ''
+label: 'Authored on'
+description: 'The time that the Paragraph was created.'
 required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: string_long
+field_type: created

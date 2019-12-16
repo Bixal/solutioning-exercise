@@ -1,0 +1,22 @@
+uuid: ceb5745f-112c-4ded-8acb-26c948026b3b
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.media_callout
+id: paragraph.media_callout.status
+field_name: status
+entity_type: paragraph
+bundle: media_callout
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

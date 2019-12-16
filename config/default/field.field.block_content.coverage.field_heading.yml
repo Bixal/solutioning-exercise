@@ -1,0 +1,19 @@
+uuid: b39b7b42-b2cb-4017-8293-2da60bd1bcbb
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.coverage
+    - field.storage.block_content.field_heading
+id: block_content.coverage.field_heading
+field_name: field_heading
+entity_type: block_content
+bundle: coverage
+label: Heading
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -16,7 +16,7 @@ bundle: sub_landing_page
 label: 'Sub Landing content'
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:

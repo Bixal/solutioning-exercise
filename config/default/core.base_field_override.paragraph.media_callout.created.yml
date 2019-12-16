@@ -1,0 +1,18 @@
+uuid: d11d4902-7ed7-470b-b96e-2470d14832fa
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.media_callout
+id: paragraph.media_callout.created
+field_name: created
+entity_type: paragraph
+bundle: media_callout
+label: 'Authored on'
+description: 'The time that the Paragraph was created.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

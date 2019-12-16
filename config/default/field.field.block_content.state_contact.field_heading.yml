@@ -1,0 +1,19 @@
+uuid: 72db1968-5a3c-424f-8783-e7cc56cd6a1d
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.state_contact
+    - field.storage.block_content.field_heading
+id: block_content.state_contact.field_heading
+field_name: field_heading
+entity_type: block_content
+bundle: state_contact
+label: Heading
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

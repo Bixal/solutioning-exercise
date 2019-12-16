@@ -1,0 +1,23 @@
+uuid: 41abf5c1-384c-4ee2-868e-774a8072a39c
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.state_contact
+    - field.storage.block_content.field_button
+  module:
+    - link
+id: block_content.state_contact.field_button
+field_name: field_button
+entity_type: block_content
+bundle: state_contact
+label: Button
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link

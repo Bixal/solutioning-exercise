@@ -1,5 +1,35 @@
 subscription_data:
-  active: false
+  active: true
+  href: 'https://insight.acquia.com/node/uuid/ac2e8848-f59b-4043-bc53-3086a65bc2ed/dashboard'
+  uuid: ac2e8848-f59b-4043-bc53-3086a65bc2ed
+  subscription_name: cmssolution
+  expiration_date:
+    value: '2020-12-10T00:00:00'
+  product:
+    view: 'Acquia Network'
+  derived_key_salt: 45897b9cb8ef339c265628ce916e2170
+  update_service: '1'
+  search_service_enabled: 1
+  rpc_version: '3.1'
+  update: {  }
+  heartbeat_data:
+    acquia_lift:
+      status: false
+      decision:
+        public_key: ''
+        private_key: ''
+      profile:
+        account_name: ''
+        hostname: ''
+        public_key: ''
+        secret_key: ''
+        js_path: ''
+    search_service_enabled: 1
+    search_cores:
+      -
+        balancer: useast1-c26.acquia-search.com
+        core_id: AIXZ-192767
+    search_service_colony: useast1-c26.acquia-search.com
 subscription_name: ''
 debug: false
 cron_interval: 30
