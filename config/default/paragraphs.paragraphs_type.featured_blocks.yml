@@ -1,9 +1,0 @@
-uuid: 68d95eee-dc17-440f-b2d7-1d888d382e37
-langcode: en
-status: true
-dependencies: {  }
-id: featured_blocks
-label: 'Featured blocks'
-icon_uuid: null
-description: ''
-behavior_plugins: {  }
