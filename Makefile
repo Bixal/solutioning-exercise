@@ -8,28 +8,28 @@ stop:
 	docker-compose stop
 installdrupal:
 	docker-compose run --rm php drush si --root=/var/www/html/docroot --yes
-	docker-compose run --rm php docroot/vendor/bin/drupal --root=/var/www/html/docroot config:import --yes --no-interaction
-	docker-compose run --rm php docroot/vendor/bin/drupal --root=/var/www/html/docroot module:uninstall shortcut --yes --force --no-interaction
+	docker-compose run --rm php vendor/bin/drupal --root=/var/www/html/docroot config:import --yes --no-interaction
+	docker-compose run --rm php vendor/bin/drupal --root=/var/www/html/docroot module:uninstall shortcut --yes --force --no-interaction
 ally:
 	@echo "Running Ally checks on the local network"
 	docker run --rm --network="solutioning-exercise_default" frvge/pa11y http://apache/
 phpcs:
 	@echo "Running coding standards on custom code"
-	docker-compose run --rm php docroot/vendor/bin/phpcs --standard=docroot/vendor/drupal/coder/coder_sniffer/Drupal docroot/modules/custom --ignore=*.min.js --ignore=*.min.css
+	docker-compose run --rm php vendor/bin/phpcs --standard=docroot/vendor/drupal/coder/coder_sniffer/Drupal docroot/modules/custom --ignore=*.min.js --ignore=*.min.css
 
 phpcbf:
 	@echo "Beautifying custom code"
-	docker-compose run --rm php docroot/vendor/bin/phpcbf --standard=docroot/vendor/drupal/coder/coder_sniffer/Drupal docroot/modules/custom --ignore=*.min.js --ignore=*.min.css
+	docker-compose run --rm php vendor/bin/phpcbf --standard=docroot/vendor/drupal/coder/coder_sniffer/Drupal docroot/modules/custom --ignore=*.min.js --ignore=*.min.css
 codeck:
 	@echo "Running code standards, beautifying, and running ally checks"
 	make ally
 	make phpcbf
 	make phpcs
 uli:
-	docker-compose run --rm php docroot/vendor/bin/drupal --uri=https://$(PROJECT_BASE_URL):8000 --root=/var/www/html/docroot user:login:url 1
+	docker-compose run --rm php vendor/bin/drupal --uri=https://$(PROJECT_BASE_URL):8000 --root=/var/www/html/docroot user:login:url 1
 cr:
-	docker-compose run --rm php docroot/vendor/bin/drupal cr --root=/var/www/html/docroot
+	docker-compose run --rm php vendor/bin/drupal cr --root=/var/www/html/docroot
 cex:
-	docker-compose run --rm php docroot/vendor/bin/drupal config:export --root=/var/www/html/docroot
+	docker-compose run --rm php vendor/bin/drupal config:export --root=/var/www/html/docroot
 cim:
-	docker-compose run --rm php docroot/vendor/bin/drupal config:import --root=/var/www/html/docroot
+	docker-compose run --rm php vendor/bin/drupal config:import --root=/var/www/html/docroot
