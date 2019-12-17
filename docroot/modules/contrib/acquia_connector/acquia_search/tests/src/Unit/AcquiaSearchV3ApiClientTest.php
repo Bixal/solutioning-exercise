@@ -2,40 +2,67 @@
 
 namespace Drupal\Tests\acquia_search\Unit;
 
-use Drupal\Tests\UnitTestCase;
 use Drupal\acquia_search\AcquiaSearchV3ApiClient;
-use Prophecy\Argument;
 use Drupal\Component\Serialization\Json;
+use Drupal\Tests\UnitTestCase;
 
 /**
+ * Class AcquiaSearchV3ApiClientTest.
+ *
  * @coversDefaultClass \Drupal\acquia_search\AcquiaSearchV3ApiClient
  *
  * @group Acquia search
  */
 class AcquiaSearchV3ApiClientTest extends UnitTestCase {
 
-  protected $search_v3_host;
-  protected $search_v3_api_key;
+  /**
+   * Search V3 API host.
+   *
+   * @var string
+   */
+  protected $searchV3Host;
+
+  /**
+   * Search V3 API key.
+   *
+   * @var string
+   */
+  protected $searchV3ApiKey;
+
+  /**
+   * GuzzleHttp Client.
+   *
+   * @var \Prophecy\Prophecy\ObjectProphecy
+   */
   protected $guzzleClient;
+
+  /**
+   * Cache backend.
+   *
+   * @var \Prophecy\Prophecy\ObjectProphecy
+   */
   protected $cacheBackend;
 
+  /**
+   * {@inheritdoc}
+   */
   public function setUp() {
     parent::setUp();
-    $this->search_v3_host = 'https://api.sr-dev.acquia.com';
-    $this->search_v3_api_key = 'XXXXXXXXXXyyyyyyyyyyXXXXXXXXXXyyyyyyyyyy';
+    $this->searchV3Host = 'https://api.sr-dev.acquia.com';
+    $this->searchV3ApiKey = 'XXXXXXXXXXyyyyyyyyyyXXXXXXXXXXyyyyyyyyyy';
 
     $path = '/index/network_id/get_all?network_id=WXYZ-12345';
-    $data = array(
-      'host' => $this->search_v3_host,
-      'headers' => array(
-        'x-api-key' => $this->search_v3_api_key,
-      )
-    );
+    $data = [
+      'host' => $this->searchV3Host,
+      'headers' => [
+        'x-api-key' => $this->searchV3ApiKey,
+      ],
+    ];
     $uri = $data['host'] . $path;
-    $options = array(
+    $options = [
       'headers' => $data['headers'],
       'body' => Json::encode($data),
-    );
+    ];
 
     $json = '[{"name":"WXYZ-12345.dev.drupal8","host":"test.sr-dev.acquia.com"}]';
     $stream = $this->prophesize('Psr\Http\Message\StreamInterface');
@@ -60,11 +87,11 @@ class AcquiaSearchV3ApiClientTest extends UnitTestCase {
       [
         'balancer' => 'test.sr-dev.acquia.com',
         'core_id' => 'WXYZ-12345.dev.drupal8',
-        'version' => 'v3'
-      ]
+        'version' => 'v3',
+      ],
     ];
 
-    $client = new AcquiaSearchV3ApiClient($this->search_v3_host, $this->search_v3_api_key, $this->guzzleClient->reveal(), $this->cacheBackend->reveal());
+    $client = new AcquiaSearchV3ApiClient($this->searchV3Host, $this->searchV3ApiKey, $this->guzzleClient->reveal(), $this->cacheBackend->reveal());
     $this->assertEquals($expected, $client->getSearchV3Indexes('WXYZ-12345'));
     $this->cacheBackend->set('acquia_search.v3indexes', $expected, time() + (24 * 60 * 60))->shouldHaveBeenCalledTimes(1);
   }
@@ -77,14 +104,14 @@ class AcquiaSearchV3ApiClientTest extends UnitTestCase {
       [
         'balancer' => 'test.sr-dev.acquia.com',
         'core_id' => 'WXYZ-12345.dev.drupal8',
-        'version' => 'v3'
-      ]
+        'version' => 'v3',
+      ],
     ];
-    $client = new AcquiaSearchV3ApiClient($this->search_v3_host, $this->search_v3_api_key, $this->guzzleClient->reveal(), $this->cacheBackend->reveal());
+    $client = new AcquiaSearchV3ApiClient($this->searchV3Host, $this->searchV3ApiKey, $this->guzzleClient->reveal(), $this->cacheBackend->reveal());
 
     $fresh_cache = (object) [
       'data' => $expected,
-      'expire' => time() + (24 * 60 * 60)
+      'expire' => time() + (24 * 60 * 60),
     ];
     $this->cacheBackend->get('acquia_search.v3indexes')->willReturn($fresh_cache);
     $client->getSearchV3Indexes('WXYZ-12345');
@@ -94,7 +121,7 @@ class AcquiaSearchV3ApiClientTest extends UnitTestCase {
 
     $expired_cache = (object) [
       'data' => $expected,
-      'expire' => 0
+      'expire' => 0,
     ];
     $this->cacheBackend->get('acquia_search.v3indexes')->willReturn($expired_cache);
     $client->getSearchV3Indexes('WXYZ-12345');

@@ -1,0 +1,8 @@
+uuid: 50fe2b9f-d359-4401-9825-6c11d0617ae0
+langcode: en
+status: true
+dependencies: {  }
+id: coverage
+label: Coverage
+revision: 0
+description: 'Coverage custom block allows a user to search if a test, item or service is covered.'

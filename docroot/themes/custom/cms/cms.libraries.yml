@@ -1,0 +1,11 @@
+global:
+  version: VERSION
+  css:
+    theme:
+      css/styles.css: {}
+  js:
+    js/scripts.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - core/modernizr

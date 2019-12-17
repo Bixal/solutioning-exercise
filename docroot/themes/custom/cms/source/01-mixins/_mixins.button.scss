@@ -1,0 +1,83 @@
+// @file
+// Button styles
+
+@mixin button() {
+  appearance: none;
+  background-color: $color-white;
+  border: $button-border-width solid $color-primary;
+  border-radius: $border-radius;
+  color: $color-primary;
+  cursor: pointer;
+  display: inline-block;
+  font-family: $font-sans;
+  font-size: $base-font-size;
+  font-weight: $font-bold;
+  line-height: $input-line-height;
+  padding: $spacer-1 $spacer-3;
+  text-align: center;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    border-color: $color-primary-darker;
+    color: $color-primary-darker;
+  }
+
+  &:active {
+    border-color: $color-primary-darkest;
+    color: $color-primary-darkest;
+  }
+
+  &[disabled] {
+    background-color: $color-white;
+    border-color: $color-gray-lighter;
+    color: $color-gray-lighter;
+    pointer-events: none;
+  }
+}
+
+@mixin button--tabs() {
+  appearance: none;
+  background-color: $color-gray;
+  border: $button-border-width solid $color-primary;
+  border-left: 1px solid $color-gray-dark;
+  border-radius: $border-radius;
+  color: $color-primary;
+  cursor: pointer;
+  display: block;
+  font-family: $font-system;
+  font-size: $base-font-size;
+  font-weight: $font-bold;
+  line-height: $input-line-height;
+  margin: 0;
+  padding: $spacer-1 $spacer-3;
+  text-align: center;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    border-color: $color-primary-darker;
+    color: $color-primary-darker;
+  }
+
+  &:active {
+    border-color: $color-primary-darkest;
+    color: $color-primary-darkest;
+  }
+
+  &[disabled] {
+    background-color: $color-white;
+    border-color: $color-gray-lighter;
+    color: $color-gray-lighter;
+    pointer-events: none;
+  }
+
+  &.is-active {
+    background-color: $color-white;
+    color: $color-primary-darkest;
+
+    &:hover {
+      color: $color-primary-darkest;
+    }
+  }
+}

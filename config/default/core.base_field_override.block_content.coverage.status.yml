@@ -1,0 +1,22 @@
+uuid: d9125e68-e2f8-47df-9258-37d630b7e964
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.coverage
+id: block_content.coverage.status
+field_name: status
+entity_type: block_content
+bundle: coverage
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

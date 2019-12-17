@@ -1,0 +1,28 @@
+uuid: 71765fc4-b7ee-44a7-80e4-b49e6db62e9c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.sub_landing_page.field_sub_landing_content
+    - node.type.sub_landing_page
+  module:
+    - entity_reference_revisions
+    - user
+id: node.sub_landing_page.default
+targetEntityType: node
+bundle: sub_landing_page
+mode: default
+content:
+  field_sub_landing_content:
+    type: entity_reference_revisions_entity_view
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  langcode: true
+  links: true
+  search_api_excerpt: true

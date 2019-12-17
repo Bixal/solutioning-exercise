@@ -1,0 +1,9 @@
+uuid: afd4b0f4-e355-47d5-a2e0-08b09d2547d3
+langcode: en
+status: true
+dependencies: {  }
+id: introduction
+label: Introduction
+icon_uuid: null
+description: 'The introduction is used to add a short summary or introduction to landing page content.'
+behavior_plugins: {  }

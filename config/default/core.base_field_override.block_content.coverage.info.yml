@@ -1,0 +1,18 @@
+uuid: 48a049a3-6d37-45a3-a7e6-78187ad26499
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.coverage
+id: block_content.coverage.info
+field_name: info
+entity_type: block_content
+bundle: coverage
+label: 'Block description'
+description: 'A brief description of your block.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

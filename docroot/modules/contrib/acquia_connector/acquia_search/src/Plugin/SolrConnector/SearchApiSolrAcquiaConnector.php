@@ -1,18 +1,17 @@
 <?php
 
-/**
- * @file
- * Extends SolrConnectorPluginBase for acquia search.
- */
-
 namespace Drupal\acquia_search\Plugin\SolrConnector;
 
 use Drupal\acquia_connector\Helper\Storage;
+use Drupal\acquia_search\EventSubscriber\SearchSubscriber;
+use Drupal\acquia_search\PreferredSearchCoreService;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\search_api_solr\SolrConnector\SolrConnectorPluginBase;
-use Drupal\Core\Form\FormStateInterface;
-use Drupal\acquia_search\EventSubscriber\SearchSubscriber;
 use Solarium\Core\Client\Client;
+use Solarium\Core\Client\Endpoint;
+use Solarium\Exception\HttpException;
 
 /**
  * Class SearchApiSolrAcquiaConnector.
@@ -27,7 +26,33 @@ use Solarium\Core\Client\Client;
  */
 class SearchApiSolrAcquiaConnector extends SolrConnectorPluginBase {
 
+  /**
+   * Event Dispatcher.
+   *
+   * @var bool|\Symfony\Component\EventDispatcher\EventDispatcherInterface
+   */
   protected $eventDispatcher = FALSE;
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function handleHttpException(HttpException $e, Endpoint $endpoint) {
+    $response_code = $e->getCode();
+    switch ($response_code) {
+      case 404:
+        $description = 'not found';
+        break;
+
+      case 401:
+      case 403:
+        $description = 'access denied';
+        break;
+
+      default:
+        $description = $e->getMessage();
+    }
+    throw new SearchApiSolrException(strstr('Solr endpoint @endpoint: @description.', ['@endpoint' => $endpoint->getBaseUri(), '@description' => $description]), $response_code, $e);
+  }
 
   /**
    * {@inheritdoc}
@@ -77,16 +102,15 @@ class SearchApiSolrAcquiaConnector extends SolrConnectorPluginBase {
   /**
    * Sets the preferred core in the given Solr config.
    *
-   * @param $configuration
+   * @param array $configuration
    *   Solr connection configuration.
-   *
    * @param \Drupal\acquia_search\PreferredSearchCoreService $preferred_core_service
    *   Service for determining the preferred search core.
    *
    * @return array
    *   Updated Solr connection configuration.
    */
-  protected function setPreferredCore($configuration, $preferred_core_service) {
+  protected function setPreferredCore(array $configuration, PreferredSearchCoreService $preferred_core_service) {
     $configuration['index_id'] = $preferred_core_service->getPreferredCoreId();
     $configuration['path'] = '/solr/' . $preferred_core_service->getPreferredCoreId();
     $configuration['host'] = $preferred_core_service->getPreferredCoreHostname();
@@ -97,13 +121,13 @@ class SearchApiSolrAcquiaConnector extends SolrConnectorPluginBase {
   /**
    * Sets the current connection overrides to the given Solr config.
    *
-   * @param $configuration
+   * @param array $configuration
    *   Solr connection configuration.
    *
    * @return array
    *   Updated Solr connection configuration.
    */
-  protected function setOverriddenCore($configuration) {
+  protected function setOverriddenCore(array $configuration) {
     $override = \Drupal::config('acquia_search.settings')->get('connection_override');
     $configuration['overridden_by_acquia_search'] = ACQUIA_SEARCH_EXISTING_OVERRIDE;
     $configuration['path'] = '/solr/' . $override['index_id'];
@@ -120,13 +144,13 @@ class SearchApiSolrAcquiaConnector extends SolrConnectorPluginBase {
    * $this->getUpdateQuery() and avoiding all updates just in case something
    * is still attempting to directly call a Solr update.
    *
-   * @param $configuration
+   * @param array $configuration
    *   Solr connection configuration.
    *
    * @return array
    *   Updated Solr connection configuration.
    */
-  protected function setReadOnlyMode($configuration) {
+  protected function setReadOnlyMode(array $configuration) {
     $configuration['overridden_by_acquia_search'] = ACQUIA_SEARCH_AUTO_OVERRIDE_READ_ONLY;
     return $configuration;
   }
@@ -192,6 +216,9 @@ class SearchApiSolrAcquiaConnector extends SolrConnectorPluginBase {
    * Avoid providing an valid Update query if module determines this server
    * should be locked down (as indicated by the overridden_by_acquia_search
    * server option).
+   *
+   * @throws \Exception
+   *   If the Search API Server is currently in read-only mode.
    */
   public function getUpdateQuery() {
     $this->connect();
@@ -236,8 +263,13 @@ class SearchApiSolrAcquiaConnector extends SolrConnectorPluginBase {
    * {@inheritdoc}
    */
   public function viewSettings() {
-    $uri = Url::fromUri('http://www.acquia.com/products-services/acquia-search', array('absolute' => TRUE));
-    drupal_set_message(t("Search is being provided by @as.", array('@as' => \Drupal::l(t('Acquia Search'), $uri))));
+
+    $uri = Url::fromUri('https://docs.acquia.com/acquia-search/', ['absolute' => TRUE]);
+    $link = Link::fromTextAndUrl($this->t('Acquia Search'), $uri);
+    $message = $this->t('Search is provided by @acquia_search.', ['@acquia_search' => $link->toString()]);
+
+    $this->messenger()->addStatus($message);
+
     return parent::viewSettings();
   }
 

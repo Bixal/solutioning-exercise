@@ -2,21 +2,21 @@
 
 namespace Drupal\acquia_connector\EventSubscriber;
 
-use Drupal\update\Controller\UpdateController;
+use Drupal\acquia_connector\Subscription;
+use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\State\StateInterface;
-use Drupal\Core\Cache\CacheBackendInterface;
-use Drupal\acquia_connector\Subscription;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Drupal\update\Controller\UpdateController;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
+use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
  * Class InitSubscriber.
  *
  * Init (i.e., hook_init()) subscriber that displays a message asking you to
- * join the Acquia network if you haven't already.
+ * connect to Acquia if you haven't already.
  *
  * @package Drupal\acquia_connector\EventSubscriber
  */
@@ -32,7 +32,7 @@ class InitSubscriber implements EventSubscriberInterface {
   /**
    * The state factory.
    *
-   * @var \Drupal\Core\KeyValueStore\StateInterface
+   * @var \Drupal\Core\State\StateInterface
    */
   protected $state;
 
@@ -44,7 +44,14 @@ class InitSubscriber implements EventSubscriberInterface {
   protected $cache;
 
   /**
-   * Construction method.
+   * InitSubscriber constructor.
+   *
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   Config factory.
+   * @param \Drupal\Core\State\StateInterface $state
+   *   State.
+   * @param \Drupal\Core\Cache\CacheBackendInterface $cache
+   *   Cache backend.
    */
   public function __construct(ConfigFactoryInterface $config_factory, StateInterface $state, CacheBackendInterface $cache) {
     $this->configFactory = $config_factory;
@@ -53,7 +60,7 @@ class InitSubscriber implements EventSubscriberInterface {
   }
 
   /**
-   * Display a message asking to connect to the Acquia Network.
+   * Display a message asking the user to connect to Acquia.
    *
    * @param \Symfony\Component\HttpKernel\Event\GetResponseEvent $event
    *   Event.

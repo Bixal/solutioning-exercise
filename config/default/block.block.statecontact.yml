@@ -1,0 +1,25 @@
+uuid: fba38e43-d3ef-4c95-9f25-2433a6709dc8
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:state_contact:1aa7c240-b479-4214-91d9-34b454f50b02'
+  module:
+    - block_content
+  theme:
+    - cms
+id: statecontact
+theme: cms
+region: hidden
+weight: 0
+provider: null
+plugin: 'block_content:1aa7c240-b479-4214-91d9-34b454f50b02'
+settings:
+  id: 'block_content:1aa7c240-b479-4214-91d9-34b454f50b02'
+  label: 'State Contact'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

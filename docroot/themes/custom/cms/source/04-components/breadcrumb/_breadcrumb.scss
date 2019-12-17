@@ -1,0 +1,64 @@
+// @file
+// Styles for Breadcrumb trail.
+
+$breadcrumb-background-color: $color-primary-darker !default;
+$breadcrumb-divider-color: $color-gray-light !default;
+$breadcrumb-link-color: $color-gray-light !default;
+$breadcrumb-text-color: $color-white !default;
+
+.breadcrumb {
+  @include clearfix;
+  background-color: $breadcrumb-background-color;
+  color: $breadcrumb-text-color;
+  font-size: 12px;
+  margin: $spacer-2 0;
+  min-height: $spacer-5;
+  padding-top: $spacer-2;
+}
+
+.breadcrumb__title {
+  @extend .ds-u-visibility--hidden;
+}
+
+.breadcrumb__list {
+  @include list-inline;
+}
+
+.breadcrumb__item {
+  margin-right: 0.75em;
+
+  &::after {
+    color: $breadcrumb-divider-color;
+    content: '/';
+    margin-left: 0.75em;
+  }
+
+  &:last-child::after {
+    content: '';
+    margin-left: 0;
+  }
+}
+
+.breadcrumb__list .breadcrumb__item {
+  @media (max-width: $width-sm) {
+    display: none;
+    &:nth-last-child(2) {
+      display: block;
+
+      &::after {
+        display: none;
+      }
+
+      &::before {
+        color: $breadcrumb-divider-color;
+        content: '<';
+        margin-right: 0.75em;
+      }
+    }
+  }
+}
+
+.breadcrumb__link {
+  @include link($breadcrumb-link-color, $breadcrumb-text-color);
+  text-decoration: none;
+}

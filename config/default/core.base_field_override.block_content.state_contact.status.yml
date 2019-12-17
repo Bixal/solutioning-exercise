@@ -1,0 +1,22 @@
+uuid: b3c5057a-9256-4f1f-b107-94adbcd63f2b
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.state_contact
+id: block_content.state_contact.status
+field_name: status
+entity_type: block_content
+bundle: state_contact
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

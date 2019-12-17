@@ -251,9 +251,13 @@ $databases = [];
  *   ];
  * @endcode
  */
-$config_directories = [
-  CONFIG_SYNC_DIRECTORY => '../config/default',
-];
+// This was previous way to sync prior to version 8.8
+//$config_directories = [
+//  CONFIG_SYNC_DIRECTORY => '../config/default',
+//];
+
+// Drupal 8.8 now add sync directory like this
+$settings['config_sync_directory'] = '../config/default';
 
 /**
  * Settings:

@@ -58,13 +58,14 @@ Hidden settings
 - acquia_search.settings.connection_override
     Array that overrides the Acquia Search connection for all your Search API
     Servers using Acquia Search. These overrides are applied at a later stage
-    and overrides any and all module behavior from auto-switching or any settings
-    done via the UI.
+    and overrides any and all module behavior from auto-switching or any
+    settings done via the UI.
 
     Here's an example for settings.php:
 
     # Make all Acquia Search connections connect to a certain index.
-    # NOTE: This requires overriding the: scheme, host, port, index_id and derived_key
+    # NOTE: This requires overriding the: scheme, host, port, index_id and
+    # derived_key
     $config['acquia_search.settings']['connection_override'] = [
       'scheme' => 'http',
       'host' => 'somehostname.acquia-search.com',

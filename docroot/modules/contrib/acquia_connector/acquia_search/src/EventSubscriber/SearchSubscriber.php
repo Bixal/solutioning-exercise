@@ -1,22 +1,16 @@
 <?php
 
-/**
- * @file
- * Extends the Solarium plugin for the acquia search module.
- */
-
 namespace Drupal\acquia_search\EventSubscriber;
 
+use Drupal\acquia_connector\CryptConnector;
 use Drupal\acquia_connector\Helper\Storage;
+use Drupal\Component\Utility\Crypt;
 use Solarium\Core\Client\Response;
 use Solarium\Core\Event\Events;
-use Solarium\Core\Event\preExecuteRequest;
 use Solarium\Core\Event\postExecuteRequest;
+use Solarium\Core\Event\preExecuteRequest;
 use Solarium\Core\Plugin\Plugin;
-use Drupal\Component\Utility\Crypt;
 use Solarium\Exception\HttpException;
-use Drupal\acquia_connector\CryptConnector;
-use Drupal\acquia_search\AcquiaSearchV3ApiClient;
 
 /**
  * Extends Solarium plugin: authenticate, etc.
@@ -26,7 +20,7 @@ class SearchSubscriber extends Plugin {
   /**
    * Solarium client.
    *
-   * @var \Solarium\Core\Client\Client;
+   * @var \Solarium\Core\Client\Client
    */
   protected $client;
 
@@ -64,14 +58,15 @@ class SearchSubscriber extends Plugin {
   /**
    * Build Acquia Solr Search Authenticator.
    *
-   * @param preExecuteRequest $event
+   * @param \Solarium\Core\Event\preExecuteRequest $event
    *   PreExecuteRequest event.
    */
   public function preExecuteRequest(preExecuteRequest $event) {
     $request = $event->getRequest();
     $request->addParam('request_id', uniqid(), TRUE);
     // If we're hosted on Acquia, and have an Acquia request ID,
-    // append it to the request so that we map Solr queries to Acquia search requests.
+    // append it to the request so that we map Solr queries to Acquia search
+    // requests.
     if (isset($_ENV['HTTP_X_REQUEST_ID'])) {
       $xid = empty($_ENV['HTTP_X_REQUEST_ID']) ? '-' : $_ENV['HTTP_X_REQUEST_ID'];
       $request->addParam('x-request-id', $xid);
@@ -97,7 +92,7 @@ class SearchSubscriber extends Plugin {
   /**
    * Validate response.
    *
-   * @param postExecuteRequest $event
+   * @param \Solarium\Core\Event\postExecuteRequest $event
    *   postExecuteRequest event.
    */
   public function postExecuteRequest(postExecuteRequest $event) {
@@ -124,7 +119,7 @@ class SearchSubscriber extends Plugin {
    * @return \Solarium\Core\Client\Response
    *   Solarium Response.
    *
-   * @throws HttpException
+   * @throws \Solarium\Exception\HttpException
    */
   protected function authenticateResponse(Response $response, $nonce, $url) {
     $hmac = $this->extractHmac($response->getHeaders());
@@ -137,7 +132,7 @@ class SearchSubscriber extends Plugin {
   /**
    * Look in the headers and get the hmac_digest out.
    *
-   * @param array $headers
+   * @param mixed $headers
    *   Headers array.
    *
    * @return string
@@ -307,8 +302,8 @@ class SearchSubscriber extends Plugin {
   /**
    * Fetches the search v3 index keys.
    *
-   * @return array | FALSE
-   *   Search v3 index keys.
+   * @return array|null
+   *   Search v3 index keys, NULL if unavailable.
    */
   public function getSearchV3IndexKeys() {
     $core_service = acquia_search_get_core_service();
@@ -326,7 +321,9 @@ class SearchSubscriber extends Plugin {
       return;
     }
 
-    $search_v3_index = $search_v3_client->getKeys($core['core_id'], $core_service->acquia_identifier);
+    $storage = new Storage();
+    $acquia_identifier = $storage->getIdentifier();
+    $search_v3_index = $search_v3_client->getKeys($core['core_id'], $acquia_identifier);
     if (is_array($search_v3_index) && !empty($search_v3_index)) {
       return $search_v3_index;
     }

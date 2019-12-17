@@ -1,0 +1,19 @@
+uuid: ecc71bcf-6af2-4616-93ac-1c3de43f908a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_heading
+    - paragraphs.paragraphs_type.media_teaser
+id: paragraph.media_teaser.field_heading
+field_name: field_heading
+entity_type: paragraph
+bundle: media_teaser
+label: Heading
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

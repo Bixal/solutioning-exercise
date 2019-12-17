@@ -1,0 +1,19 @@
+<section class="l-section {{ modifier }}">
+  {% if constrain %}
+    <div class="{{ constrain }}">
+  {% endif %}
+
+  {% if title %}
+    <{{ heading ?: 'h2' }} class="l-section__title">{{ title }}</{{ heading ?: 'h2' }}>
+  {% endif %}
+
+  <div class="l-section__content">
+    {% block content %}
+      {{ content }}
+    {% endblock %}
+  </div>
+
+  {% if constrain %}
+    </div>
+  {% endif %}
+</section>

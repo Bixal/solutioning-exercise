@@ -7,9 +7,9 @@
 
 namespace Drupal\Tests\acquia_connector\Unit;
 
+use Drupal\acquia_connector\Client;
 use Drupal\acquia_connector\Controller\StatusController;
 use Drupal\Tests\UnitTestCase;
-use Drupal\acquia_connector\Client;
 
 if (!defined('REQUEST_TIME')) {
   define('REQUEST_TIME', (int) $_SERVER['REQUEST_TIME']);
@@ -21,17 +21,6 @@ if (!defined('REQUEST_TIME')) {
  * @group Acquia connector
  */
 class AcquiaConnectorUnitTest extends UnitTestCase {
-  protected $id;
-  protected $key;
-  protected $salt;
-  protected $derivedKey;
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function setUp() {
-    parent::setUp();
-  }
 
   /**
    * Test authenticators.
@@ -39,7 +28,7 @@ class AcquiaConnectorUnitTest extends UnitTestCase {
   public function testAuthenticators() {
     $identifier = $this->randomMachineName();
     $key = $this->randomMachineName();
-    $params = array('time', 'nonce', 'hash');
+    $params = ['time', 'nonce', 'hash'];
 
     $client = new ClientTest();
     $result = $client->buildAuthenticator($key, $params);
@@ -56,7 +45,7 @@ class AcquiaConnectorUnitTest extends UnitTestCase {
       $this->assertTrue($valid, 'Array has expected keys');
     }
     // Test Client::buildAuthenticator.
-    $result = $client->buildAuthenticator($identifier, array());
+    $result = $client->buildAuthenticator($identifier, []);
     $valid = is_array($result);
     $this->assertTrue($valid, 'Client::buildAuthenticator returns an array');
     if ($valid) {
@@ -75,9 +64,9 @@ class AcquiaConnectorUnitTest extends UnitTestCase {
    */
   public function testIdFromSub() {
     $statusController = new StatusControllerTest();
-    $uuid = $statusController->getIdFromSub(array('uuid' => 'test'));
+    $uuid = $statusController->getIdFromSub(['uuid' => 'test']);
     $this->assertEquals('test', $uuid, 'UUID property identical');
-    $data = array('href' => 'http://example.com/network/uuid/test/dashboard');
+    $data = ['href' => 'http://example.com/network/uuid/test/dashboard'];
     $uuid = $statusController->getIdFromSub($data);
     $this->assertEquals('test', $uuid, 'UUID extracted from href');
   }
@@ -96,8 +85,12 @@ class ClientTest extends Client {
   /**
    * {@inheritdoc}
    */
-  public  function buildAuthenticator($key, $params = array()) {
-    return parent::buildAuthenticator($key, $params);
+  public function buildAuthenticator($key, array $params = []) {
+
+    $authenticator = parent::buildAuthenticator($key, $params);
+
+    return $authenticator;
+
   }
 
 }
@@ -111,20 +104,5 @@ class StatusControllerTest extends StatusController {
    * Construction method.
    */
   public function __construct(){}
-
-  /**
-   * Gets the subscription UUID from subscription data.
-   *
-   * @param array $sub_data
-   *   An array of subscription data.
-   *
-   * @see acquia_agent_settings('acquia_subscription_data')
-   *
-   * @return string
-   *   The UUID taken from the subscription data.
-   */
-  public function getIdFromSub($sub_data) {
-    return parent::getIdFromSub($sub_data);
-  }
 
 }

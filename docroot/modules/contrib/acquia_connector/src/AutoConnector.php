@@ -21,7 +21,7 @@ class AutoConnector {
   /**
    * Holds Storage.
    *
-   * @var Storage
+   * @var \Drupal\acquia_connector\Helper\Storage
    */
   protected $storage;
 
@@ -35,9 +35,9 @@ class AutoConnector {
   /**
    * AutoConnector constructor.
    *
-   * @param Subscription $subscription
+   * @param \Drupal\acquia_connector\Subscription $subscription
    *   Acquia Subscription.
-   * @param Storage $storage
+   * @param \Drupal\acquia_connector\Helper\Storage $storage
    *   Storage.
    * @param array $global_config
    *   Global config.
@@ -51,7 +51,7 @@ class AutoConnector {
   /**
    * Ensures a connection to Acquia Subscription.
    *
-   * @return bool|mixed
+   * @return mixed
    *   False or whatever is returned by Subscription::update.
    */
   public function connectToAcquia() {

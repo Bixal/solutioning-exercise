@@ -26,7 +26,7 @@ class Storage {
    * Returns Acquia Subscription key.
    *
    * @return mixed
-   *    Acquia Subscription key.
+   *   Acquia Subscription key.
    */
   public function getKey() {
     return \Drupal::state()->get('acquia_connector.key');
@@ -36,7 +36,7 @@ class Storage {
    * Updates Acquia Subscription identifier.
    *
    * @param string $value
-   *    Acquia Subscription identifier.
+   *   Acquia Subscription identifier.
    */
   public function setIdentifier($value) {
     \Drupal::state()->set('acquia_connector.identifier', $value);
@@ -46,7 +46,7 @@ class Storage {
    * Updates Acquia Subscription key.
    *
    * @param string $value
-   *    Acquia Subscription key.
+   *   Acquia Subscription key.
    */
   public function setKey($value) {
     \Drupal::state()->set('acquia_connector.key', $value);
@@ -56,10 +56,10 @@ class Storage {
    * Deletes all stored data.
    */
   public function deleteAllData() {
-    \Drupal::state()->deleteMultiple(array(
+    \Drupal::state()->deleteMultiple([
       'acquia_connector.key',
-      'acquia_connector.identifier'
-    ));
+      'acquia_connector.identifier',
+    ]);
   }
 
 }

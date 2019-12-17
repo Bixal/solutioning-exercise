@@ -1,0 +1,23 @@
+uuid: 56bacca8-d62c-4e1c-a27e-8d5d7e44b511
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.introduction.field_text
+    - paragraphs.paragraphs_type.introduction
+id: paragraph.introduction.default
+targetEntityType: paragraph
+bundle: introduction
+mode: default
+content:
+  field_text:
+    weight: 0
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+hidden:
+  created: true
+  status: true

@@ -1,0 +1,28 @@
+
+name: solutioning-example-automated-testing
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Copy environment example.
+        run: cp .env.example .env
+      - name: Copy environment connection details.
+        run: cp docroot/sites/default/settings.local.php.example docroot/sites/default/settings.local.php
+      - name: Create files directory.
+        run: mkdir docroot/sites/default/files && chmod 777 docroot/sites/default/files
+      - name: File permissions change.
+        run: chmod 777 docroot/sites/default/settings.php
+      - name: Build the application stack
+        run: docker-compose up -d
+      - name: Wait for database
+        run: sleep 20s
+      - name: Install drupal and configuration
+        run: make installdrupal
+      - name: Test
+        run: make codeck

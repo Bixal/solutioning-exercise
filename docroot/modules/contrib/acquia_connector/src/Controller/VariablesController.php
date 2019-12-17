@@ -2,10 +2,10 @@
 
 namespace Drupal\acquia_connector\Controller;
 
+use Drupal\Component\Serialization\Json;
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Site\Settings;
-use Drupal\Component\Serialization\Json;
 use Symfony\Component\DependencyInjection\Exception\ParameterNotFoundException;
 
 /**
@@ -128,7 +128,6 @@ class VariablesController extends ControllerBase {
     $variables = [
       'acquia_spi_send_node_user',
       'acquia_spi_admin_priv',
-      'acquia_spi_module_diff_data',
       'acquia_spi_send_watchdog',
       'acquia_spi_use_cron',
       'cache_backends',
@@ -177,7 +176,6 @@ class VariablesController extends ControllerBase {
       }
     }
 
-    // @todo Add comment settings for node types.
     foreach ($variables as $name) {
       try {
         $data[$name] = $this->getVariableValue($name);
@@ -201,28 +199,29 @@ class VariablesController extends ControllerBase {
   /**
    * Set variables from NSPI response.
    *
-   * @param array $set_variables
+   * @param array|bool $set_variables
    *   Variables to be set.
    */
   public function setVariables($set_variables) {
-    \Drupal::logger('acquia spi')->notice('SPI set variables: @messages', array('@messages' => implode(', ', $set_variables)));
+    $this->getLogger('acquia spi')
+      ->notice('SPI set variables: @messages', ['@messages' => implode(', ', $set_variables)]);
     if (empty($set_variables)) {
       return;
     }
-    $saved = array();
+    $saved = [];
     $ignored = \Drupal::config('acquia_connector.settings')->get('spi.ignored_set_variables');
 
     if (!\Drupal::config('acquia_connector.settings')->get('spi.set_variables_override')) {
       $ignored[] = 'acquia_spi_set_variables_automatic';
     }
     // Some variables can never be set.
-    $ignored = array_merge($ignored, array(
+    $ignored = array_merge($ignored, [
       'drupal_private_key',
       'site_mail',
       'site_name',
       'maintenance_mode',
       'user_register',
-    ));
+    ]);
     // Variables that can be automatically set.
     $whitelist = \Drupal::config('acquia_connector.settings')->get('spi.set_variables_automatic');
     foreach ($set_variables as $key => $value) {
@@ -235,7 +234,7 @@ class VariablesController extends ControllerBase {
             $saved[] = $key;
           }
           elseif ($this->mapping[$key][0] == 'settings') {
-            // @todo no setter for Settings
+            // No setter for Settings.
           }
           // Variable.
           else {
@@ -247,7 +246,7 @@ class VariablesController extends ControllerBase {
             $saved[] = $key;
           }
         }
-        // @todo: for future D8 implementation. "config.name:variable.name".
+        // D8 implementation "config.name:variable.name".
         elseif (preg_match('/^([^\s]+):([^\s]+)$/ui', $key, $regs)) {
           $config_name = $regs[1];
           $variable_name = $regs[2];
@@ -256,17 +255,20 @@ class VariablesController extends ControllerBase {
           $saved[] = $key;
         }
         else {
-          \Drupal::logger('acquia spi')->notice('Variable is not implemented: ' . $key);
+          $this->getLogger('acquia spi')->notice('Variable is not implemented: ' . $key);
         }
       }
     }
     if (!empty($saved)) {
-      \Drupal::configFactory()->getEditable('acquia_connector.settings')->set('spi.saved_variables', array('variables' => $saved, 'time' => time()));
+      \Drupal::configFactory()
+        ->getEditable('acquia_connector.settings')
+        ->set('spi.saved_variables', ['variables' => $saved, 'time' => time()]);
       \Drupal::configFactory()->getEditable('acquia_connector.settings')->save();
-      \Drupal::logger('acquia spi')->notice('Saved variables from the Acquia Network: @variables', array('@variables' => implode(', ', $saved)));
+      $this->getLogger('acquia spi')
+        ->notice('Saved variables from the Acquia: @variables', ['@variables' => implode(', ', $saved)]);
     }
     else {
-      \Drupal::logger('acquia spi')->notice('Did not save any variables from the Acquia Network.');
+      $this->getLogger('acquia spi')->notice('Did not save any variables from Acquia.');
     }
   }
 

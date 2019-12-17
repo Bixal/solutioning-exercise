@@ -1,0 +1,9 @@
+{% embed '@layouts/section/section.twig' with {
+  'title': false
+} %}
+
+  {% block content %}
+    {{ content.field_text|field_value }}
+  {% endblock %}
+
+{% endembed %}

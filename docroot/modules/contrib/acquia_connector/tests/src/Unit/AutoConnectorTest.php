@@ -15,9 +15,10 @@ use Drupal\Tests\UnitTestCase;
 class AutoConnectorTest extends UnitTestCase {
 
   /**
-   * Tests the happy path:
+   * Tests the happy path.
+   *
    *  - when there is not current connection (stored credentials)
-   *  - attempt to connect succeeds
+   *  - attempt to connect succeeds.
    */
   public function testAutoConnect() {
 
@@ -71,6 +72,8 @@ class AutoConnectorTest extends UnitTestCase {
   }
 
   /**
+   * Tests auto connect.
+   *
    * Tests the scenario when the site is not connected but there are no
    * credentials provided by the global config.
    */

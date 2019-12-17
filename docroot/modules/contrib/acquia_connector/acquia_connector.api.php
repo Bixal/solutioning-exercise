@@ -23,15 +23,15 @@
  *  appropriately.
  *
  * @return array
- *    An array of custom data keyed by unique identifier.
+ *   An array of custom data keyed by unique identifier.
  *
- *    Required format 'string' => array().
+ *   Required format 'string' => array().
  */
 function hook_acquia_connector_spi_get() {
-  $data['example'] = array(
+  $data['example'] = [
     'result' => TRUE,
     'value' => '9000',
-  );
+  ];
   return $data;
 }
 
@@ -61,8 +61,8 @@ function hook_acquia_connector_spi_get() {
  *                the Insight score proportionally.
  */
 function hook_acquia_connector_spi_test() {
-  return array(
-    'unique_example' => array(
+  return [
+    'unique_example' => [
       'description'    => 'This example test is useful.',
       'solved_message' => 'The test was successful',
       'failed_message' => 'The test has failed',
@@ -70,6 +70,6 @@ function hook_acquia_connector_spi_test() {
       'fix_details'    => 'Please resolve this issue using this fix information.',
       'category'       => 'best_practices',
       'severity'       => 0,
-    ),
-  );
+    ],
+  ];
 }

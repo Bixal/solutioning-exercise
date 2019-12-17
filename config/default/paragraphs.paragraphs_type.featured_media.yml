@@ -1,0 +1,9 @@
+uuid: 220d1202-73e6-4287-bfc9-cc7d632ebf62
+langcode: en
+status: true
+dependencies: {  }
+id: featured_media
+label: 'Featured Media'
+icon_uuid: null
+description: 'The featured media is used to add a featured image or video to sub-landing page content.'
+behavior_plugins: {  }

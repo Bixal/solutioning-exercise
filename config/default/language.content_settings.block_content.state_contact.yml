@@ -1,0 +1,18 @@
+uuid: 596349e8-c164-4268-a182-3acf40a4789a
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.state_contact
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: block_content.state_contact
+target_entity_type_id: block_content
+target_bundle: state_contact
+default_langcode: site_default
+language_alterable: true

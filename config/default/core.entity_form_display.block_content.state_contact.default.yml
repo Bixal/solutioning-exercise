@@ -1,0 +1,52 @@
+uuid: 0160790f-4a5b-4393-a46e-9cdd0cec26c8
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.state_contact
+    - field.field.block_content.state_contact.field_button
+    - field.field.block_content.state_contact.field_heading
+  module:
+    - link
+id: block_content.state_contact.default
+targetEntityType: block_content
+bundle: state_contact
+mode: default
+content:
+  field_button:
+    weight: 3
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_heading:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  info:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 0
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  translation:
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

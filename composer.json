@@ -1,0 +1,132 @@
+{
+    "name": "my/project",
+    "description": "Project template for Drupal 8 projects with composer",
+    "type": "project",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "",
+            "role": ""
+        }
+    ],
+    "repositories": {
+        "drupal": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        },
+        "asset-packagist": {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    },
+    "require": {
+        "php": "^5.5.9|>=7.0.8",
+        "composer/installers": "^1.2.0",
+        "cweagans/composer-patches": "^1.6.5",
+        "drupal-composer/drupal-scaffold": "^2.5.4",
+        "drupal/acquia_connector": "^1.17.0",
+        "drupal/admin_toolbar": "^2.0.0",
+        "drupal/allowed_formats": "^1.2.0",
+        "drupal/backup_migrate": "^4.0.0",
+        "drupal/components": "^1.1.0",
+        "drupal/console": "^1.9",
+        "drupal/core": "8.8.0",
+        "drupal/crop": "^1.5.0",
+        "drupal/ctools": "^3.2.0",
+        "drupal/embed": "^1.2.0",
+        "drupal/entity": "^1.0.0-rc3",
+        "drupal/entity_embed": "^1.0.0",
+        "drupal/entity_reference_revisions": "^1.7.0",
+        "drupal/entity_tasks": "^1.0.0-alpha1",
+        "drupal/entity_usage": "^2.0.0-beta1",
+        "drupal/field_group": "^3.0.0-rc2",
+        "drupal/focal_point": "^1.2.0",
+        "drupal/hsts": "^1.0.0",
+        "drupal/linkit": "^4.3.0",
+        "drupal/menu_link_attributes": "^1.0.0",
+        "drupal/paragraphs": "^1.10.0",
+        "drupal/paragraphs_browser": "^1.0.0-beta1",
+        "drupal/pathauto": "^1.6.0",
+        "drupal/quicklink": "^1.2.0",
+        "drupal/recreate_block_content": "^2.0.0",
+        "drupal/redirect": "^1.4.0",
+        "drupal/redirect_after_login": "^2.5.0",
+        "drupal/search_api": "^1.15.0",
+        "drupal/search_api_best_bets": "^1.1.0",
+        "drupal/search_api_solr": "^3.7",
+        "drupal/token": "^1.5.0",
+        "drupal/twig_field_value": "^1.2.0",
+        "drupal/twig_tweak": "^2.4.0",
+        "drupal/twig_xdebug": "^1.1.0",
+        "drupal/value": "^1.1.0",
+        "drush/drush": "^10.1",
+        "grasmash/drupal-security-warning": "^1.0.0",
+        "oomphinc/composer-installers-extender": "^1.1",
+        "phpseclib/phpseclib": "^2.0",
+        "phpspec/prophecy": "^1.9",
+        "wikimedia/composer-merge-plugin": "^1.4.1"
+    },
+    "require-dev": {
+        "webflo/drupal-core-require-dev": "^8.8"
+    },
+    "config": {
+        "sort-packages": true,
+        "discard-changes": true,
+        "optimize-autoloader": true
+    },
+    "conflict": {
+        "drupal/drupal": "*"
+    },
+    "extra": {
+        "enable-patching": true,
+        "composer-exit-on-patch-failure": true,
+        "patchLevel": {
+            "drupal/core": "-p2"
+        },
+        "patches": [],
+        "installer-types": [
+            "bower-asset",
+            "npm-asset"
+        ],
+        "installer-paths": {
+            "drush/Commands/{$name}": [
+                "type:drupal-drush"
+            ],
+            "docroot/core": [
+                "type:drupal-core"
+            ],
+            "docroot/modules/contrib/{$name}": [
+                "type:drupal-module"
+            ],
+            "docroot/modules/custom/{$name}": [
+                "type:drupal-custom-module"
+            ],
+            "docroot/profiles/contrib/{$name}": [
+                "type:drupal-profile"
+            ],
+            "docroot/profiles/custom/{$name}": [
+                "type:drupal-custom-profile"
+            ],
+            "docroot/themes/contrib/{$name}": [
+                "type:drupal-theme"
+            ],
+            "docroot/themes/custom/{$name}": [
+                "type:drupal-custom-theme"
+            ],
+            "docroot/libraries/{$name}": [
+                "type:drupal-library",
+                "type:bower-asset",
+                "type:npm-asset"
+            ]
+        },
+        "merge-plugin": {
+            "include": [
+                "docroot/modules/custom/*/composer.json"
+            ],
+            "replace": false,
+            "ignore-duplicates": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
