@@ -1,0 +1,33 @@
+// @file
+// Styles for media callout.
+
+.media-callout {
+  margin-bottom: $spacer-5;
+  position: relative;
+}
+
+.media-callout__grid {
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: $width-sm) {
+    flex-direction: row;
+  }
+}
+
+.media-callout__media {
+
+  @media (min-width: $width-sm) {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+.media-callout__content {
+
+  @media (min-width: $width-sm) {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding: 0 $spacer-2;
+  }
+}

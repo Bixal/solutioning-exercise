@@ -5,6 +5,7 @@
 
 {% include '@templates/landing.twig' with {
   'landing_title': label|field_value,
+  'landing_header': content.field_landing_header|field_value,
   'landing_aside': landing_aside,
   'landing_content': content.field_landing_content|field_value
 } %}
