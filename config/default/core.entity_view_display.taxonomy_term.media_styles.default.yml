@@ -1,0 +1,24 @@
+uuid: 593982b8-2ca4-4268-89b7-43287b2d4c10
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.media_styles.field_class
+    - taxonomy.vocabulary.media_styles
+id: taxonomy_term.media_styles.default
+targetEntityType: taxonomy_term
+bundle: media_styles
+mode: default
+content:
+  field_class:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  description: true
+  langcode: true
+  search_api_excerpt: true

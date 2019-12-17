@@ -1,0 +1,20 @@
+uuid: 80667e18-596b-4069-a315-331c47a71b91
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - taxonomy
+id: paragraph.field_orientation
+field_name: field_orientation
+entity_type: paragraph
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,8 @@
+uuid: e770a760-300c-404b-89a8-e38b56b26f58
+langcode: en
+status: true
+dependencies: {  }
+name: 'Media Styles'
+vid: media_styles
+description: 'Administrative categorization used for styling.'
+weight: 0

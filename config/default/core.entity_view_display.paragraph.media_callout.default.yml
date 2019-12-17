@@ -6,6 +6,7 @@ dependencies:
     - field.field.paragraph.media_callout.field_heading
     - field.field.paragraph.media_callout.field_link
     - field.field.paragraph.media_callout.field_media
+    - field.field.paragraph.media_callout.field_orientation
     - field.field.paragraph.media_callout.field_teaser
     - paragraphs.paragraphs_type.media_callout
   module:
@@ -38,6 +39,15 @@ content:
     region: content
   field_media:
     weight: 0
+    label: hidden
+    settings:
+      link: true
+      view_mode: default
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+  field_orientation:
+    weight: 4
     label: hidden
     settings:
       link: true

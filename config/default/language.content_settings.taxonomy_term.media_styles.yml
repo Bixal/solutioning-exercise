@@ -1,0 +1,11 @@
+uuid: 2cbacb44-cb03-4948-92e2-c32f027d0b48
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.media_styles
+id: taxonomy_term.media_styles
+target_entity_type_id: taxonomy_term
+target_bundle: media_styles
+default_langcode: site_default
+language_alterable: false
