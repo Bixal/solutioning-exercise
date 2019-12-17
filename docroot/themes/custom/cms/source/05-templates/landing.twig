@@ -1,11 +1,16 @@
 {% embed '@layouts/sidebar/sidebar.twig' with {
+  'header': true,
   'aside': true
 } %}
 
-  {% block main %}
+  {% block header %}
     {% include '@components/page-title/page-title.twig' with {
       'page_title': landing_title
     } %}
+    {{ landing_header }}
+  {% endblock %}
+
+  {% block main %}
     {{ landing_content }}
   {% endblock %}
 

@@ -1,0 +1,48 @@
+uuid: 48d5604f-f7df-4210-8b17-c9ad5b6c7d29
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_landing_header
+    - node.type.landing_page
+    - paragraphs.paragraphs_type.introduction
+    - paragraphs.paragraphs_type.media_callout
+  module:
+    - entity_reference_revisions
+id: node.landing_page.field_landing_header
+field_name: field_landing_header
+entity_type: node
+bundle: landing_page
+label: 'Landing header'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      introduction: introduction
+      media_callout: media_callout
+    target_bundles_drag_drop:
+      featured_media:
+        weight: 7
+        enabled: false
+      introduction:
+        enabled: true
+        weight: 8
+      media_callout:
+        enabled: true
+        weight: 9
+      media_teaser:
+        weight: 10
+        enabled: false
+      note:
+        weight: 11
+        enabled: false
+      text:
+        weight: 12
+        enabled: false
+field_type: entity_reference_revisions
