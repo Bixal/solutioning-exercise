@@ -79,11 +79,12 @@ class LinkAnalysisSettingsForm extends ConfigFormBase {
   }
 
   /**
-   * When triggered it will create a batch operation and pass all
-   * nodes to a processor.
+   * When triggered creates a batch operation and pass all nodes to a processor.
    *
    * @param array $form
+   *   The config form array.
    * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The config form state.
    */
   public function triggerSync(array $form, FormStateInterface $form_state) {
     Drupal::database()->truncate('link_analysis')->execute();
@@ -111,13 +112,15 @@ class LinkAnalysisSettingsForm extends ConfigFormBase {
   /**
    * Process node looking for link references.
    *
-   * @param $id
-   * @param $context
+   * @param int $id
+   *   The node id being processed.
+   * @param array $context
+   *   The batch context state.
    *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public static function batch($id, $context) {
+  public static function batch($id, array $context) {
     $linkAnalysisStore = Drupal::service('link_analysis.store');
     $entity = Drupal::entityTypeManager()
       ->getStorage('node')

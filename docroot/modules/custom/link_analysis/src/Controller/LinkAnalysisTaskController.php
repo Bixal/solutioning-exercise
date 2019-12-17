@@ -12,27 +12,40 @@ use Drupal\node\NodeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
+ * Class LinkAnalysisTaskController.
  *
+ * @package Drupal\link_analysis\Controller
  */
 class LinkAnalysisTaskController extends ControllerBase implements ContainerInjectionInterface {
 
   /**
+   * Drupal render interface.
+   *
    * @var \Drupal\Core\Render\RendererInterface
    */
   private $renderer;
 
   /**
+   * Entity type manager interface used to manage Drupal entities.
+   *
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
   protected $entityTypeManager;
 
   /**
+   * Link analysis custom service to handle referenced links.
+   *
    * @var \Drupal\link_analysis\LinkAnalysisStoreService
    */
   private $linkAnalysisStore;
 
   /**
+   * LinkAnalysisTaskController constructor.
    *
+   * @param \Drupal\Core\Render\RendererInterface $renderer
+   *   Drupal renderer.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
+   *   Drupal entity management interface.
    */
   public function __construct(RendererInterface $renderer, EntityTypeManagerInterface $entityTypeManager) {
     $this->renderer = $renderer;
@@ -51,12 +64,13 @@ class LinkAnalysisTaskController extends ControllerBase implements ContainerInje
   }
 
   /**
-   * This is used to build a render array for table that will be used on the
-   * Reference tab on the node screens.
+   * Build row array from node values.
    *
    * @param \Drupal\node\NodeInterface $node
+   *   Drupal node entity.
    *
    * @return array
+   *   returns a render row array of title, status, link.
    *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
@@ -76,7 +90,7 @@ class LinkAnalysisTaskController extends ControllerBase implements ContainerInje
       // Decode the json to array.
       $ids = json_decode($entry[0]['referenced_ids'], TRUE);
       if (!empty($ids)) {
-        /**
+        /*
          * Here we validate if it is an array then use IDS as they are if not we
          * force an array
          */

@@ -6,6 +6,7 @@ use DOMDocument;
 use DOMXPath;
 use Drupal;
 use Drupal\Core\Database\Driver\mysql\Connection;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Render\RendererInterface;
 use Exception;
@@ -24,6 +25,8 @@ class LinkAnalysisStoreService {
   protected $database;
 
   /**
+   * Drupal \Drupal\Core\Entity\EntityTypeManagerInterface definition.
+   *
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
   private $entityTypeManager;
@@ -36,6 +39,8 @@ class LinkAnalysisStoreService {
   protected $renderer;
 
   /**
+   * The current config for Link Analysis module.
+   *
    * @var array
    */
   private $config;
@@ -44,8 +49,11 @@ class LinkAnalysisStoreService {
    * Constructs a new LinkAnalysisStoreService object.
    *
    * @param \Drupal\Core\Database\Driver\mysql\Connection $database
+   *   Drupal database connection.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
+   *   Drupal entity interface manager.
    * @param \Drupal\Core\Render\RendererInterface $renderer
+   *   Drupal renderer.
    */
   public function __construct(Connection $database,
                               EntityTypeManagerInterface $entityTypeManager,
@@ -58,12 +66,12 @@ class LinkAnalysisStoreService {
   }
 
   /**
-   * Process method pulls in the selected regions and entity, get the
-   * render output per region then parse HTML looking for any internal links.
+   * Process current entity to make entry into the database.
    *
    * @param \Drupal\Core\Entity\EntityInterface $entity
+   *   Drupal entity interface.
    */
-  public function process($entity) {
+  public function process(EntityInterface $entity) {
     $regions = $this->config['regions_to_be_parsed'];
     if (!$entity->id()) {
       return;
@@ -101,7 +109,7 @@ class LinkAnalysisStoreService {
 
       if (preg_match('/node\/(\d+)/', $path, $matches)) {
         if ($matches[1] !== $entity->id()) {
-          $this->handleID($entity->id(), $matches[1]);
+          $this->handleId($entity->id(), $matches[1]);
         }
       }
     }
@@ -109,15 +117,17 @@ class LinkAnalysisStoreService {
   }
 
   /**
-   * Uses the entity to get the render array for a region that has been set in
-   * the setting config.
+   * Get render array for a region that has been set in the setting config.
    *
    * @param \Drupal\Core\Entity\EntityInterface $entity
+   *   Drupal entity interface.
    * @param string $region
+   *   Theme region that has been selected in config.
    *
    * @return \Drupal\Component\Render\MarkupInterface
+   *   Return the html output of the region.
    */
-  private function renderRegion($entity, $region) {
+  private function renderRegion(EntityInterface $entity, $region) {
     $viewBuilder = $this->entityTypeManager
       ->getViewBuilder($entity->getEntityTypeId());
 
@@ -132,13 +142,14 @@ class LinkAnalysisStoreService {
   }
 
   /**
-   * Will handle if the entry needs to be added as a new entry or update an
-   * existing entry.
+   * The entry needs to be added as a new entry or update an existing entry.
    *
    * @param int $entity_id
+   *   Entity id that was referenced on current processed entity.
    * @param array $id
+   *   Current entity id being processed.
    */
-  private function handleID($entity_id, $id) {
+  private function handleId($entity_id, array $id) {
     if ($entry = $this->getEntry($id)) {
       $ids = json_decode($entry[0]['referenced_ids']);
       if (!in_array((int) $entity_id, is_array($ids) ? $ids : [$ids])) {
@@ -154,9 +165,11 @@ class LinkAnalysisStoreService {
   /**
    * Database method to get entry by target_id.
    *
-   * @param $target_id
+   * @param int $target_id
+   *   The entity that is being referenced.
    *
-   * @return bool
+   * @return bool|array
+   *   Returns false if error, return assoc array if entry exist
    */
   public function getEntry($target_id) {
     try {
@@ -180,13 +193,14 @@ class LinkAnalysisStoreService {
   }
 
   /**
-   * Database method to up date an entry and convert $ids array in to a JSON
-   * string.
+   * Method to up date an entry and convert $ids array in to a JSON string.
    *
-   * @param $target_id
-   * @param $ids
+   * @param int $target_id
+   *   Entity that is being referenced.
+   * @param array $ids
+   *   The ID of all the places it has been referenced.
    */
-  private function updateEntry($target_id, $ids) {
+  private function updateEntry($target_id, array $ids) {
     try {
       $this->database->update('link_analysis')
         ->condition('target_id', $target_id)
@@ -202,12 +216,14 @@ class LinkAnalysisStoreService {
   }
 
   /**
-   * Database method that inserts new entries.,.
+   * Database method that inserts new entries.
    *
-   * @param $target_id
-   * @param $ids
+   * @param int $target_id
+   *   Referenced entity.
+   * @param array $ids
+   *   The ids that entity is referenced on.
    */
-  private function insertEntry($target_id, $ids) {
+  private function insertEntry($target_id, array $ids) {
     try {
       $this->database->insert('link_analysis')
         ->fields([
