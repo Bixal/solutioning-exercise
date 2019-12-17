@@ -1,0 +1,29 @@
+uuid: 7fff1373-44b9-4a27-ab6e-af6432ea4308
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_orientation
+    - paragraphs.paragraphs_type.media_callout
+    - taxonomy.vocabulary.media_styles
+id: paragraph.media_callout.field_orientation
+field_name: field_orientation
+entity_type: paragraph
+bundle: media_callout
+label: Orientation
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      media_styles: media_styles
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

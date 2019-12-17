@@ -1,0 +1,19 @@
+uuid: 15e17236-ffd6-447a-a8bb-532bc5ff701b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_class
+    - taxonomy.vocabulary.media_styles
+id: taxonomy_term.media_styles.field_class
+field_name: field_class
+entity_type: taxonomy_term
+bundle: media_styles
+label: Class
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

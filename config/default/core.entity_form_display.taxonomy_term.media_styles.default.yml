@@ -1,0 +1,33 @@
+uuid: 353834a2-f77d-4567-978a-dacd0da9bd44
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.media_styles.field_class
+    - taxonomy.vocabulary.media_styles
+id: taxonomy_term.media_styles.default
+targetEntityType: taxonomy_term
+bundle: media_styles
+mode: default
+content:
+  field_class:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  description: true
+  langcode: true
+  path: true
+  status: true

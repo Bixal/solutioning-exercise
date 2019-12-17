@@ -6,13 +6,31 @@ dependencies:
     - field.field.paragraph.media_callout.field_heading
     - field.field.paragraph.media_callout.field_link
     - field.field.paragraph.media_callout.field_media
+    - field.field.paragraph.media_callout.field_orientation
     - field.field.paragraph.media_callout.field_teaser
     - paragraphs.paragraphs_type.media_callout
   module:
     - allowed_formats
+    - field_group
     - link
     - media_library
     - text
+third_party_settings:
+  field_group:
+    group_styling:
+      children:
+        - field_orientation
+      parent_name: ''
+      weight: 4
+      format_type: details
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        open: false
+        required_fields: false
+      label: Styling
 id: paragraph.media_callout.default
 targetEntityType: paragraph
 bundle: media_callout
@@ -40,6 +58,12 @@ content:
       media_types: {  }
     third_party_settings: {  }
     type: media_library_widget
+    region: content
+  field_orientation:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
     region: content
   field_teaser:
     weight: 2
