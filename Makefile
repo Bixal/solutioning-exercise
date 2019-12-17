@@ -8,18 +8,18 @@ stop:
 	docker-compose stop
 installdrupal:
 	docker-compose run --rm php drush si --root=/var/www/html/docroot --yes
+	docker-compose run --rm php vendor/bin/drupal --root=/var/www/html/docroot entity:delete shortcut 1 --all --yes --no-interaction
 	docker-compose run --rm php vendor/bin/drupal --root=/var/www/html/docroot config:import --yes --no-interaction
-	docker-compose run --rm php vendor/bin/drupal --root=/var/www/html/docroot module:uninstall shortcut --yes --force --no-interaction
 ally:
 	@echo "Running Ally checks on the local network"
 	docker run --rm --network="solutioning-exercise_default" frvge/pa11y http://apache/
 phpcs:
 	@echo "Running coding standards on custom code"
-	docker-compose run --rm php vendor/bin/phpcs --standard=docroot/vendor/drupal/coder/coder_sniffer/Drupal docroot/modules/custom --ignore=*.min.js --ignore=*.min.css
+	docker-compose run --rm php vendor/bin/phpcs --standard=vendor/drupal/coder/coder_sniffer/Drupal docroot/modules/custom --ignore=*.min.js --ignore=*.min.css
 
 phpcbf:
 	@echo "Beautifying custom code"
-	docker-compose run --rm php vendor/bin/phpcbf --standard=docroot/vendor/drupal/coder/coder_sniffer/Drupal docroot/modules/custom --ignore=*.min.js --ignore=*.min.css
+	docker-compose run --rm php vendor/bin/phpcbf --standard=vendor/drupal/coder/coder_sniffer/Drupal docroot/modules/custom --ignore=*.min.js --ignore=*.min.css
 codeck:
 	@echo "Running code standards, beautifying, and running ally checks"
 	make ally

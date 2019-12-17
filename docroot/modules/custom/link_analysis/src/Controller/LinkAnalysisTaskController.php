@@ -11,6 +11,9 @@ use Drupal\Core\Render\RendererInterface;
 use Drupal\node\NodeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+/**
+ *
+ */
 class LinkAnalysisTaskController extends ControllerBase implements ContainerInjectionInterface {
 
   /**
@@ -28,6 +31,9 @@ class LinkAnalysisTaskController extends ControllerBase implements ContainerInje
    */
   private $linkAnalysisStore;
 
+  /**
+   *
+   */
   public function __construct(RendererInterface $renderer, EntityTypeManagerInterface $entityTypeManager) {
     $this->renderer = $renderer;
     $this->entityTypeManager = $entityTypeManager;
@@ -51,12 +57,13 @@ class LinkAnalysisTaskController extends ControllerBase implements ContainerInje
    * @param \Drupal\node\NodeInterface $node
    *
    * @return array
+   *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    * @throws \Drupal\Core\Entity\EntityMalformedException
    */
   public function build(NodeInterface $node) {
-    // Table header used in render array
+    // Table header used in render array.
     $header = [
       'title' => $this->t("Title"),
       'status' => $this->t("Status"),
@@ -64,9 +71,9 @@ class LinkAnalysisTaskController extends ControllerBase implements ContainerInje
     ];
 
     $rows = [];
-    // Get entry by using node ID
+    // Get entry by using node ID.
     if ($entry = $this->linkAnalysisStore->getEntry($node->id())) {
-      // Decode the json to array
+      // Decode the json to array.
       $ids = json_decode($entry[0]['referenced_ids'], TRUE);
       if (!empty($ids)) {
         /**
@@ -76,12 +83,12 @@ class LinkAnalysisTaskController extends ControllerBase implements ContainerInje
         $nodes = $this->entityTypeManager
           ->getStorage('node')
           ->loadMultiple(is_array($ids) ? $ids : [$ids]);
-        // Loop through all the nodes building a link to the page and a row
+        // Loop through all the nodes building a link to the page and a row.
         foreach ($nodes as $node) {
           $linkMarkup = [
             'data' => new FormattableMarkup('<a target="_blank" class="button button--primary" href=":link">@name</a>', [
               ':link' =>
-                $node->toUrl()->toString(),
+              $node->toUrl()->toString(),
               '@name' => "View",
             ]),
           ];

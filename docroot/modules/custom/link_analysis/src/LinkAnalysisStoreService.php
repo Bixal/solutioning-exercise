@@ -19,7 +19,7 @@ class LinkAnalysisStoreService {
   /**
    * Drupal\Core\Database\Driver\mysql\Connection definition.
    *
-   * @var Connection
+   * @var \Drupal\Core\Database\Driver\mysql\Connection
    */
   protected $database;
 
@@ -43,7 +43,7 @@ class LinkAnalysisStoreService {
   /**
    * Constructs a new LinkAnalysisStoreService object.
    *
-   * @param Connection $database
+   * @param \Drupal\Core\Database\Driver\mysql\Connection $database
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
    * @param \Drupal\Core\Render\RendererInterface $renderer
    */
@@ -68,32 +68,32 @@ class LinkAnalysisStoreService {
     if (!$entity->id()) {
       return;
     }
-    // If regions is empty then early exit
+    // If regions is empty then early exit.
     if (empty($regions)) {
       return;
     }
-    // HTML string from rendered regions
+    // HTML string from rendered regions.
     $html = '';
     foreach ($regions as $region) {
       $html .= $this->renderRegion($entity, $region);
     }
-    // Create a Dom and load HTML
+    // Create a Dom and load HTML.
     $dom = new DOMDocument();
-    // Use this to hide HTML 5 errors
+    // Use this to hide HTML 5 errors.
     libxml_use_internal_errors(TRUE);
-    // Load Initial HTML
+    // Load Initial HTML.
     $dom->loadHTML("<html><body>$html</body></html>");
-    // Load the Dom parser
+    // Load the Dom parser.
     $finder = new DOMXPath($dom);
-    // Remove local actions
+    // Remove local actions.
     foreach ($finder->query("//*[@class='block-local-tasks-block']") as $localTask) {
       $localTask->parentNode->removeChild($localTask);
     }
-    // GET all anchor tags
+    // GET all anchor tags.
     $dom->loadHTML($finder->document->saveHTML());
     $anchors = $dom->getElementsByTagName('a');
     // Loop through all anchor tags and if they are not same page add them to
-    // the appropriate node
+    // the appropriate node.
     foreach ($anchors as $a) {
       $urlParts = parse_url($a->getAttribute('href'));
       $path = Drupal::service('path.alias_manager')
@@ -105,7 +105,6 @@ class LinkAnalysisStoreService {
         }
       }
     }
-
 
   }
 
@@ -134,7 +133,7 @@ class LinkAnalysisStoreService {
 
   /**
    * Will handle if the entry needs to be added as a new entry or update an
-   * existing entry
+   * existing entry.
    *
    * @param int $entity_id
    * @param array $id
@@ -153,7 +152,7 @@ class LinkAnalysisStoreService {
   }
 
   /**
-   * Database method to get entry by target_id
+   * Database method to get entry by target_id.
    *
    * @param $target_id
    *
@@ -166,7 +165,8 @@ class LinkAnalysisStoreService {
         ->condition("target_id", $target_id, "=")
         ->execute()
         ->fetchAll(PDO::FETCH_ASSOC);
-    } catch (Exception $e) {
+    }
+    catch (Exception $e) {
       Drupal::messenger()
         ->addError($e->getMessage());
       return FALSE;
@@ -194,14 +194,15 @@ class LinkAnalysisStoreService {
           "referenced_ids" => json_encode($ids),
         ])
         ->execute();
-    } catch (Exception $e) {
+    }
+    catch (Exception $e) {
       Drupal::messenger()
         ->addError($e->getMessage());
     }
   }
 
   /**
-   * Database method that inserts new entries.,
+   * Database method that inserts new entries.,.
    *
    * @param $target_id
    * @param $ids
@@ -214,7 +215,8 @@ class LinkAnalysisStoreService {
           'referenced_ids' => json_encode([0 => $ids]),
         ])
         ->execute();
-    } catch (Exception $e) {
+    }
+    catch (Exception $e) {
       Drupal::messenger()
         ->addError($e->getMessage());
     }

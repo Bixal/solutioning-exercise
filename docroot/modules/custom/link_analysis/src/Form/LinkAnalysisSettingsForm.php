@@ -19,7 +19,6 @@ class LinkAnalysisSettingsForm extends ConfigFormBase {
    */
   protected $themeManager;
 
-
   /**
    * {@inheritdoc}
    */
@@ -58,10 +57,10 @@ class LinkAnalysisSettingsForm extends ConfigFormBase {
       '#submit' => ["::triggerSync"],
     ];
 
-    // Get the Link Analysis settings
+    // Get the Link Analysis settings.
     $config = $this->config('link_analysis.settings')
       ->get('link_analysis');
-    // Get regions from the active front end theme
+    // Get regions from the active front end theme.
     $regions = $this->themeManager->getActiveTheme()->getRegions();
     $options = [];
     foreach ($regions as $region) {
