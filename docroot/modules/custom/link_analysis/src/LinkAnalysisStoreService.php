@@ -5,6 +5,7 @@ namespace Drupal\link_analysis;
 use DOMDocument;
 use DOMXPath;
 use Drupal;
+use Drupal\Core\Config\ConfigManagerInterface;
 use Drupal\Core\Database\Driver\mysql\Connection;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -41,7 +42,7 @@ class LinkAnalysisStoreService {
   /**
    * The current config for Link Analysis module.
    *
-   * @var array
+   * @var \Drupal\Core\Config\ConfigManagerInterface
    */
   private $config;
 
@@ -54,15 +55,18 @@ class LinkAnalysisStoreService {
    *   Drupal entity interface manager.
    * @param \Drupal\Core\Render\RendererInterface $renderer
    *   Drupal renderer.
+   * @param \Drupal\Core\Config\ConfigManagerInterface $config_manager
+   *   Drupal config manager.
    */
   public function __construct(Connection $database,
                               EntityTypeManagerInterface $entityTypeManager,
-                              RendererInterface $renderer) {
+                              RendererInterface $renderer,
+                              ConfigManagerInterface $config_manager) {
     $this->database = $database;
     $this->entityTypeManager = $entityTypeManager;
     $this->renderer = $renderer;
-    $this->config = Drupal::config('link_analysis.settings')
-      ->get('link_analysis');
+    $this->config = $config_manager;
+
   }
 
   /**
@@ -72,7 +76,10 @@ class LinkAnalysisStoreService {
    *   Drupal entity interface.
    */
   public function process(EntityInterface $entity) {
-    $regions = $this->config['regions_to_be_parsed'];
+    $settings = $this->config->getConfigFactory()
+      ->get('link_analysis.settings')
+      ->get('link_analysis');
+    $regions = $settings['regions_to_be_parsed'];
     if (!$entity->id()) {
       return;
     }
@@ -85,21 +92,9 @@ class LinkAnalysisStoreService {
     foreach ($regions as $region) {
       $html .= $this->renderRegion($entity, $region);
     }
-    // Create a Dom and load HTML.
-    $dom = new DOMDocument();
-    // Use this to hide HTML 5 errors.
-    libxml_use_internal_errors(TRUE);
-    // Load Initial HTML.
-    $dom->loadHTML("<html><body>$html</body></html>");
-    // Load the Dom parser.
-    $finder = new DOMXPath($dom);
-    // Remove local actions.
-    foreach ($finder->query("//*[@class='block-local-tasks-block']") as $localTask) {
-      $localTask->parentNode->removeChild($localTask);
-    }
-    // GET all anchor tags.
-    $dom->loadHTML($finder->document->saveHTML());
-    $anchors = $dom->getElementsByTagName('a');
+
+    $anchors = $this->getAnchorsFromHtml($html);
+
     // Loop through all anchor tags and if they are not same page add them to
     // the appropriate node.
     foreach ($anchors as $a) {
@@ -113,7 +108,33 @@ class LinkAnalysisStoreService {
         }
       }
     }
+  }
 
+  /**
+   * DomDocument will parse HTML and return all found anchor links.
+   *
+   * @param string $html
+   *   HTML string from rendered region.
+   *
+   * @return \DOMNodeList
+   *   DomReader node list of anchors from html string.
+   */
+  public function getAnchorsFromHtml($html) {
+    // Create a Dom and load HTML.
+    $dom = new DOMDocument();
+    // Use this to hide HTML 5 errors.
+    libxml_use_internal_errors(TRUE);
+    // Load Initial HTML.
+    $dom->loadHTML("<html><body>$html</body></html>");
+    // Load the Dom parser.
+    $finder = new DOMXPath($dom);
+    // Remove local actions.
+    foreach ($finder->query("//*[@class='block-local-tasks-block']") as $localTask) {
+      $localTask->parentNode->removeChild($localTask);
+    }
+    // Return all anchor tags.
+    $dom->loadHTML($finder->document->saveHTML());
+    return $dom->getElementsByTagName('a');
   }
 
   /**
