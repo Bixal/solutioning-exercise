@@ -41,7 +41,6 @@
         "drupal/entity_usage": "^2.0.0-beta1",
         "drupal/field_group": "^3.0.0-rc2",
         "drupal/focal_point": "^1.2.0",
-        "drupal/group": "1.x-dev",
         "drupal/hsts": "^1.0.0",
         "drupal/linkit": "^4.3.0",
         "drupal/menu_link_attributes": "^1.0.0",

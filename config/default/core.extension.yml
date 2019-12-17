@@ -31,8 +31,6 @@ module:
   file: 0
   filter: 0
   focal_point: 0
-  gnode: 0
-  group: 0
   help: 0
   history: 0
   hsts: 0
@@ -40,6 +38,7 @@ module:
   inline_form_errors: 0
   language: 0
   link: 0
+  link_analysis: 0
   linkit: 0
   media: 0
   media_library: 0
