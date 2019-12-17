@@ -15,6 +15,9 @@ class LinkAnalysisUnitTest extends UnitTestCase {
    * Validate that the service loads.
    */
   public function testLinkAnalysisService() {
+    $services = $this->getMockBuilder('Drupal\link_analysis')
+      ->disableOriginalConstructor()
+      ->getMock();
     $this->assertNotNull(\Drupal::service('link_analysis.store'));
   }
 
