@@ -1,18 +1,22 @@
+/**
+ * @file
+ */
+
 'use strict';
 
-// Include gulp
+// Include gulp.
 var gulp = require('gulp');
 
-// Include Our Plugins
-var postcss = require('gulp-postcss');
-var sass = require('gulp-sass');
-var sassGlob     = require('gulp-sass-glob');
-var sourcemaps   = require('gulp-sourcemaps');
-var scssLint = require('gulp-scss-lint');
+// Include Our Plugins.
+var postcss         = require('gulp-postcss');
+var sass            = require('gulp-sass');
+var sassGlob        = require('gulp-sass-glob');
+var sourcemaps      = require('gulp-sourcemaps');
+var scssLint        = require('gulp-scss-lint');
 var scssLintStylish = require('gulp-scss-lint-stylish');
 
-// Compile Our Sass
-gulp.task('sass', function() {
+// Compile Our Sass.
+gulp.task('sass', function () {
   return gulp
     .src('source/*.scss')
     .pipe(sassGlob())
@@ -36,18 +40,18 @@ gulp.task('sass', function() {
     .pipe(gulp.dest('css'));
 });
 
-// SCSS linter
-gulp.task('scssLint', function() {
+// SCSS linter.
+gulp.task('scssLint', function () {
   return gulp.src(['scss/**/*.scss'])
     .pipe(scssLint({
       customReport: scssLintStylish
     }));
 });
 
-// Watch Files For Changes
-gulp.task('watch', function() {
+// Watch Files For Changes.
+gulp.task('watch', function () {
   gulp.watch('source/**/*.scss', ['sass']);
 });
 
-// Default Task
+// Default Task.
 gulp.task('default', ['sass', 'watch']);
