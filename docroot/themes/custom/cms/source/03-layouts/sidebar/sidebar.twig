@@ -1,40 +1,29 @@
-<div class="l-sidebar {{ modifier }}">
+<div class="l-sidebar">
 
   {% if header %}
-    <div class="l-sidebar__header">
+    <div class="l-sidebar__full">
       {% block header %}
         {{ header }}
       {% endblock %}
     </div>
   {% endif %}
 
-  {% if constrain %}
-    <div class="{{ constrain }}">
-  {% endif %}
+  <div class="l-sidebar__main">
+    {% block main %}
+      {{ main }}
+    {% endblock %}
+  </div>
 
-      <div class="l-sidebar__grid">
-
-        <div class="l-sidebar__main">
-          {% block main %}
-            {{ main }}
-          {% endblock %}
-        </div>
-
-        {% if aside %}
-          <aside class="l-sidebar__aside">
-            {% block aside %}
-              {{ aside }}
-            {% endblock %}
-          </aside>
-        {% endif %}
-      </div>
-
-  {% if constrain %}
-    </div>
+  {% if aside %}
+    <aside class="l-sidebar__aside">
+      {% block aside %}
+        {{ aside }}
+      {% endblock %}
+    </aside>
   {% endif %}
 
   {% if footer %}
-    <div class="l-sidebar__footer">
+    <div class="l-sidebar__full">
       {% block footer %}
         {{ footer }}
       {% endblock %}

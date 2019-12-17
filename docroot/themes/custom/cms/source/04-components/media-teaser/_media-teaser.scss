@@ -1,0 +1,31 @@
+// @file
+// Styles for media teaser.
+
+.media-teaser {
+  margin-bottom: $spacer-5;
+  position: relative;
+}
+
+.media-teaser__grid {
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: $width-md) {
+    flex-direction: row;
+  }
+}
+
+.media-teaser__image {
+  @media (min-width: $width-md) {
+    flex: 0 0 30%;
+    max-width: 30%;
+  }
+}
+
+.media-teaser__content {
+  @media (min-width: $width-md) {
+    flex: 0 0 70%;
+    max-width: 70%;
+    padding: 0 $spacer-2;
+  }
+}

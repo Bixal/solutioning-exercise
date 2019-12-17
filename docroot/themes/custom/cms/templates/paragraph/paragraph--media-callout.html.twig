@@ -1,4 +1,7 @@
+{% set modifier = content.field_orientation|field_value is not empty ? content.field_orientation.0['#taxonomy_term'].field_class_name.0.value %}
+
 {% include '@components/media-callout/media-callout.twig' with {
+  'modifier': modifier,
   'media': content.field_media|field_value,
   'heading': content.field_heading|field_value,
   'teaser': content.field_teaser|field_value,
