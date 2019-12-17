@@ -1,0 +1,10 @@
+{% set page_aside %}
+  {{ drupal_entity('block', 'statecontact') }}
+  {{ drupal_entity('block', 'coverage') }}
+{% endset %}
+
+{% include '@templates/page.twig' with {
+  'page_title': label|field_value,
+  'page_aside': page_aside,
+  'page_content': content.field_page_content|field_value
+} %}

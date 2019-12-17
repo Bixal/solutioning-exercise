@@ -1,0 +1,45 @@
+// @file
+// Styles for the Sidebar Layout.
+
+$l-sidebar-bp: $width-sm;
+$l-sidebar-width: 300px;
+$l-sidebar-gutter: $spacer-2;
+
+.l-sidebar {
+  width: 100%;
+}
+
+.l-sidebar__grid {
+  @media (min-width: $l-sidebar-bp) {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.l-sidebar__aside {
+  @media (min-width: $l-sidebar-bp) {
+    flex-basis: $l-sidebar-width;
+    flex-grow: 0;
+    flex-shrink: 0;
+    margin-left: $l-sidebar-gutter;
+    width: $l-sidebar-width;
+
+    .l-sidebar--left & {
+      margin-right: $l-sidebar-gutter;
+      margin-left: 0;
+      order: 1;
+    }
+  }
+}
+
+.l-sidebar__main {
+  max-width: 100%;
+  position: relative;
+
+  @media (min-width: $l-sidebar-bp) {
+    flex-basis: calc(100% - #{$l-sidebar-width} - #{$l-sidebar-gutter});
+    flex-grow: 1;
+    flex-shrink: 0;
+    width: calc(100% - #{$l-sidebar-width} - #{$l-sidebar-gutter});
+  }
+}
