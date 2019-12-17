@@ -2,13 +2,16 @@
 
 /**
  * @file
+ * Preprocess functions for taxonomy.
  */
 
 /**
  * Implements theme_suggestions_taxonomy_term_alter()
  *
- * @param $suggestions
- * @param $variables
+ * @param array $suggestions
+ *   Alternative taxonomy terms.
+ * @param array $variables
+ *   Current theme variables.
  */
 function cms_theme_suggestions_taxonomy_term_alter(array &$suggestions, array $variables) {
   $bundle = $variables['elements']['name']['#bundle'];

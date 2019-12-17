@@ -2,6 +2,7 @@
 
 /**
  * @file
+ * Includes preprocess hooks for themeing layer, related to the navigation.
  */
 
 /**
@@ -11,7 +12,7 @@
  */use Drupal\Component\Utility\Html;
 
 /**
- *
+ * Implements theme_preprocess_menu_local_tasks().
  */
 function cms_preprocess_menu_local_tasks(&$variables) {
   foreach (['primary', 'secondary'] as $type) {

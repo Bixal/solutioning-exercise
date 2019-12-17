@@ -2,6 +2,7 @@
 
 /**
  * @file
+ * Preprocess functions for views.
  */
 
 /**
@@ -44,7 +45,8 @@ function cms_preprocess_views_view(&$variables) {
  */
 function cms_theme_suggestions_container_alter(array &$suggestions, array $variables) {
   // A list of view names in which to exclude the container markup.
-  // Included views will use container--no-wrapper.html.twig instead of container.html.twig.
+  // Included views will use container--no-wrapper.html.twig
+  // instead of container.html.twig.
   $exclude_views = [
     // 'example_view_machine_name',
   ];
