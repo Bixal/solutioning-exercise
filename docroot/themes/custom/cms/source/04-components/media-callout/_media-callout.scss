@@ -1,7 +1,8 @@
 // @file
 // Styles for media callout.
 
-.media-callout {
+.media-callout,
+.media-callout--row {
   margin-bottom: $spacer-5;
   position: relative;
 }
@@ -10,24 +11,33 @@
   display: flex;
   flex-direction: column;
 
-  @media (min-width: $width-sm) {
+  @media (min-width: $width-md) {
     flex-direction: row;
-  }
-}
 
-.media-callout__media {
-
-  @media (min-width: $width-sm) {
-    flex: 0 0 50%;
-    max-width: 50%;
+    > * {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
   }
 }
 
 .media-callout__content {
-
-  @media (min-width: $width-sm) {
-    flex: 0 0 50%;
-    max-width: 50%;
+  @media (min-width: $width-md) {
     padding: 0 $spacer-2;
+  }
+}
+
+// Variants
+.media-callout--column {
+
+  .media-callout__grid {
+    display: flex;
+    flex-direction: column;
+
+    > * {
+      max-width: 100%;
+      padding: 0;
+      width: 100%;
+    }
   }
 }

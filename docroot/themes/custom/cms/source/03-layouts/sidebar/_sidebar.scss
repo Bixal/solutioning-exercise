@@ -1,45 +1,48 @@
 // @file
 // Styles for the Sidebar Layout.
 
-$l-sidebar-bp: $width-sm;
+$l-sidebar-bp: $width-md;
 $l-sidebar-width: 300px;
 $l-sidebar-gutter: $spacer-2;
 
 .l-sidebar {
-  width: 100%;
-}
-
-.l-sidebar__grid {
   @media (min-width: $l-sidebar-bp) {
     display: flex;
     flex-wrap: wrap;
-  }
-}
 
-.l-sidebar__aside {
-  @media (min-width: $l-sidebar-bp) {
-    flex-basis: $l-sidebar-width;
-    flex-grow: 0;
-    flex-shrink: 0;
-    margin-left: $l-sidebar-gutter;
-    width: $l-sidebar-width;
-
-    .l-sidebar--left & {
+    > * {
+      flex-basis: calc(100% - #{$l-sidebar-width} - #{$l-sidebar-gutter * 2});
+      flex-grow: 1;
+      flex-shrink: 1;
       margin-right: $l-sidebar-gutter;
-      margin-left: 0;
-      order: 1;
+
+      &:last-child {
+        margin-right: 0;
+      }
     }
-  }
-}
 
-.l-sidebar__main {
-  max-width: 100%;
-  position: relative;
+    .l-sidebar__full {
+      flex-basis: 100%;
+      flex-grow: 1;
+      flex-shrink: 1;
+      margin-right: 0;
+    }
 
-  @media (min-width: $l-sidebar-bp) {
-    flex-basis: calc(100% - #{$l-sidebar-width} - #{$l-sidebar-gutter});
-    flex-grow: 1;
-    flex-shrink: 0;
-    width: calc(100% - #{$l-sidebar-width} - #{$l-sidebar-gutter});
+    .l-sidebar__aside {
+      flex-basis: $l-sidebar-width;
+      flex-grow: 1;
+      flex-shrink: 0;
+    }
+
+    // For Browsers that support CSS Grid
+    @supports (display:grid) {
+      display: grid;
+      grid-gap: $l-sidebar-gutter;
+      grid-template-columns: 1fr $l-sidebar-width;
+
+      .l-sidebar__full {
+        grid-column: span 2;
+      }
+    }
   }
 }
