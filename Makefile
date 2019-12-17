@@ -16,10 +16,14 @@ ally:
 phpcs:
 	@echo "Running coding standards on custom code"
 	docker-compose run --rm php vendor/bin/phpcs --standard=vendor/drupal/coder/coder_sniffer/Drupal docroot/modules/custom --ignore=*.min.js --ignore=*.min.css
-
+	docker-compose run --rm php vendor/bin/phpcs --standard=vendor/drupal/coder/coder_sniffer/Drupal docroot/themes/custom --ignore=*.min.js --ignore=*.min.css
 phpcbf:
 	@echo "Beautifying custom code"
 	docker-compose run --rm php vendor/bin/phpcbf --standard=vendor/drupal/coder/coder_sniffer/Drupal docroot/modules/custom --ignore=*.min.js --ignore=*.min.css
+	docker-compose run --rm php vendor/bin/phpcbf --standard=vendor/drupal/coder/coder_sniffer/Drupal docroot/themes/custom --ignore=*.min.js --ignore=*.min.css
+test:
+	@echo "Running Unit Testing"
+	docker-compose run --rm php vendor/bin/phpunit -c docroot/core/phpunit.xml.dist docroot/modules/custom/
 codeck:
 	@echo "Running code standards, beautifying, and running ally checks"
 	make ally
