@@ -4178,6 +4178,9 @@
                     "status": "not-covered",
                     "message": "Alpha releases are not covered by Drupal security advisories."
                 }
+            },
+            "patches_applied": {
+                "Links are caching": "https://www.drupal.org/files/issues/2019-12-17/3101689-links-are-caching-1.patch"
             }
         },
         "installation-source": "dist",

@@ -84,7 +84,11 @@
         "patchLevel": {
             "drupal/core": "-p2"
         },
-        "patches": [],
+        "patches": {
+            "drupal/entity_tasks": {
+                "Links are caching": "https://www.drupal.org/files/issues/2019-12-17/3101689-links-are-caching-1.patch"
+            }
+        },
         "installer-types": [
             "bower-asset",
             "npm-asset"
