@@ -29,6 +29,7 @@ codeck:
 	make ally
 	make phpcbf
 	make phpcs
+	make test
 uli:
 	docker-compose run --rm php vendor/bin/drupal --uri=https://$(PROJECT_BASE_URL):8000 --root=/var/www/html/docroot user:login:url 1
 cr:
