@@ -1,7 +1,11 @@
-{% include '@components/page-title/page-title.twig' with {
-  'page_title': label|field_value
-} %}
+{% set landing_aside %}
+  {{ drupal_entity('block', 'statecontact') }}
+  {{ drupal_entity('block', 'coverage') }}
+{% endset %}
 
-{{ content.field_landing_content|field_value }}
-{{ drupal_entity('block', 'statecontact') }}
-{{ drupal_entity('block', 'coverage') }}
+{% include '@templates/landing.twig' with {
+  'landing_title': label|field_value,
+  'landing_header': content.field_landing_header|field_value,
+  'landing_aside': landing_aside,
+  'landing_content': content.field_landing_content|field_value
+} %}

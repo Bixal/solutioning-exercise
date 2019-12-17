@@ -100,10 +100,11 @@ getting committed.
 1. Run the application and verify that your changes function as intended. Remember to run `make cr` if you are not seeing your changes.
 1. If your changes would benefit from testing, add the necessary tests and verify everything passes.
 1. Export the configuration with your changes: `make cex`.
+1. Run tests and coding standards: `make codeck`
 1. Commit your changes: `git commit -am 'Add some new feature or fix some issue'`. _(See [this excellent article](https://chris.beams.io/posts/git-commit) for tips on writing useful Git commit messages.)_
-1. Push the branch to move.mil repository: `git push -u origin your-descriptive-branch-name`.
+1. Push the branch to solution exercise repository: git push -u origin your-descriptive-branch-name.
 1. Wait until al checks are passed.
-1. Create a new pull request and we'll review your changes.
+1. Create a pull request and request a review from a minimum of two team members.
 
 ### Verifying Changes
 

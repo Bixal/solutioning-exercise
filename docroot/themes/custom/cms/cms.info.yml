@@ -37,3 +37,6 @@ component-libraries:
   components:
     paths:
       - source/04-components
+  templates:
+    paths:
+      - source/05-templates
