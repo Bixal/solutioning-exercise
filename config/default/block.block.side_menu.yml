@@ -1,0 +1,27 @@
+uuid: b6554367-7a6d-433e-b529-d455883f0a8c
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - menu_block
+  theme:
+    - cms
+id: side_menu
+theme: cms
+region: hidden
+weight: -6
+provider: null
+plugin: 'menu_block:main'
+settings:
+  id: 'menu_block:main'
+  label: 'Side menu'
+  provider: menu_block
+  label_display: '0'
+  level: 1
+  depth: 0
+  expand: 1
+  parent: 'main:menu_link_content:f2e828b5-c75e-48c2-8f8c-8bebfbd5da73'
+  suggestion: main
+visibility: {  }
