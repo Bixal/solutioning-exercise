@@ -1,4 +1,4 @@
-uuid: 95ddf4ca-63f9-42ac-868b-7f1b2b5ee77b
+uuid: a674949d-f15d-49b3-ae83-eb3aa2a98d14
 langcode: en
 status: true
 dependencies:
@@ -26,31 +26,13 @@ content:
   field_landing_content:
     type: paragraphs
     weight: 3
-    settings:
-      title: Content
-      title_plural: Content
-      edit_mode: closed
-      closed_mode: summary
-      autocollapse: all
-      closed_mode_threshold: 0
-      add_mode: dropdown
-      form_display_mode: default
-      default_paragraph_type: introduction
-      features:
-        duplicate: duplicate
-        collapse_edit_all: collapse_edit_all
-        add_above: '0'
-    third_party_settings: {  }
     region: content
-  field_landing_header:
-    type: paragraphs
-    weight: 2
     settings:
-      title: Header
-      title_plural: Header
-      edit_mode: closed
+      title: 'Page Content'
+      title_plural: 'Page Content'
+      edit_mode: open
       closed_mode: summary
-      autocollapse: all
+      autocollapse: none
       closed_mode_threshold: 0
       add_mode: dropdown
       form_display_mode: default
@@ -60,13 +42,31 @@ content:
         collapse_edit_all: collapse_edit_all
         add_above: '0'
     third_party_settings: {  }
+  field_landing_header:
+    type: paragraphs
+    weight: 2
     region: content
+    settings:
+      title: 'Page Header'
+      title_plural: 'Page Header'
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: introduction
+      features:
+        duplicate: duplicate
+        collapse_edit_all: collapse_edit_all
+        add_above: '0'
+    third_party_settings: {  }
   field_reviewer:
-    weight: 10
+    type: options_select
+    weight: 13
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
   langcode:
     type: language_select
     weight: 1
@@ -82,11 +82,25 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 6
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 7
+    region: content
+    third_party_settings: {  }
   status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 12
+    region: content
+    third_party_settings: {  }
+  sticky:
     type: boolean_checkbox
     settings:
       display_label: true
@@ -102,7 +116,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   translation:
-    weight: 9
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -117,10 +131,8 @@ content:
     region: content
     third_party_settings: {  }
   url_redirects:
-    weight: 7
+    weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden:
-  promote: true
-  sticky: true
+hidden: {  }
