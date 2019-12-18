@@ -30,7 +30,8 @@
         "drupal/backup_migrate": "^4.0.0",
         "drupal/components": "^1.1.0",
         "drupal/console": "^1.9",
-        "drupal/core": "8.8.0",
+        "drupal/core": "^8.8.0",
+        "drupal/core-dev": "^8.8",
         "drupal/crop": "^1.5.0",
         "drupal/ctools": "^3.2.0",
         "drupal/easy_breadcrumb": "^1.12",
@@ -69,7 +70,6 @@
         "wikimedia/composer-merge-plugin": "^1.4.1"
     },
     "require-dev": {
-        "webflo/drupal-core-require-dev": "^8.8"
     },
     "config": {
         "sort-packages": true,
