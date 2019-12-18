@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "698c82a0bedecc1be799b950259e3747",
+    "content-hash": "0223cc97baeea4ae294a4f8c17ad8aa2",
     "packages": [
         {
             "name": "ajgl/breakpoint-twig-extension",
@@ -3560,6 +3560,9 @@
                         "status": "not-covered",
                         "message": "Alpha releases are not covered by Drupal security advisories."
                     }
+                },
+                "patches_applied": {
+                    "Links are caching": "https://www.drupal.org/files/issues/2019-12-17/3101689-links-are-caching-1.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",

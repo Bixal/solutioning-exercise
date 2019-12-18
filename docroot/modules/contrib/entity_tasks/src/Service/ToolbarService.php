@@ -161,6 +161,7 @@ class ToolbarService {
           'entity_tasks/toolbar',
         ],
       ],
+      '#cache' => ['max-age' => 0],
     ];
   }
 
@@ -205,6 +206,7 @@ class ToolbarService {
             'entity_tasks/toolbar',
           ],
         ],
+        '#cache' => ['max-age' => 0],
       ];
     }
   }
@@ -249,6 +251,7 @@ class ToolbarService {
           'entity_tasks/dropdown',
         ],
       ],
+      '#cache' => ['max-age' => 0],
     ];
   }
 
