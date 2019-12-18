@@ -11,7 +11,7 @@ dependencies:
 id: coverage
 theme: cms
 region: hidden
-weight: 0
+weight: -5
 provider: null
 plugin: 'block_content:862ba466-380d-479a-b036-c4966fb60c68'
 settings:
