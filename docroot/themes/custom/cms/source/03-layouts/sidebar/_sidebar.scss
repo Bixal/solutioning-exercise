@@ -46,3 +46,32 @@ $l-sidebar-gutter: $spacer-2;
     }
   }
 }
+
+// Variant
+.l-sidebar--reversed {
+  @media (min-width: $l-sidebar-bp) {
+    > * {
+      margin-left: $l-sidebar-gutter;
+      margin-right: 0;
+
+      &:last-child {
+        margin-left: 0;
+      }
+    }
+
+    .l-sidebar__main {
+      order: 1;
+    }
+
+    // For Browsers that support CSS Grid
+    @supports (display:grid) {
+      display: grid;
+      grid-gap: $l-sidebar-gutter;
+      grid-template-columns: $l-sidebar-width 1fr;
+
+      .l-sidebar__full {
+        grid-column: span 2;
+      }
+    }
+  }
+}

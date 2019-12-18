@@ -1,14 +1,12 @@
 // @file
 // Styles for Breadcrumb trail.
 
-$breadcrumb-background-color: $color-primary-darker !default;
 $breadcrumb-divider-color: $color-gray-light !default;
-$breadcrumb-link-color: $color-gray-light !default;
-$breadcrumb-text-color: $color-white !default;
+$breadcrumb-link-color: $color-primary !default;
+$breadcrumb-text-color: $color-gray !default;
 
 .breadcrumb {
   @include clearfix;
-  background-color: $breadcrumb-background-color;
   color: $breadcrumb-text-color;
   font-size: 12px;
   margin: $spacer-2 0;
