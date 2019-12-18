@@ -1,4 +1,4 @@
-uuid: 5173eec7-e915-40c5-afff-72d6cd6208f6
+uuid: 3dfb2abe-3490-493f-8a4e-c89b031f5a3f
 langcode: en
 status: true
 dependencies:
@@ -23,20 +23,21 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_reviewer:
-    weight: 9
+    type: options_select
+    weight: 12
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
   field_sub_landing_content:
     type: paragraphs
     weight: 2
+    region: content
     settings:
-      title: Content
-      title_plural: Content
+      title: 'Page Content'
+      title_plural: 'Page Content'
       edit_mode: closed
       closed_mode: summary
-      autocollapse: all
+      autocollapse: none
       closed_mode_threshold: 0
       add_mode: dropdown
       form_display_mode: default
@@ -46,7 +47,6 @@ content:
         collapse_edit_all: collapse_edit_all
         add_above: '0'
     third_party_settings: {  }
-    region: content
   langcode:
     type: language_select
     weight: 1
@@ -62,11 +62,25 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 5
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 6
+    region: content
+    third_party_settings: {  }
   status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 11
+    region: content
+    third_party_settings: {  }
+  sticky:
     type: boolean_checkbox
     settings:
       display_label: true
@@ -82,7 +96,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   translation:
-    weight: 8
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -97,10 +111,8 @@ content:
     region: content
     third_party_settings: {  }
   url_redirects:
-    weight: 6
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden:
-  promote: true
-  sticky: true
+hidden: {  }
