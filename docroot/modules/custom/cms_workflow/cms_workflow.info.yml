@@ -1,0 +1,6 @@
+name: CMS Workflow
+type: module
+core: '8.x'
+description: 'Allows for notifications from workflow states.'
+package: Custom
+#configure: link_analysis.settings
