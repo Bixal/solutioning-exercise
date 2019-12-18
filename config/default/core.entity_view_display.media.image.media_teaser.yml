@@ -20,7 +20,7 @@ content:
     label: visually_hidden
     settings:
       image_style: media_teaser
-      image_link: file
+      image_link: ''
     third_party_settings: {  }
     type: image
     weight: 1

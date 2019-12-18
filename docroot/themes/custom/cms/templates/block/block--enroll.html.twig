@@ -1,6 +1,6 @@
 {% set classes = [
   'block',
-  'ds-u-margin-bottom--4',
+  'ds-u-margin-top--2',
 ] %}
 
 {% embed '@components/block/block.twig' with {
@@ -11,10 +11,9 @@
 } %}
 
   {% block content %}
-    {% include '@components/coverage/coverage.twig' with {
-      'label': content.field_heading|field_value,
-      'button': content.field_button
-    } %}
+    {{ content.field_heading|field_value }}
+    {{ content.field_teaser|field_value }}
+    {{ content.field_steps|field_value }}
   {% endblock %}
 
 {% endembed %}
