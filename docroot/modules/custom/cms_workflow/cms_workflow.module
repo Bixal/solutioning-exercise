@@ -1,10 +1,109 @@
 <?php
 
+use Drupal\user\Entity\User;
+
 /**
  * Implements hook_ENTITY_TYPE_update().
  *
  * @param \Drupal\Core\Entity\EntityInterface $entity
+ *   Node entity in review.
+ *
+ * @throws \Drupal\Core\Entity\EntityMalformedException
  */
 function cms_workflow_node_update(Drupal\Core\Entity\EntityInterface $entity) {
+  _handle_review($entity);
+}
 
+/**
+ * Implements hook_ENTITY_TYPE_insert().
+ *
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ *   Node entity in review.
+ *
+ * @throws \Drupal\Core\Entity\EntityMalformedException
+ */
+function cms_workflow_node_insert(Drupal\Core\Entity\EntityInterface $entity) {
+  _handle_review($entity);
+}
+
+/**
+ * Implements hook_mail().
+ *
+ * @param string $key
+ *   The key of the mail that being queued.
+ * @param array $message
+ *   The message that will be sent.
+ * @param array $params
+ *   Params are passed from _handle_review().
+ */
+function cms_workflow_mail($key, array &$message, array $params) {
+
+  switch ($key) {
+    case 'review_workflow':
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['subject'] = $params['subject'];
+      $message['body'][] = $params['body'];
+      break;
+  }
+}
+
+
+/**
+ * If in review state handle mail statement.
+ *
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ *   Node that is in review status.
+ *
+ * @throws \Drupal\Core\Entity\EntityMalformedException
+ */
+function _handle_review($entity) {
+  // Get current moderation state.
+  $state = $entity->get("moderation_state")[0]->getValue()['value'];
+  // if not review a=state early exit.
+  if ($state !== "review") {
+      return;
+  }
+  // Get user objects.
+  $user = User::load(\Drupal::currentUser()->id());;
+  $reviewer = User::load($entity->get("field_reviewer")[0]->getValue()['target_id']);
+  // Get the mailer service.
+  $mailManager = \Drupal::service('plugin.manager.mail');
+  $module = 'cms_workflow';
+  $key = 'review_workflow';
+  $to = $reviewer->getEmail();
+  $langCode= \Drupal::currentUser()->getPreferredLangcode();
+  $params['body'] = _build_message($user, $entity);
+  $params['subject'] = "Request for review CMS Solution: " . $entity->label();
+  $send = true;
+  // Try to send the email.
+  $result = $mailManager
+    ->mail($module, $key, $to, $langCode, $params, NULL, $send);
+  // Based on email being sent display message.
+  if ($result['result'] !== true) {
+    \Drupal::messenger()
+      ->addError("There was an issue with sending notification.");
+  }
+  else {
+    \Drupal::messenger()
+      ->addMessage("Your notification has been sent to {$reviewer->getDisplayName()}");
+  }
+}
+
+/**
+ * Build basic message for mailer.
+ *
+ * @param Drupal\user\Entity\User $user
+ *   The user asking to be reviewed.
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ *   The node being reviewed.
+ *
+ * @return string
+ *   Returns the message created from display name and url.
+ * @throws \Drupal\Core\Entity\EntityMalformedException
+ */
+function _build_message($user, $entity) {
+  $userName = $user->getDisplayName();
+  $url = $entity->toUrl()->toString();
+
+  return "$userName has requested that you review $url";
 }
