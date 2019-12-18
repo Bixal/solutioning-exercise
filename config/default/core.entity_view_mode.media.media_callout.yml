@@ -1,0 +1,10 @@
+uuid: 05ef7776-f9ca-4f34-8654-812f56a5e45e
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.media_callout
+label: 'Media Callout'
+targetEntityType: media
+cache: true

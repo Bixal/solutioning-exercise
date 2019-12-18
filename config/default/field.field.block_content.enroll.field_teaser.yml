@@ -1,0 +1,28 @@
+uuid: 3fa24b23-97e9-4efa-bb24-2ee1d8bce8df
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.enroll
+    - field.storage.block_content.field_teaser
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    basic_html: basic_html
+    full_html: full_html
+    restricted_html: '0'
+    plain_text: '0'
+id: block_content.enroll.field_teaser
+field_name: field_teaser
+entity_type: block_content
+bundle: enroll
+label: Teaser
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

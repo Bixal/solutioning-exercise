@@ -1,0 +1,15 @@
+uuid: 6aad1fd9-b046-47bb-9561-a8f8a72ae64f
+langcode: en
+status: true
+dependencies: {  }
+name: media_callout
+label: 'Media Callout'
+effects:
+  4466de05-30b4-4cd4-a176-78294073505d:
+    uuid: 4466de05-30b4-4cd4-a176-78294073505d
+    id: image_scale_and_crop
+    weight: 2
+    data:
+      width: 750
+      height: 365
+      anchor: center-center

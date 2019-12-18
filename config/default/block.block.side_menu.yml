@@ -1,4 +1,4 @@
-uuid: b6554367-7a6d-433e-b529-d455883f0a8c
+uuid: 8214d454-0d1c-40cf-9c96-f86a9a32f8f8
 langcode: en
 status: true
 dependencies:
@@ -11,7 +11,7 @@ dependencies:
 id: side_menu
 theme: cms
 region: hidden
-weight: -6
+weight: 0
 provider: null
 plugin: 'menu_block:main'
 settings:

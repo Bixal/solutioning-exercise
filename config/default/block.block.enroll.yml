@@ -1,0 +1,25 @@
+uuid: 29d93d39-d00e-4b28-a570-a276d53b4cf1
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:enroll:581852fe-6ae9-4cec-83ef-793154c5cbca'
+  module:
+    - block_content
+  theme:
+    - cms
+id: enroll
+theme: cms
+region: hidden
+weight: 0
+provider: null
+plugin: 'block_content:581852fe-6ae9-4cec-83ef-793154c5cbca'
+settings:
+  id: 'block_content:581852fe-6ae9-4cec-83ef-793154c5cbca'
+  label: Enroll
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

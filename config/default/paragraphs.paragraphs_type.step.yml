@@ -1,0 +1,9 @@
+uuid: 59e9e6d4-3c83-43a1-8fe9-5c0a119fe91b
+langcode: en
+status: true
+dependencies: {  }
+id: step
+label: Step
+icon_uuid: null
+description: 'The steps paragraph is used to create an icon and a teaser for an enroll block.'
+behavior_plugins: {  }

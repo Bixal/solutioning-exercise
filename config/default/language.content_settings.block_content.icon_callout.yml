@@ -1,0 +1,11 @@
+uuid: aeb65acd-989e-4acc-99ce-b3b663de0fc9
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.icon_callout
+id: block_content.icon_callout
+target_entity_type_id: block_content
+target_bundle: icon_callout
+default_langcode: site_default
+language_alterable: false
