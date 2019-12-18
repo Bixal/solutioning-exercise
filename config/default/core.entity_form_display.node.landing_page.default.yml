@@ -28,11 +28,11 @@ content:
     weight: 3
     region: content
     settings:
-      title: 'Page Content'
-      title_plural: 'Page Content'
-      edit_mode: open
+      title: Content
+      title_plural: Content
+      edit_mode: closed
       closed_mode: summary
-      autocollapse: none
+      autocollapse: all
       closed_mode_threshold: 0
       add_mode: dropdown
       form_display_mode: default
@@ -51,11 +51,11 @@ content:
       title_plural: 'Page Header'
       edit_mode: closed
       closed_mode: summary
-      autocollapse: none
+      autocollapse: all
       closed_mode_threshold: 0
       add_mode: dropdown
       form_display_mode: default
-      default_paragraph_type: introduction
+      default_paragraph_type: _none
       features:
         duplicate: duplicate
         collapse_edit_all: collapse_edit_all

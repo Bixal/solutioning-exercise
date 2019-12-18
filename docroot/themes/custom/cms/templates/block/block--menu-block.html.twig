@@ -1,0 +1,15 @@
+{% set classes = [
+  'block',
+  'ds-u-margin-bottom--4-',
+] %}
+
+{% embed '@components/block/block.twig' with {
+  'label': false,
+  'hide_content_wrapper': true
+} %}
+
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+
+{% endembed %}

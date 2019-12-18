@@ -5,8 +5,6 @@ dependencies:
   config:
     - field.storage.node.field_landing_content
     - node.type.landing_page
-    - paragraphs.paragraphs_type.introduction
-    - paragraphs.paragraphs_type.media_callout
     - paragraphs.paragraphs_type.media_teaser
   module:
     - entity_reference_revisions
@@ -25,35 +23,27 @@ settings:
   handler_settings:
     negate: 0
     target_bundles:
-      introduction: introduction
-      media_callout: media_callout
       media_teaser: media_teaser
     target_bundles_drag_drop:
       introduction:
-        enabled: true
         weight: -19
+        enabled: false
       media_callout:
-        enabled: true
         weight: -18
+        enabled: false
       media_teaser:
         enabled: true
         weight: -17
-      call_out_media:
-        weight: -16
-        enabled: false
-      card:
-        weight: -15
-        enabled: false
-      featured_blocks:
-        weight: -14
-        enabled: false
-      media:
-        weight: -13
-        enabled: false
       note:
         weight: -12
         enabled: false
       text:
         weight: -11
+        enabled: false
+      featured_media:
+        weight: 8
+        enabled: false
+      step:
+        weight: 13
         enabled: false
 field_type: entity_reference_revisions

@@ -1,12 +1,20 @@
+{% set classes = [
+  'block',
+  'ds-u-margin-bottom--4',
+] %}
+
 {% embed '@components/block/block.twig' with {
   'label': label is not empty ? label : false,
   'title_prefix': title_prefix,
-  'title_suffix': title_suffix
+  'title_suffix': title_suffix,
+  'hide_content_wrapper': true
 } %}
 
   {% block content %}
-    {{ content.field_heading|field_value }}
-    {{ content.field_button }}
+    {% include '@components/contact/contact.twig' with {
+      'label': content.field_heading|field_value,
+      'button': content.field_button
+    } %}
   {% endblock %}
 
 {% endembed %}

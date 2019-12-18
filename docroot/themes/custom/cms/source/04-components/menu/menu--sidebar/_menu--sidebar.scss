@@ -1,0 +1,55 @@
+// @file
+// Styles for the sidebar menu.
+
+.menu--sidebar {
+  @include ds-unstyled-list;
+
+  .menu__item {
+    background-color: transparent;
+    border-top: 1px solid $color-gray;
+
+    &:first-child {
+      border-top: 0;
+    }
+  }
+
+  .menu__link,
+  .menu__link:visited {
+    border-left: 4px solid transparent;
+    color: $color-base;
+    display: block;
+    font-family: $font-sans; // necessary for <button>
+    font-size: $base-font-size; // necessary for <button>
+    line-height: $heading-line-height;
+    padding: $spacer-1 $spacer-2;
+    text-align: left; // necessary for <button>
+    text-decoration: none;
+
+    &.is-active,
+    &.is-active:visited {
+      border-left-color: $color-primary;
+      color: $color-primary;
+      font-weight: $font-bold;
+    }
+
+    &:hover {
+      background-color: $color-gray-lightest;
+      color: $color-primary;
+      text-decoration: none;
+    }
+  }
+
+  .menu__subnav {
+    @include ds-unstyled-list;
+
+    .menu__link {
+      font-size: $small-font-size;
+      line-height: $heading-line-height;
+      padding-left: $spacer-3;
+
+      &.is-active {
+        border-color: transparent;
+      }
+    }
+  }
+}

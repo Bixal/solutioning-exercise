@@ -1,10 +1,17 @@
 {% set sub_landing_aside %}
+  {{ drupal_entity('block', 'side_menu') }}
   {{ drupal_entity('block', 'statecontact') }}
   {{ drupal_entity('block', 'coverage') }}
 {% endset %}
 
+{% set sub_landing_content %}
+  {{ content.field_sub_landing_content|field_value }}
+  {{ drupal_entity('block', 'enroll') }}
+{% endset %}
+
+
 {% include '@templates/sub-landing.twig' with {
   'sub_landing_title': label|field_value,
   'sub_landing_aside': sub_landing_aside,
-  'sub_landing_content': content.field_sub_landing_content|field_value
+  'sub_landing_content': sub_landing_content
 } %}

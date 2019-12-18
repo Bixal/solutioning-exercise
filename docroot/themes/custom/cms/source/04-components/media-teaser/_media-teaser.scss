@@ -17,15 +17,15 @@
 
 .media-teaser__image {
   @media (min-width: $width-md) {
-    flex: 0 0 30%;
-    max-width: 30%;
+    flex: 0 0 40%;
+    max-width: 40%;
   }
 }
 
 .media-teaser__content {
   @media (min-width: $width-md) {
-    flex: 0 0 70%;
-    max-width: 70%;
-    padding: 0 $spacer-2;
+    flex: 0 0 58%;
+    max-width: 58%;
+    padding: 0 2%;
   }
 }
