@@ -11,7 +11,7 @@ dependencies:
 id: statecontact
 theme: cms
 region: hidden
-weight: 0
+weight: -4
 provider: null
 plugin: 'block_content:1aa7c240-b479-4214-91d9-34b454f50b02'
 settings:
