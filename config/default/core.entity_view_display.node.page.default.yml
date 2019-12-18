@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.page.field_page_content
+    - field.field.node.page.field_reviewer
     - node.type.page
   module:
     - entity_reference_revisions
@@ -23,6 +24,8 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
+  content_moderation_control: true
+  field_reviewer: true
   langcode: true
   links: true
   search_api_excerpt: true
