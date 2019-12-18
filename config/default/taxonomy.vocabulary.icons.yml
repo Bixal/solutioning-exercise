@@ -1,0 +1,8 @@
+uuid: ab8f7fb4-a259-4369-b619-c91efe8c75c8
+langcode: en
+status: true
+dependencies: {  }
+name: Icons
+vid: icons
+description: 'Used for selecting font awesome icons.'
+weight: 0

@@ -1,0 +1,49 @@
+uuid: 01e0d757-4059-4a6b-b28f-e4a8b17af9e7
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.enroll
+    - field.storage.block_content.field_steps
+    - paragraphs.paragraphs_type.step
+  module:
+    - entity_reference_revisions
+id: block_content.enroll.field_steps
+field_name: field_steps
+entity_type: block_content
+bundle: enroll
+label: Steps
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      step: step
+    target_bundles_drag_drop:
+      featured_media:
+        weight: 8
+        enabled: false
+      introduction:
+        weight: 9
+        enabled: false
+      media_callout:
+        weight: 10
+        enabled: false
+      media_teaser:
+        weight: 11
+        enabled: false
+      note:
+        weight: 12
+        enabled: false
+      step:
+        enabled: true
+        weight: 13
+      text:
+        weight: 14
+        enabled: false
+field_type: entity_reference_revisions

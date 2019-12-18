@@ -1,0 +1,28 @@
+uuid: e5f9b571-bd6d-4836-b987-b42df6054eb5
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.icon_callout
+    - field.storage.block_content.field_teaser
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    basic_html: basic_html
+    full_html: full_html
+    restricted_html: '0'
+    plain_text: '0'
+id: block_content.icon_callout.field_teaser
+field_name: field_teaser
+entity_type: block_content
+bundle: icon_callout
+label: Teaser
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

@@ -1,0 +1,8 @@
+uuid: 56665d6a-8a70-443d-b5b7-d78a5b1b96ce
+langcode: en
+status: true
+dependencies: {  }
+id: icon_callout
+label: 'Icon Callout'
+revision: 1
+description: 'Icon callout custom block is used to create an icon, headline, teaser, and link.'

@@ -1,0 +1,28 @@
+uuid: e9f47954-22f9-4a92-b80a-0e78eda9a59c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_teaser
+    - paragraphs.paragraphs_type.step
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    basic_html: basic_html
+    full_html: full_html
+    restricted_html: '0'
+    plain_text: '0'
+id: paragraph.step.field_teaser
+field_name: field_teaser
+entity_type: paragraph
+bundle: step
+label: Teaser
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

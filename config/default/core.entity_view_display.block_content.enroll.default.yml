@@ -1,0 +1,44 @@
+uuid: 8f369df4-9072-453b-8acc-1cd1ddaedf62
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.enroll
+    - field.field.block_content.enroll.field_heading
+    - field.field.block_content.enroll.field_steps
+    - field.field.block_content.enroll.field_teaser
+  module:
+    - entity_reference_revisions
+    - text
+id: block_content.enroll.default
+targetEntityType: block_content
+bundle: enroll
+mode: default
+content:
+  field_heading:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_steps:
+    type: entity_reference_revisions_entity_view
+    weight: 2
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  field_teaser:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

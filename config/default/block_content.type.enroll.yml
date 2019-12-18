@@ -1,0 +1,8 @@
+uuid: 3c8ec6fb-4351-47a8-88ff-ed70dcb85432
+langcode: en
+status: true
+dependencies: {  }
+id: enroll
+label: Enroll
+revision: 1
+description: 'Enroll custom blocks allows you to create content with text and attach step components. '

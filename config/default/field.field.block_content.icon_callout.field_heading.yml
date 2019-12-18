@@ -1,0 +1,19 @@
+uuid: 586bf234-defe-43f0-aacb-e0214f143382
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.icon_callout
+    - field.storage.block_content.field_heading
+id: block_content.icon_callout.field_heading
+field_name: field_heading
+entity_type: block_content
+bundle: icon_callout
+label: Heading
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

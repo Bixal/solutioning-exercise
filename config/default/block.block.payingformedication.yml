@@ -1,0 +1,25 @@
+uuid: 589ff26b-13bc-4225-96a7-bba2b479ce2c
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:icon_callout:9a07683b-4b18-4e54-a799-a6ebe2d1206d'
+  module:
+    - block_content
+  theme:
+    - cms
+id: payingformedication
+theme: cms
+region: hidden
+weight: 0
+provider: null
+plugin: 'block_content:9a07683b-4b18-4e54-a799-a6ebe2d1206d'
+settings:
+  id: 'block_content:9a07683b-4b18-4e54-a799-a6ebe2d1206d'
+  label: 'Paying for medication'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }
