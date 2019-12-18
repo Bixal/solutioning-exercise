@@ -1,0 +1,14 @@
+uuid: 90655482-cb0d-4969-ae1f-5db3eee9b01e
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.content_page_manager
+  module:
+    - user
+id: user_remove_role_action.content_page_manager
+label: 'Remove the Content page manager role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: content_page_manager

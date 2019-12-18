@@ -1,0 +1,47 @@
+uuid: df792b6b-a3b6-4fa2-b739-035517366b45
+langcode: en
+status: true
+dependencies: {  }
+id: landing_page_editor
+label: 'Landing page editor'
+weight: -8
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access content overview'
+  - 'access media overview'
+  - 'access site in maintenance mode'
+  - 'access toolbar'
+  - 'create file media'
+  - 'create image media'
+  - 'create landing_page content'
+  - 'create remote_video media'
+  - 'create sub_landing_page content'
+  - 'create video media'
+  - 'delete own file media'
+  - 'delete own image media'
+  - 'delete own remote_video media'
+  - 'delete own video media'
+  - 'edit any landing_page content'
+  - 'edit any sub_landing_page content'
+  - 'edit own file media'
+  - 'edit own image media'
+  - 'edit own landing_page content'
+  - 'edit own remote_video media'
+  - 'edit own sub_landing_page content'
+  - 'edit own video media'
+  - 'translate landing_page node'
+  - 'translate paragraph'
+  - 'translate sub_landing_page node'
+  - 'update content translations'
+  - 'use editorial transition create_new_draft'
+  - 'use editorial transition draft_to_review'
+  - 'use editorial transition review_to_draft'
+  - 'view all revisions'
+  - 'view any unpublished content'
+  - 'view landing_page revisions'
+  - 'view latest version'
+  - 'view own unpublished content'
+  - 'view own unpublished media'
+  - 'view sub_landing_page revisions'
+  - 'view the administration theme'

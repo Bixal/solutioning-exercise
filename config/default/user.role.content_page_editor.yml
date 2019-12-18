@@ -1,0 +1,42 @@
+uuid: a8c4df37-f8bd-4aca-b4fe-c49191d068d3
+langcode: en
+status: true
+dependencies: {  }
+id: content_page_editor
+label: 'Content page editor'
+weight: -6
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access content overview'
+  - 'access media overview'
+  - 'access site in maintenance mode'
+  - 'access toolbar'
+  - 'create file media'
+  - 'create image media'
+  - 'create page content'
+  - 'create remote_video media'
+  - 'create video media'
+  - 'delete own file media'
+  - 'delete own image media'
+  - 'delete own remote_video media'
+  - 'delete own video media'
+  - 'edit any page content'
+  - 'edit own file media'
+  - 'edit own image media'
+  - 'edit own page content'
+  - 'edit own remote_video media'
+  - 'edit own video media'
+  - 'translate page node'
+  - 'translate paragraph'
+  - 'update content translations'
+  - 'use editorial transition create_new_draft'
+  - 'use editorial transition draft_to_review'
+  - 'use editorial transition review_to_draft'
+  - 'view all revisions'
+  - 'view any unpublished content'
+  - 'view latest version'
+  - 'view own unpublished content'
+  - 'view own unpublished media'
+  - 'view page revisions'
+  - 'view the administration theme'

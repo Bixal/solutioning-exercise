@@ -1,0 +1,14 @@
+uuid: 66640011-a337-4d92-b6b8-6c8fc0e42bde
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.landing_page_manager
+  module:
+    - user
+id: user_add_role_action.landing_page_manager
+label: 'Add the Landing page manager role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: landing_page_manager

@@ -1,0 +1,35 @@
+uuid: 8f94297a-3259-42c4-9585-a6d5318208e5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_reviewer
+    - node.type.page
+id: node.page.field_reviewer
+field_name: field_reviewer
+entity_type: node
+bundle: page
+label: Reviewer
+description: 'Select a reviewing manager to proof the content of the page.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:user'
+  handler_settings:
+    include_anonymous: true
+    filter:
+      type: role
+      role:
+        content_page_manager: content_page_manager
+        landing_page_editor: '0'
+        landing_page_manager: '0'
+        content_page_editor: '0'
+        administrator: '0'
+    target_bundles: null
+    sort:
+      field: name
+      direction: ASC
+    auto_create: false
+field_type: entity_reference

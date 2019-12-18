@@ -1,0 +1,14 @@
+uuid: de41a775-c733-4daf-bae1-a4da5645ca11
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.landing_page_editor
+  module:
+    - user
+id: user_add_role_action.landing_page_editor
+label: 'Add the Landing page editor role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: landing_page_editor

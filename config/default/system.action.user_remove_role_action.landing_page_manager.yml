@@ -1,0 +1,14 @@
+uuid: 6bf524ef-b32f-4e74-8090-0a410ede9caa
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.landing_page_manager
+  module:
+    - user
+id: user_remove_role_action.landing_page_manager
+label: 'Remove the Landing page manager role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: landing_page_manager

@@ -1,0 +1,14 @@
+uuid: a64c12fb-9596-4330-8163-2f73a53dfb3d
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.landing_page_editor
+  module:
+    - user
+id: user_remove_role_action.landing_page_editor
+label: 'Remove the Landing page editor role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: landing_page_editor
