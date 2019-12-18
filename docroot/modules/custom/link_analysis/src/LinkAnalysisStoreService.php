@@ -99,8 +99,12 @@ class LinkAnalysisStoreService {
     // the appropriate node.
     foreach ($anchors as $a) {
       $urlParts = parse_url($a->getAttribute('href'));
-      $path = Drupal::service('path.alias_manager')
-        ->getPathByAlias($urlParts['path'] === "/" ? "<front>" : $urlParts['path']);
+      if ($urlParts['path'] === "/" || $urlParts['path'] === "<front>") {
+        $path = Drupal::config('system.site')->get('page.front');
+      } else {
+        $path = Drupal::service('path.alias_manager')
+          ->getPathByAlias($urlParts['path']);
+      }
 
       if (preg_match('/node\/(\d+)/', $path, $matches)) {
         if ($matches[1] !== $entity->id()) {
@@ -167,10 +171,10 @@ class LinkAnalysisStoreService {
    *
    * @param int $entity_id
    *   Entity id that was referenced on current processed entity.
-   * @param array $id
+   * @param int $id
    *   Current entity id being processed.
    */
-  private function handleId($entity_id, array $id) {
+  private function handleId($entity_id, $id) {
     if ($entry = $this->getEntry($id)) {
       $ids = json_decode($entry[0]['referenced_ids']);
       if (!in_array((int) $entity_id, is_array($ids) ? $ids : [$ids])) {
@@ -241,10 +245,10 @@ class LinkAnalysisStoreService {
    *
    * @param int $target_id
    *   Referenced entity.
-   * @param array $ids
+   * @param int $ids
    *   The ids that entity is referenced on.
    */
-  private function insertEntry($target_id, array $ids) {
+  private function insertEntry($target_id, $ids) {
     try {
       $this->database->insert('link_analysis')
         ->fields([
