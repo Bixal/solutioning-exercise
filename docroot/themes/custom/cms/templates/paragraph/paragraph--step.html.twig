@@ -1,4 +1,6 @@
 {% set icon = content.field_icon|field_value is not empty ? content.field_icon.0['#taxonomy_term'].field_class.0.value %}
 
-{{ icon }}
-{{ content.field_teaser|field_value }}
+{% include '@components/icon-callout/icon-callout.twig' with {
+  'icon': icon,
+  'teaser': content.field_teaser|field_value
+} %}
