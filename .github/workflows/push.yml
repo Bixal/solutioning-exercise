@@ -12,17 +12,23 @@ jobs:
       - uses: actions/checkout@v2
       - name: Copy environment example.
         run: cp .env.example .env
+      - name: Run coding standards
+        run: make phpcs
       - name: Copy environment connection details.
         run: cp docroot/sites/default/settings.local.php.example docroot/sites/default/settings.local.php
       - name: Create files directory.
         run: mkdir docroot/sites/default/files && chmod 777 docroot/sites/default/files
       - name: File permissions change.
-        run: chmod 777 docroot/sites/default/settings.php
+        run: chmod 777 -R docroot
       - name: Build the application stack
         run: docker-compose up -d
       - name: Wait for database
         run: sleep 20s
       - name: Install drupal and configuration
         run: make installdrupal
+      - name: Run Testing
+        run: make test
+      - name: Run 508 checks
+        run: make ally
       - name: Test
         run: make codeck
