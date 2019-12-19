@@ -11,9 +11,11 @@
 } %}
 
   {% block content %}
-    {{ content.field_heading|field_value }}
-    {{ content.field_teaser|field_value }}
-    {{ content.field_steps|field_value }}
+    {% include '@components/enroll/enroll.twig' with {
+      'heading': content.field_heading|field_value,
+      'teaser': content.field_teaser|field_value,
+      'steps': content.field_steps|field_value
+    } %}
   {% endblock %}
 
 {% endembed %}
