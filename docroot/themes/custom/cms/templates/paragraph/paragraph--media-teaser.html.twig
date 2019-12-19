@@ -1,4 +1,5 @@
 {% include '@components/media-teaser/media-teaser.twig' with {
+  'url': content.field_link|field_value is not empty ? content.field_link.0['#url_title'],
   'image': content.field_image|field_value,
   'heading': content.field_heading|field_value,
   'teaser': content.field_teaser|field_value

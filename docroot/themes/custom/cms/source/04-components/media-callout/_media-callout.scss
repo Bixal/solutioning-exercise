@@ -21,6 +21,14 @@
   }
 }
 
+.media-callout__media {
+  margin-bottom: $spacer-1;
+
+  @media (min-width: $width-md) {
+    margin-bottom: 0;
+  }
+}
+
 .media-callout__content {
   @media (min-width: $width-md) {
     padding: 0 $spacer-2;

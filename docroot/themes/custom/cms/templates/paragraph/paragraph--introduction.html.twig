@@ -3,7 +3,9 @@
 } %}
 
   {% block content %}
-    {{ content.field_text|field_value }}
+    {% include '@components/introduction/introduction.twig' with {
+      'text': content.field_text|field_value
+    } %}
   {% endblock %}
 
 {% endembed %}
