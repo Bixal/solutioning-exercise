@@ -101,7 +101,8 @@ class LinkAnalysisStoreService {
       $urlParts = parse_url($a->getAttribute('href'));
       if ($urlParts['path'] === "/" || $urlParts['path'] === "<front>") {
         $path = Drupal::config('system.site')->get('page.front');
-      } else {
+      }
+      else {
         $path = Drupal::service('path.alias_manager')
           ->getPathByAlias($urlParts['path']);
       }
