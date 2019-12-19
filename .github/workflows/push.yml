@@ -10,6 +10,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Run coding standards
+        run: make phpcs
       - name: Copy environment example.
         run: cp .env.example .env
       - name: Copy environment connection details.
@@ -24,5 +26,9 @@ jobs:
         run: sleep 20s
       - name: Install drupal and configuration
         run: make installdrupal
+      - name: Run Testing
+        run: make test
+      - name: Run 508 checks
+        run: make ally
       - name: Test
         run: make codeck
