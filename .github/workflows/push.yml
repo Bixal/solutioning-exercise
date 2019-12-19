@@ -10,10 +10,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Run coding standards
-        run: make phpcs
       - name: Copy environment example.
         run: cp .env.example .env
+      - name: Run coding standards
+        run: make phpcs
       - name: Copy environment connection details.
         run: cp docroot/sites/default/settings.local.php.example docroot/sites/default/settings.local.php
       - name: Create files directory.
