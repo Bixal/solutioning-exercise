@@ -1,0 +1,18 @@
+uuid: b99f2e7f-affa-4513-9fd6-04e81a9a1689
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.icon_callout
+id: block_content.icon_callout.changed
+field_name: changed
+entity_type: block_content
+bundle: icon_callout
+label: Changed
+description: 'The time that the custom block was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

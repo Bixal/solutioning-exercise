@@ -1,16 +1,15 @@
-uuid: 586bf234-defe-43f0-aacb-e0214f143382
+uuid: 88ec498b-441b-49ca-b283-17ecf7090d39
 langcode: en
 status: true
 dependencies:
   config:
     - block_content.type.icon_callout
-    - field.storage.block_content.field_heading
-id: block_content.icon_callout.field_heading
-field_name: field_heading
+id: block_content.icon_callout.info
+field_name: info
 entity_type: block_content
 bundle: icon_callout
-label: Heading
-description: ''
+label: 'Block description'
+description: 'A brief description of your block.'
 required: true
 translatable: false
 default_value: {  }

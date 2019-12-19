@@ -1,0 +1,20 @@
+uuid: 158769dd-a5e0-4b18-bc0d-16338b5f8652
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.media_styles
+  module:
+    - text
+id: taxonomy_term.media_styles.description
+field_name: description
+entity_type: taxonomy_term
+bundle: media_styles
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

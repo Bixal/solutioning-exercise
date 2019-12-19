@@ -1,0 +1,22 @@
+uuid: dcb67e59-16e9-4cc1-a83c-355c3287cfa9
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.enroll
+id: block_content.enroll.status
+field_name: status
+entity_type: block_content
+bundle: enroll
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

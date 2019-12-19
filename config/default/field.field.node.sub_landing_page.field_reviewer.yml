@@ -12,7 +12,7 @@ bundle: sub_landing_page
 label: Reviewer
 description: 'Select a reviewing manager to proof the content of the page.'
 required: true
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:

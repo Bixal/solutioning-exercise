@@ -1,19 +1,20 @@
-uuid: 7bd7627a-6241-4c80-8fb4-2db67f36832d
+uuid: eae3cc44-7d7b-4ee5-9904-1a858685ac93
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.taxonomy_term.field_class
     - taxonomy.vocabulary.icons
-id: taxonomy_term.icons.field_class
-field_name: field_class
+  module:
+    - path
+id: taxonomy_term.icons.path
+field_name: path
 entity_type: taxonomy_term
 bundle: icons
-label: Class
+label: 'URL alias'
 description: ''
-required: true
+required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: string
+field_type: path

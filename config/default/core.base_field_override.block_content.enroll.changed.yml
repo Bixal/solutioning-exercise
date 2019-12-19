@@ -1,0 +1,18 @@
+uuid: 6aaaae8a-4c2c-4495-8c9b-3d9d3b7e854b
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.enroll
+id: block_content.enroll.changed
+field_name: changed
+entity_type: block_content
+bundle: enroll
+label: Changed
+description: 'The time that the custom block was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed
