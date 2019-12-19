@@ -85,7 +85,7 @@ function _handle_review($entity) {
   }
   else {
     \Drupal::messenger()
-      ->addMessage("Your notification has been sent to {$reviewer->getDisplayName()}");
+      ->addMessage("Your notification has been sent to {$reviewer->getDisplayName()}.");
   }
 }
 
@@ -103,7 +103,7 @@ function _handle_review($entity) {
  */
 function _build_message($user, $entity) {
   $userName = $user->getDisplayName();
-  $url = $entity->toUrl()->toString();
+  $url = $entity->toUrl()->setAbsolute()->toString();
 
   return "$userName has requested that you review $url";
 }
