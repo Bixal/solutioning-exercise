@@ -4,7 +4,9 @@
       {{ media }}
     </div>
     <div class="media-callout__content">
-      <h2>{{ heading }}</h2>
+      {% if heading %}
+        <h2>{{ heading }}</h2>
+      {% endif %}
       {{ teaser }}
       {{ button }}
     </div>

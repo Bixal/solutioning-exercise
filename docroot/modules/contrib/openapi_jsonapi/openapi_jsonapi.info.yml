@@ -1,0 +1,14 @@
+name: OpenAPI JSON:API
+description: OpenAPI support for the JSON:API module.
+type: module
+package: Web Services
+core: 8.x
+dependencies:
+  - openapi:openapi (>=8.x-2.x)
+  - schemata:schemata
+  - schemata:schemata_json_schema
+
+# Information added by Drupal.org packaging script on 2019-11-11
+version: '8.x-2.0-rc1'
+project: 'openapi_jsonapi'
+datestamp: 1573467794
