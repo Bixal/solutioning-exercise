@@ -60,6 +60,8 @@ return array(
     'Symfony\\Bridge\\PhpUnit\\' => array($vendorDir . '/symfony/phpunit-bridge'),
     'Stecman\\Component\\Symfony\\Console\\BashCompletion\\' => array($vendorDir . '/stecman/symfony-console-completion/src'),
     'Solarium\\' => array($vendorDir . '/solarium/solarium/src'),
+    'Shaper\\Tests\\' => array($vendorDir . '/e0ipso/shaper/tests/src'),
+    'Shaper\\' => array($vendorDir . '/e0ipso/shaper/src'),
     'SelfUpdate\\' => array($vendorDir . '/consolidation/self-update/src'),
     'Seld\\PharUtils\\' => array($vendorDir . '/seld/phar-utils/src'),
     'Seld\\JsonLint\\' => array($vendorDir . '/seld/jsonlint/src/Seld/JsonLint'),
