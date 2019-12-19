@@ -1,0 +1,11 @@
+uuid: 1fc2bcb3-15ba-497a-a95d-22e0eed7cd0f
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.blocks
+id: taxonomy_term.blocks
+target_entity_type_id: taxonomy_term
+target_bundle: blocks
+default_langcode: site_default
+language_alterable: false

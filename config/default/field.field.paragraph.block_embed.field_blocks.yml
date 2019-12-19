@@ -1,0 +1,29 @@
+uuid: 87681feb-1771-4fdf-92b5-3a56c7adbaea
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_blocks
+    - paragraphs.paragraphs_type.block_embed
+    - taxonomy.vocabulary.blocks
+id: paragraph.block_embed.field_blocks
+field_name: field_blocks
+entity_type: paragraph
+bundle: block_embed
+label: Blocks
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      blocks: blocks
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,19 @@
+uuid: 49c616c1-0704-468f-9264-3876ecf45e45
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_machine_name
+    - taxonomy.vocabulary.blocks
+id: taxonomy_term.blocks.field_machine_name
+field_name: field_machine_name
+entity_type: taxonomy_term
+bundle: blocks
+label: 'Machine name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

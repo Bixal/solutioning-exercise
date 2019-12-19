@@ -1,4 +1,4 @@
-uuid: 589ff26b-13bc-4225-96a7-bba2b479ce2c
+uuid: d54653a4-801b-42b0-a8e3-f422650a8787
 langcode: en
 status: true
 dependencies:
@@ -8,7 +8,7 @@ dependencies:
     - block_content
   theme:
     - cms
-id: payingformedication
+id: medication
 theme: cms
 region: hidden
 weight: 0
