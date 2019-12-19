@@ -4,7 +4,11 @@
       {{ image }}
     </div>
     <div class="media-teaser__content">
-      <h2>{{ heading }}</h2>
+      {% if url %}
+        <h2 class="media-teaser__heading"><a href="{{ url }}">{{ heading }}</a></h2>
+      {% else %}
+        <h2 class="media-teaser__heading">{{ heading }}</h2>
+      {% endif %}
       {{ teaser }}
     </div>
   </div>

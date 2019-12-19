@@ -5,10 +5,12 @@ dependencies:
   config:
     - field.field.paragraph.media_teaser.field_heading
     - field.field.paragraph.media_teaser.field_image
+    - field.field.paragraph.media_teaser.field_link
     - field.field.paragraph.media_teaser.field_teaser
     - paragraphs.paragraphs_type.media_teaser
   module:
     - allowed_formats
+    - link
     - media_library
     - text
 id: paragraph.media_teaser.default
@@ -30,6 +32,14 @@ content:
     settings:
       media_types: {  }
     third_party_settings: {  }
+    region: content
+  field_link:
+    weight: 3
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
     region: content
   field_teaser:
     weight: 2

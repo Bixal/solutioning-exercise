@@ -16,8 +16,11 @@
 }
 
 .media-teaser__image {
+  margin-bottom: $spacer-1;
+
   @media (min-width: $width-md) {
     flex: 0 0 40%;
+    margin-bottom: 0;
     max-width: 40%;
   }
 }
@@ -27,5 +30,16 @@
     flex: 0 0 58%;
     max-width: 58%;
     padding: 0 2%;
+  }
+}
+
+.media-teaser__heading {
+  a {
+    color: $color-primary;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }

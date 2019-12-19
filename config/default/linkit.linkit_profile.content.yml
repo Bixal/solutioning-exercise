@@ -1,0 +1,20 @@
+uuid: 1ce3ae0e-cde3-459a-9733-d2848caa0dfd
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: content
+label: Content
+description: ''
+attributes: {  }
+matchers:
+  d760aa36-7230-4929-92aa-a6f478208df2:
+    uuid: d760aa36-7230-4929-92aa-a6f478208df2
+    id: 'entity:node'
+    weight: 0
+    settings:
+      result_description: ''
+      bundles: {  }
+      group_by_bundle: false
+      include_unpublished: false
