@@ -16,9 +16,11 @@
 
   {% if aside %}
     <aside class="l-sidebar__aside">
+      <div class=" stickykit-container">
       {% block aside %}
         {{ aside }}
       {% endblock %}
+      </div>
     </aside>
   {% endif %}
 

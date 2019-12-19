@@ -1,3 +1,7 @@
 {% for item in items %}
-  <a class="ds-c-button" href="javascript:void(0);">{{ item.content['#title'] }}</a>
+  {% include '@components/button/button.twig' with {
+    'is_button': true,
+    'modifier': 'ds-c-button--primary ds-c-button--full',
+    'text': item.content['#title']
+  } %}
 {% endfor %}
