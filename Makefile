@@ -7,7 +7,7 @@ down:
 stop:
 	docker-compose stop
 installdrupal:
-	docker-compose run --rm php drush si --root=/var/www/html/docroot --yes
+	docker-compose run --rm php vendor/bin/drupal --root=/var/www/html/docroot si standard --account-pass="admin" --force --no-interaction
 	docker-compose run --rm php vendor/bin/drupal --root=/var/www/html/docroot entity:delete shortcut 1 --all --yes --no-interaction
 	docker-compose run --rm php vendor/bin/drupal --root=/var/www/html/docroot config:import --yes --no-interaction
 ally:
@@ -15,12 +15,12 @@ ally:
 	docker run --rm --network="solutioning-exercise_default" frvge/pa11y http://apache/
 phpcs:
 	@echo "Running coding standards on custom code"
-	docker-compose run --rm php vendor/bin/phpcs --standard=vendor/drupal/coder/coder_sniffer/Drupal docroot/modules/custom --ignore=*.min.js --ignore=*.min.css
-	docker-compose run --rm php vendor/bin/phpcs --standard=vendor/drupal/coder/coder_sniffer/Drupal docroot/themes/custom --ignore=*.min.js --ignore=*.min.css
+	docker-compose run --rm php vendor/bin/phpcs --standard=vendor/drupal/coder/coder_sniffer/Drupal docroot/modules/custom --ignore=*.min.js,*.min.css
+	docker-compose run --rm php vendor/bin/phpcs --standard=vendor/drupal/coder/coder_sniffer/Drupal docroot/themes/custom/cms --ignore=*.min.js,*.css,*.min.css
 phpcbf:
 	@echo "Beautifying custom code"
-	docker-compose run --rm php vendor/bin/phpcbf --standard=vendor/drupal/coder/coder_sniffer/Drupal docroot/modules/custom --ignore=*.min.js --ignore=*.min.css
-	docker-compose run --rm php vendor/bin/phpcbf --standard=vendor/drupal/coder/coder_sniffer/Drupal docroot/themes/custom --ignore=*.min.js --ignore=*.min.css
+	docker-compose run --rm php vendor/bin/phpcbf --standard=vendor/drupal/coder/coder_sniffer/Drupal docroot/modules/custom --ignore=*.min.js,*.min.css
+	docker-compose run --rm php vendor/bin/phpcbf --standard=vendor/drupal/coder/coder_sniffer/Drupal docroot/themes/custom/cms --ignore=css/*,*.min.js,*.min.css
 test:
 	@echo "Running Unit Testing"
 	docker-compose run --rm php vendor/bin/phpunit -c docroot/core/phpunit.xml.dist docroot/modules/custom/
