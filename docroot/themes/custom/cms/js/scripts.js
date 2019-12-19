@@ -1,12 +1,15 @@
-// Custom scripts file
+/**
+ * @file
+ * Custom scripts file.
+ */
 
 (function ($) {
 
   'use strict';
 
-  $(document).ready(function() {
+  $(document).ready(function () {
 
-    // Sticky kit declarations
+    // Sticky kit declarations.
     var offset = 100;
 
     $('.stickykit-container').stick_in_parent({
