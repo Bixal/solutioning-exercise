@@ -1,16 +1,15 @@
-uuid: 6874f3ca-5ccd-462c-8f3c-acff0a5aa195
+uuid: cee06089-6cbe-43ea-be35-ae754f7a5a10
 langcode: en
 status: true
 dependencies:
   config:
     - block_content.type.enroll
-    - field.storage.block_content.field_heading
-id: block_content.enroll.field_heading
-field_name: field_heading
+id: block_content.enroll.info
+field_name: info
 entity_type: block_content
 bundle: enroll
-label: Heading
-description: ''
+label: 'Block description'
+description: 'A brief description of your block.'
 required: true
 translatable: false
 default_value: {  }

@@ -1,15 +1,14 @@
-uuid: 7bd7627a-6241-4c80-8fb4-2db67f36832d
+uuid: 9a900535-4281-422d-9040-84a7639aa07c
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.taxonomy_term.field_class
-    - taxonomy.vocabulary.icons
-id: taxonomy_term.icons.field_class
-field_name: field_class
+    - taxonomy.vocabulary.blocks
+id: taxonomy_term.blocks.name
+field_name: name
 entity_type: taxonomy_term
-bundle: icons
-label: Class
+bundle: blocks
+label: Name
 description: ''
 required: true
 translatable: false

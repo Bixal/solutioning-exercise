@@ -1,9 +1,9 @@
-uuid: dce24fec-8ffa-45f7-b5a8-869a4f4538db
+uuid: 4883816c-675d-4520-8b73-cabb61c30068
 langcode: en
 status: true
 dependencies:
   config:
-    - paragraphs.paragraphs_type.introduction
+    - paragraphs.paragraphs_type.block_embed
   module:
     - content_translation
 third_party_settings:
@@ -11,8 +11,8 @@ third_party_settings:
     enabled: true
     bundle_settings:
       untranslatable_fields_hide: '0'
-id: paragraph.introduction
+id: paragraph.block_embed
 target_entity_type_id: paragraph
-target_bundle: introduction
+target_bundle: block_embed
 default_langcode: site_default
 language_alterable: true

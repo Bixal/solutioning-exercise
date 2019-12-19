@@ -1,0 +1,22 @@
+uuid: fd5ef56c-87bb-4fbf-8bbf-4b091ab948a2
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.media_styles
+id: taxonomy_term.media_styles.status
+field_name: status
+entity_type: taxonomy_term
+bundle: media_styles
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

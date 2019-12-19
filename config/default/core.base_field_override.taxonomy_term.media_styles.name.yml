@@ -1,15 +1,14 @@
-uuid: 7bd7627a-6241-4c80-8fb4-2db67f36832d
+uuid: 0c1dcc32-bd38-4fd9-893b-3a485c8535c2
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.taxonomy_term.field_class
-    - taxonomy.vocabulary.icons
-id: taxonomy_term.icons.field_class
-field_name: field_class
+    - taxonomy.vocabulary.media_styles
+id: taxonomy_term.media_styles.name
+field_name: name
 entity_type: taxonomy_term
-bundle: icons
-label: Class
+bundle: media_styles
+label: Name
 description: ''
 required: true
 translatable: false
