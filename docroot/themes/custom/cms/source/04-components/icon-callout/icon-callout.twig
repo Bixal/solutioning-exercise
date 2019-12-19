@@ -1,10 +1,14 @@
-<div class="icon-callout">
+<div class="icon-callout {{ modifier }}">
   <div class="icon-callout__inner">
     <div class="icon-callout__icon">
       <span class="{{ icon }}"></span>
     </div>
     <div class="icon-callout__content">
+      {% if heading %}
+        <h3 class="icon-callout__heading">{{ heading }}</h3>
+      {% endif %}
       <div class="icon-callout__teaser">{{ teaser }}</div>
+      {{ button }}
     </div>
   </div>
 </div>

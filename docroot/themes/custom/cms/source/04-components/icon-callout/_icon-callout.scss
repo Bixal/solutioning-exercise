@@ -40,7 +40,6 @@
 
 .icon-callout__content {
   margin-top: -35px;
-  padding-bottom: 40px;
   padding: 0 20px;
   text-align: center;
   transition: all .3s;
@@ -51,4 +50,14 @@
   font-size: 18px;
   font-weight: 500;
   margin-bottom: 15px;
+}
+
+// Variants
+.icon-callout--full {
+  .icon-callout__inner {
+    max-width: 100%;
+  }
+  .icon-callout__content {
+    padding: 0 20px 40px;
+  }
 }

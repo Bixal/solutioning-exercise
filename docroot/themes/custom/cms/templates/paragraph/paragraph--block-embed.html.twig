@@ -1,0 +1,2 @@
+{% set machine_name = content.field_blocks.0['#taxonomy_term'].field_machine_name.0.value %}
+{{ drupal_entity('block', machine_name) }}

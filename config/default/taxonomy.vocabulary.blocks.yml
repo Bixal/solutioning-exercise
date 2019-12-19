@@ -1,0 +1,8 @@
+uuid: b6679290-12f8-46dd-ab5f-0e405e70a2a4
+langcode: en
+status: true
+dependencies: {  }
+name: Blocks
+vid: blocks
+description: 'A categorization of blocks that can be used for embedding'
+weight: 0

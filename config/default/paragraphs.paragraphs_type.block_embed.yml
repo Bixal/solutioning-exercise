@@ -1,0 +1,9 @@
+uuid: d5651683-2da3-4d49-bdd4-bd840825fa02
+langcode: en
+status: true
+dependencies: {  }
+id: block_embed
+label: 'Block embed'
+icon_uuid: null
+description: 'Block embed component allows for placing specific blocks on a page.'
+behavior_plugins: {  }
