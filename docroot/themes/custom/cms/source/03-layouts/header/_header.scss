@@ -1,4 +1,19 @@
 // @file
 // Styles for Header Layout.
 
-// .l-header {}
+.l-header {
+  border-bottom: 1px solid $color-gray-lighter;
+  padding: $spacer-2 0;
+  position: relative;
+  width: 100%;
+}
+
+.l-header__branding {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+
+  .links {
+    @include list-pipeline;
+  }
+}

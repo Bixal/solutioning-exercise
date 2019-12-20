@@ -1,15 +1,10 @@
-{% set classes = [
-  'block',
-  'block--inverse'
-] %}
-
 {% embed '@components/block/block.twig' with {
-  'label': false,
+  'hide_wrapper': true,
   'hide_content_wrapper': true
 } %}
 
   {% block content %}
-    {{ content }}
+   {{ content }}
   {% endblock %}
 
 {% endembed %}

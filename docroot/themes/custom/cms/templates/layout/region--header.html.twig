@@ -2,8 +2,13 @@
   'has_constrain': true
 } %}
 
-  {% block content %}
-    {{ content }}
+  {% block branding %}
+    {{ drupal_entity('block', 'cms_branding') }}
+    {{ drupal_entity('block', 'language_switcher') }}
+  {% endblock %}
+
+  {% block menu %}
+    {{ drupal_entity('block', 'cms_main_menu') }}
   {% endblock %}
 
 {% endembed %}

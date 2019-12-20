@@ -6,7 +6,7 @@
 
   .menu__item {
     background-color: transparent;
-    border-top: 1px solid $color-gray;
+    border-top: 1px solid $color-gray-lighter;
 
     &:first-child {
       border-top: 0;
@@ -16,7 +16,7 @@
   .menu__link,
   .menu__link:visited {
     border-left: 4px solid transparent;
-    color: $color-base;
+    color: $color-white;
     display: block;
     font-family: $font-sans; // necessary for <button>
     font-size: $base-font-size; // necessary for <button>
@@ -27,6 +27,7 @@
 
     &.is-active,
     &.is-active:visited {
+      background-color: $color-gray-lightest;
       border-left-color: $color-primary;
       color: $color-primary;
       font-weight: $font-bold;
@@ -46,10 +47,6 @@
       font-size: $small-font-size;
       line-height: $heading-line-height;
       padding-left: $spacer-3;
-
-      &.is-active {
-        border-color: transparent;
-      }
     }
   }
 }
