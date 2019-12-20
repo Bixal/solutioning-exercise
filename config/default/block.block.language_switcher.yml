@@ -1,4 +1,4 @@
-uuid: 7b70c66b-bd48-4f2c-9de6-1f79b668d6e4
+uuid: f98c3722-df46-4628-adc8-ad0bbb60277d
 langcode: en
 status: true
 dependencies:
@@ -9,7 +9,7 @@ dependencies:
 id: language_switcher
 theme: cms
 region: header
-weight: 0
+weight: -6
 provider: null
 plugin: 'language_block:language_interface'
 settings:
