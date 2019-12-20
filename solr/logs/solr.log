@@ -1,55 +1,55 @@
-2019-12-18 03:34:56.099 INFO  (main) [   ] o.e.j.u.log Logging initialized @1494ms to org.eclipse.jetty.util.log.Slf4jLog
-2019-12-18 03:34:56.274 WARN  (main) [   ] o.e.j.x.XmlConfiguration Deprecated method public void org.eclipse.jetty.rewrite.handler.RedirectRegexRule.setReplacement(java.lang.String) in file:///opt/solr-8.3.1/server/etc/jetty.xml
-2019-12-18 03:34:56.367 WARN  (main) [   ] o.e.j.s.AbstractConnector Ignoring deprecated socket close linger time
-2019-12-18 03:34:56.367 WARN  (main) [   ] o.e.j.x.XmlConfiguration Deprecated method public void org.eclipse.jetty.server.ServerConnector.setSoLingerTime(int) in file:///opt/solr-8.3.1/server/etc/jetty-http.xml
-2019-12-18 03:34:56.382 INFO  (main) [   ] o.e.j.s.Server jetty-9.4.19.v20190610; built: 2019-06-10T16:30:51.723Z; git: afcf563148970e98786327af5e07c261fda175d3; jvm 11.0.5+10
-2019-12-18 03:34:56.406 INFO  (main) [   ] o.e.j.d.p.ScanningAppProvider Deployment monitor [file:///opt/solr-8.3.1/server/contexts/] at interval 0
-2019-12-18 03:34:56.782 INFO  (main) [   ] o.e.j.w.StandardDescriptorProcessor NO JSP Support for /solr, did not find org.apache.jasper.servlet.JspServlet
-2019-12-18 03:34:56.793 INFO  (main) [   ] o.e.j.s.session DefaultSessionIdManager workerName=node0
-2019-12-18 03:34:56.793 INFO  (main) [   ] o.e.j.s.session No SessionScavenger set, using defaults
-2019-12-18 03:34:56.796 INFO  (main) [   ] o.e.j.s.session node0 Scavenging every 660000ms
-2019-12-18 03:34:56.899 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter Using logger factory org.apache.logging.slf4j.Log4jLoggerFactory
-2019-12-18 03:34:56.908 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter  ___      _       Welcome to Apache Solr™ version 8.3.1
-2019-12-18 03:34:56.909 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter / __| ___| |_ _   Starting in standalone mode on port 8983
-2019-12-18 03:34:56.909 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter \__ \/ _ \ | '_|  Install dir: /opt/solr
-2019-12-18 03:34:56.909 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter |___/\___/_|_|    Start time: 2019-12-18T03:34:56.909321Z
-2019-12-18 03:34:56.976 INFO  (main) [   ] o.a.s.c.SolrResourceLoader Using system property solr.solr.home: /var/solr/data
-2019-12-18 03:34:56.988 INFO  (main) [   ] o.a.s.c.SolrXmlConfig Loading container configuration from /var/solr/data/solr.xml
-2019-12-18 03:34:57.113 INFO  (main) [   ] o.a.s.c.SolrXmlConfig MBean server found: com.sun.jmx.mbeanserver.JmxMBeanServer@44c73c26, but no JMX reporters were configured - adding default JMX reporter.
-2019-12-18 03:34:57.714 INFO  (main) [   ] o.a.s.h.c.HttpShardHandlerFactory Host whitelist initialized: WhitelistHostChecker [whitelistHosts=null, whitelistHostCheckingEnabled=true]
-2019-12-18 03:34:57.948 WARN  (main) [   ] o.e.j.u.s.S.config Trusting all certificates configured for Client@61e3cf4d[provider=null,keyStore=null,trustStore=null]
-2019-12-18 03:34:57.949 WARN  (main) [   ] o.e.j.u.s.S.config No Client EndPointIdentificationAlgorithm configured for Client@61e3cf4d[provider=null,keyStore=null,trustStore=null]
-2019-12-18 03:34:58.161 WARN  (main) [   ] o.e.j.u.s.S.config Trusting all certificates configured for Client@702c436b[provider=null,keyStore=null,trustStore=null]
-2019-12-18 03:34:58.161 WARN  (main) [   ] o.e.j.u.s.S.config No Client EndPointIdentificationAlgorithm configured for Client@702c436b[provider=null,keyStore=null,trustStore=null]
-2019-12-18 03:34:58.340 INFO  (main) [   ] o.a.s.c.TransientSolrCoreCacheDefault Allocating transient cache for 2147483647 transient cores
-2019-12-18 03:34:58.342 INFO  (main) [   ] o.a.s.h.a.MetricsHistoryHandler No .system collection, keeping metrics history in memory.
-2019-12-18 03:34:58.453 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.node' (registry 'solr.node') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@44c73c26
-2019-12-18 03:34:58.454 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.jvm' (registry 'solr.jvm') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@44c73c26
-2019-12-18 03:34:58.466 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.jetty' (registry 'solr.jetty') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@44c73c26
-2019-12-18 03:34:58.518 INFO  (main) [   ] o.a.s.c.CorePropertiesLocator Found 1 core definitions underneath /var/solr/data
-2019-12-18 03:34:58.519 INFO  (main) [   ] o.a.s.c.CorePropertiesLocator Cores are: [solr]
-2019-12-18 03:34:58.591 INFO  (main) [   ] o.e.j.s.h.ContextHandler Started o.e.j.w.WebAppContext@61d9efe0{/solr,file:///opt/solr-8.3.1/server/solr-webapp/webapp/,AVAILABLE}{/opt/solr-8.3.1/server/solr-webapp/webapp}
-2019-12-18 03:34:58.600 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.c.SolrResourceLoader [solr] Added 61 libs to classloader, from paths: [/opt/solr/contrib/clustering/lib, /opt/solr/contrib/extraction/lib, /opt/solr/contrib/langid/lib, /opt/solr/contrib/velocity/lib, /opt/solr/dist]
-2019-12-18 03:34:58.602 INFO  (main) [   ] o.e.j.s.AbstractConnector Started ServerConnector@4bff1903{HTTP/1.1,[http/1.1, h2c]}{0.0.0.0:8983}
-2019-12-18 03:34:58.603 INFO  (main) [   ] o.e.j.s.Server Started @4002ms
-2019-12-18 03:34:58.895 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.c.SolrConfig Using Lucene MatchVersion: 8.3.1
-2019-12-18 03:34:59.062 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.s.IndexSchema [solr] Schema name=default-config
-2019-12-18 03:34:59.717 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.s.IndexSchema Loaded schema default-config/1.6 with uniqueid field id
-2019-12-18 03:34:59.849 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.c.CoreContainer Creating SolrCore 'solr' using configuration from instancedir /var/solr/data/solr, trusted=true
-2019-12-18 03:34:59.879 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.core.solr' (registry 'solr.core.solr') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@44c73c26
-2019-12-18 03:34:59.892 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.c.SolrCore [[solr] ] Opening new SolrCore at [/var/solr/data/solr], dataDir=[/var/solr/data/solr/data/]
-2019-12-18 03:34:59.941 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.r.XSLTResponseWriter xsltCacheLifetimeSeconds=5
-2019-12-18 03:35:00.425 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.u.UpdateHandler Using UpdateLog implementation: org.apache.solr.update.UpdateLog
-2019-12-18 03:35:00.425 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.u.UpdateLog Initializing UpdateLog: dataDir= defaultSyncLevel=FLUSH numRecordsToKeep=100 maxNumLogsToKeep=10 numVersionBuckets=65536
-2019-12-18 03:35:00.440 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.u.CommitTracker Hard AutoCommit: if uncommitted for 15000ms; 
-2019-12-18 03:35:00.440 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.u.CommitTracker Soft AutoCommit: disabled
-2019-12-18 03:35:00.502 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.s.SolrIndexSearcher Opening [Searcher@3f3f00a8[solr] main]
-2019-12-18 03:35:00.513 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.r.ManagedResourceStorage File-based storage initialized to use dir: /var/solr/data/solr/conf
-2019-12-18 03:35:00.537 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.h.c.SpellCheckComponent Initializing spell checkers
-2019-12-18 03:35:00.543 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.s.DirectSolrSpellChecker init: {name=default,field=_text_,classname=solr.DirectSolrSpellChecker,distanceMeasure=internal,accuracy=0.5,maxEdits=2,minPrefix=1,maxInspections=5,minQueryLength=4,maxQueryFrequency=0.01}
-2019-12-18 03:35:00.556 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.h.ReplicationHandler Commits will be reserved for 10000ms.
-2019-12-18 03:35:00.562 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.u.UpdateLog Could not find max version in index or recent updates, using new clock 1653226970086899712
-2019-12-18 03:35:00.572 INFO  (searcherExecutor-10-thread-1-processing-x:solr) [   x:solr] o.a.s.c.QuerySenderListener QuerySenderListener sending requests to Searcher@3f3f00a8[solr] main{ExitableDirectoryReader(UninvertingDirectoryReader())}
-2019-12-18 03:35:00.572 INFO  (searcherExecutor-10-thread-1-processing-x:solr) [   x:solr] o.a.s.c.QuerySenderListener QuerySenderListener done.
-2019-12-18 03:35:00.572 INFO  (searcherExecutor-10-thread-1-processing-x:solr) [   x:solr] o.a.s.h.c.SpellCheckComponent Loading spell index for spellchecker: default
-2019-12-18 03:35:00.588 INFO  (searcherExecutor-10-thread-1-processing-x:solr) [   x:solr] o.a.s.c.SolrCore [solr] Registered new searcher Searcher@3f3f00a8[solr] main{ExitableDirectoryReader(UninvertingDirectoryReader())}
+2019-12-20 13:50:13.581 INFO  (main) [   ] o.e.j.u.log Logging initialized @1797ms to org.eclipse.jetty.util.log.Slf4jLog
+2019-12-20 13:50:13.783 WARN  (main) [   ] o.e.j.x.XmlConfiguration Deprecated method public void org.eclipse.jetty.rewrite.handler.RedirectRegexRule.setReplacement(java.lang.String) in file:///opt/solr-8.3.1/server/etc/jetty.xml
+2019-12-20 13:50:13.902 WARN  (main) [   ] o.e.j.s.AbstractConnector Ignoring deprecated socket close linger time
+2019-12-20 13:50:13.903 WARN  (main) [   ] o.e.j.x.XmlConfiguration Deprecated method public void org.eclipse.jetty.server.ServerConnector.setSoLingerTime(int) in file:///opt/solr-8.3.1/server/etc/jetty-http.xml
+2019-12-20 13:50:13.916 INFO  (main) [   ] o.e.j.s.Server jetty-9.4.19.v20190610; built: 2019-06-10T16:30:51.723Z; git: afcf563148970e98786327af5e07c261fda175d3; jvm 11.0.5+10
+2019-12-20 13:50:13.938 INFO  (main) [   ] o.e.j.d.p.ScanningAppProvider Deployment monitor [file:///opt/solr-8.3.1/server/contexts/] at interval 0
+2019-12-20 13:50:14.330 INFO  (main) [   ] o.e.j.w.StandardDescriptorProcessor NO JSP Support for /solr, did not find org.apache.jasper.servlet.JspServlet
+2019-12-20 13:50:14.341 INFO  (main) [   ] o.e.j.s.session DefaultSessionIdManager workerName=node0
+2019-12-20 13:50:14.341 INFO  (main) [   ] o.e.j.s.session No SessionScavenger set, using defaults
+2019-12-20 13:50:14.345 INFO  (main) [   ] o.e.j.s.session node0 Scavenging every 600000ms
+2019-12-20 13:50:14.471 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter Using logger factory org.apache.logging.slf4j.Log4jLoggerFactory
+2019-12-20 13:50:14.479 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter  ___      _       Welcome to Apache Solr™ version 8.3.1
+2019-12-20 13:50:14.479 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter / __| ___| |_ _   Starting in standalone mode on port 8983
+2019-12-20 13:50:14.479 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter \__ \/ _ \ | '_|  Install dir: /opt/solr
+2019-12-20 13:50:14.479 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter |___/\___/_|_|    Start time: 2019-12-20T13:50:14.479713Z
+2019-12-20 13:50:14.543 INFO  (main) [   ] o.a.s.c.SolrResourceLoader Using system property solr.solr.home: /var/solr/data
+2019-12-20 13:50:14.553 INFO  (main) [   ] o.a.s.c.SolrXmlConfig Loading container configuration from /var/solr/data/solr.xml
+2019-12-20 13:50:14.694 INFO  (main) [   ] o.a.s.c.SolrXmlConfig MBean server found: com.sun.jmx.mbeanserver.JmxMBeanServer@44c73c26, but no JMX reporters were configured - adding default JMX reporter.
+2019-12-20 13:50:15.263 INFO  (main) [   ] o.a.s.h.c.HttpShardHandlerFactory Host whitelist initialized: WhitelistHostChecker [whitelistHosts=null, whitelistHostCheckingEnabled=true]
+2019-12-20 13:50:15.478 WARN  (main) [   ] o.e.j.u.s.S.config Trusting all certificates configured for Client@38eb2c50[provider=null,keyStore=null,trustStore=null]
+2019-12-20 13:50:15.479 WARN  (main) [   ] o.e.j.u.s.S.config No Client EndPointIdentificationAlgorithm configured for Client@38eb2c50[provider=null,keyStore=null,trustStore=null]
+2019-12-20 13:50:15.664 WARN  (main) [   ] o.e.j.u.s.S.config Trusting all certificates configured for Client@1e530163[provider=null,keyStore=null,trustStore=null]
+2019-12-20 13:50:15.664 WARN  (main) [   ] o.e.j.u.s.S.config No Client EndPointIdentificationAlgorithm configured for Client@1e530163[provider=null,keyStore=null,trustStore=null]
+2019-12-20 13:50:15.832 INFO  (main) [   ] o.a.s.c.TransientSolrCoreCacheDefault Allocating transient cache for 2147483647 transient cores
+2019-12-20 13:50:15.835 INFO  (main) [   ] o.a.s.h.a.MetricsHistoryHandler No .system collection, keeping metrics history in memory.
+2019-12-20 13:50:15.972 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.node' (registry 'solr.node') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@44c73c26
+2019-12-20 13:50:15.975 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.jvm' (registry 'solr.jvm') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@44c73c26
+2019-12-20 13:50:15.988 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.jetty' (registry 'solr.jetty') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@44c73c26
+2019-12-20 13:50:16.036 INFO  (main) [   ] o.a.s.c.CorePropertiesLocator Found 1 core definitions underneath /var/solr/data
+2019-12-20 13:50:16.036 INFO  (main) [   ] o.a.s.c.CorePropertiesLocator Cores are: [solr]
+2019-12-20 13:50:16.147 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.c.SolrResourceLoader [solr] Added 61 libs to classloader, from paths: [/opt/solr/contrib/clustering/lib, /opt/solr/contrib/extraction/lib, /opt/solr/contrib/langid/lib, /opt/solr/contrib/velocity/lib, /opt/solr/dist]
+2019-12-20 13:50:16.165 INFO  (main) [   ] o.e.j.s.h.ContextHandler Started o.e.j.w.WebAppContext@61d9efe0{/solr,file:///opt/solr-8.3.1/server/solr-webapp/webapp/,AVAILABLE}{/opt/solr-8.3.1/server/solr-webapp/webapp}
+2019-12-20 13:50:16.181 INFO  (main) [   ] o.e.j.s.AbstractConnector Started ServerConnector@4bff1903{HTTP/1.1,[http/1.1, h2c]}{0.0.0.0:8983}
+2019-12-20 13:50:16.182 INFO  (main) [   ] o.e.j.s.Server Started @4402ms
+2019-12-20 13:50:16.439 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.c.SolrConfig Using Lucene MatchVersion: 8.3.1
+2019-12-20 13:50:16.604 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.s.IndexSchema [solr] Schema name=default-config
+2019-12-20 13:50:17.327 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.s.IndexSchema Loaded schema default-config/1.6 with uniqueid field id
+2019-12-20 13:50:17.448 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.c.CoreContainer Creating SolrCore 'solr' using configuration from instancedir /var/solr/data/solr, trusted=true
+2019-12-20 13:50:17.481 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.core.solr' (registry 'solr.core.solr') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@44c73c26
+2019-12-20 13:50:17.502 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.c.SolrCore [[solr] ] Opening new SolrCore at [/var/solr/data/solr], dataDir=[/var/solr/data/solr/data/]
+2019-12-20 13:50:17.553 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.r.XSLTResponseWriter xsltCacheLifetimeSeconds=5
+2019-12-20 13:50:18.083 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.u.UpdateHandler Using UpdateLog implementation: org.apache.solr.update.UpdateLog
+2019-12-20 13:50:18.083 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.u.UpdateLog Initializing UpdateLog: dataDir= defaultSyncLevel=FLUSH numRecordsToKeep=100 maxNumLogsToKeep=10 numVersionBuckets=65536
+2019-12-20 13:50:18.103 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.u.CommitTracker Hard AutoCommit: if uncommitted for 15000ms; 
+2019-12-20 13:50:18.103 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.u.CommitTracker Soft AutoCommit: disabled
+2019-12-20 13:50:18.189 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.s.SolrIndexSearcher Opening [Searcher@4b4aa473[solr] main]
+2019-12-20 13:50:18.202 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.r.ManagedResourceStorage File-based storage initialized to use dir: /var/solr/data/solr/conf
+2019-12-20 13:50:18.229 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.h.c.SpellCheckComponent Initializing spell checkers
+2019-12-20 13:50:18.236 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.s.DirectSolrSpellChecker init: {name=default,field=_text_,classname=solr.DirectSolrSpellChecker,distanceMeasure=internal,accuracy=0.5,maxEdits=2,minPrefix=1,maxInspections=5,minQueryLength=4,maxQueryFrequency=0.01}
+2019-12-20 13:50:18.248 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.h.ReplicationHandler Commits will be reserved for 10000ms.
+2019-12-20 13:50:18.255 INFO  (coreLoadExecutor-9-thread-1) [   x:solr] o.a.s.u.UpdateLog Could not find max version in index or recent updates, using new clock 1653446875025506304
+2019-12-20 13:50:18.265 INFO  (searcherExecutor-10-thread-1-processing-x:solr) [   x:solr] o.a.s.c.QuerySenderListener QuerySenderListener sending requests to Searcher@4b4aa473[solr] main{ExitableDirectoryReader(UninvertingDirectoryReader())}
+2019-12-20 13:50:18.265 INFO  (searcherExecutor-10-thread-1-processing-x:solr) [   x:solr] o.a.s.c.QuerySenderListener QuerySenderListener done.
+2019-12-20 13:50:18.265 INFO  (searcherExecutor-10-thread-1-processing-x:solr) [   x:solr] o.a.s.h.c.SpellCheckComponent Loading spell index for spellchecker: default
+2019-12-20 13:50:18.275 INFO  (searcherExecutor-10-thread-1-processing-x:solr) [   x:solr] o.a.s.c.SolrCore [solr] Registered new searcher Searcher@4b4aa473[solr] main{ExitableDirectoryReader(UninvertingDirectoryReader())}
