@@ -7,9 +7,19 @@
   {% if has_constrain %}
     <div class="{{ constrain_classes }}">
   {% endif %}
-  {% block content %}
-    Header Region Content
-  {% endblock %}
+    <div class="l-header__inner">
+      <div class="l-header__branding">
+        {% block branding %}
+          Branding content
+        {% endblock %}
+      </div>
+
+      <div class="l-header__menu">
+        {% block menu %}
+          Menu content
+        {% endblock %}
+      </div>
+    </div>
   {% if has_constrain %}
     </div>
   {% endif %}

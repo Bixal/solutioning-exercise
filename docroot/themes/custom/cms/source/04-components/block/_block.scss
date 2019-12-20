@@ -4,3 +4,8 @@
 .block {
   margin-bottom: $spacer-5;
 }
+
+// Variants
+.block--inverse {
+  background-color: $color-background-inverse;
+}

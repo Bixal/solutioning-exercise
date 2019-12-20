@@ -1,4 +1,25 @@
 // @file
 // Styles for Site name.
 
-// .site-name {}
+.site-name {
+  background-image: url('./../images/logo.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  display: inline-block;
+  flex-shrink: 0;
+  height: 30px;
+  overflow: hidden;
+  width: 200px;
+
+  &::before {
+    content: '';
+    display: block;
+    height: 150%;
+    width: 0;
+  }
+
+  @media (min-width: $width-sm) {
+    height: 50px;
+    width: 300px;
+  }
+}

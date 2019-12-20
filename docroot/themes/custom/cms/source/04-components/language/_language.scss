@@ -1,0 +1,12 @@
+// @file
+// Styles for Language links.
+
+.language-link {
+  color: $color-primary;
+  font-size: $small-font-size;
+  text-decoration: none;
+
+  @media (min-width: $width-sm) {
+    font-size: $base-font-size;
+  }
+}

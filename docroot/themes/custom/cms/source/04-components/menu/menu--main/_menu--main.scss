@@ -1,0 +1,24 @@
+// @file
+// Styles for the Main menu.
+
+.menu--main {
+  @include ds-unstyled-list;
+
+  .menu__link,
+  .menu__link:visited {
+    color: $color-primary;
+    font-size: $base-font-size;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    &.is-active,
+    &.is-active:visited {
+      color: $color-primary;
+    }
+
+    &:hover {
+      color: $color-primary-darker;
+      text-decoration: underline;
+    }
+  }
+}
