@@ -33,3 +33,13 @@ function cms_preprocess_block(&$variables) {
     $variables["content"]["#links"]["es"]["title"] = "Español";
   }
 }
+
+/**
+ * Implements hook_preprocess_breadcrumb().
+ */
+function cms_preprocess_breadcrumb(&$variables) {
+  $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+  if ($language === "es") {
+    $variables["breadcrumb"][0]["text"] = "Cobertura de medicamentos (Parte D)";
+  }
+}
