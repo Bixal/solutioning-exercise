@@ -24,3 +24,12 @@ function cms_theme_suggestions_block_alter(array &$suggestions, array $variables
     }
   }
 }
+
+/**
+ * Implements theme_preprocess_block().
+ */
+function cms_preprocess_block(&$variables) {
+  if ($variables['plugin_id'] === "language_block:language_interface") {
+    $variables["content"]["#links"]["es"]["title"] = "Español";
+  }
+}
