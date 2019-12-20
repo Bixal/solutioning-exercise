@@ -4757,6 +4757,12 @@ img {
   font-size: 14px;
   text-decoration: none; }
 
+.language-link:visited {
+  color: #0071bc; }
+
+.language-link:hover {
+  text-decoration: underline; }
+
 @media (min-width: 544px) {
   .language-link {
     font-size: 16px; } }
